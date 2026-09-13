@@ -164,23 +164,33 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
         'Apa saja faktor penyebab perubahan sosial dalam sosiologi?',
       ];
 
-  if (!isOpen) return null;
-
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/40 backdrop-blur-xs">
+      {isOpen && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 16 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 16 }}
-          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-2xl h-[86vh] max-h-[720px] flex flex-col rounded-2xl border shadow-2xl overflow-hidden"
-          style={{
-            background: 'var(--app-canvas, #ffffff)',
-            borderColor: 'var(--app-hairline, #e6e6e6)',
-            color: 'var(--app-text, #1a1a1a)',
+          key="chatbot-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/40 backdrop-blur-xs"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) onClose();
           }}
         >
+          <motion.div
+            key="chatbot-dialog"
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 20 }}
+            transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+            className="w-full max-w-2xl h-[86vh] max-h-[720px] flex flex-col rounded-2xl border shadow-2xl overflow-hidden"
+            style={{
+              background: 'var(--app-canvas, #ffffff)',
+              borderColor: 'var(--app-hairline, #e6e6e6)',
+              color: 'var(--app-text, #1a1a1a)',
+            }}
+          >
           {/* Header */}
           <div
             className="flex items-center justify-between px-4 sm:px-5 py-3.5 border-b flex-shrink-0"
@@ -200,7 +210,7 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-bold tracking-tight">Tanya AI</h3>
+                  <h3 className="text-sm font-bold tracking-tight" style={{ color: 'var(--app-text, #1a1a1a)' }}>Tanya AI</h3>
                   <span
                     className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
                     style={{
@@ -211,7 +221,7 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
                     {AI_PROVIDERS[provider]?.name || provider}
                   </span>
                 </div>
-                <div className="text-[11px] text-stone-500 font-mono">
+                <div className="text-[11px] font-mono" style={{ color: 'var(--app-text-muted, #615d59)' }}>
                   {model}
                 </div>
               </div>
@@ -220,10 +230,10 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setIsConfiguring(!isConfiguring)}
-                className="p-2 rounded-lg text-stone-500 hover:text-stone-900 transition-colors cursor-pointer"
+                className="p-2 rounded-lg transition-colors cursor-pointer"
                 style={{
                   background: isConfiguring ? 'rgba(0,117,222,0.1)' : 'transparent',
-                  color: isConfiguring ? '#0075de' : undefined,
+                  color: isConfiguring ? '#0075de' : 'var(--app-text-muted, #615d59)',
                 }}
                 title="Pengaturan API & Model"
               >
@@ -232,7 +242,8 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
 
               <button
                 onClick={handleClearHistory}
-                className="p-2 rounded-lg text-stone-400 hover:text-red-500 transition-colors cursor-pointer"
+                className="p-2 rounded-lg transition-colors cursor-pointer hover:text-red-500"
+                style={{ color: 'var(--app-text-ash, #a39e98)' }}
                 title="Bersihkan obrolan"
               >
                 <Trash2 size={16} />
@@ -240,7 +251,8 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
 
               <button
                 onClick={onClose}
-                className="p-2 rounded-lg text-stone-400 hover:text-stone-700 transition-colors cursor-pointer"
+                className="p-2 rounded-lg transition-colors cursor-pointer"
+                style={{ color: 'var(--app-text-ash, #a39e98)' }}
                 title="Tutup"
               >
                 <X size={16} />
@@ -259,8 +271,8 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
               }}
             >
               <BookOpen size={13} className="text-[#2a9d99] flex-shrink-0" />
-              <span className="truncate">
-                Konteks Aktif: <strong className="font-semibold text-stone-800">{materialContext.title}</strong> ({materialContext.subject})
+              <span className="truncate" style={{ color: 'var(--app-text-muted, #615d59)' }}>
+                Konteks Aktif: <strong className="font-semibold" style={{ color: 'var(--app-text, #000000)' }}>{materialContext.title}</strong> ({materialContext.subject})
               </span>
             </div>
           )}
@@ -269,15 +281,15 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
           {isConfiguring ? (
             <div className="flex-1 overflow-y-auto p-5 sm:p-6 flex flex-col gap-5">
               <div>
-                <h4 className="text-sm font-bold mb-1">Pengaturan Model & API Key</h4>
-                <p className="text-xs text-stone-500">
+                <h4 className="text-sm font-bold mb-1" style={{ color: 'var(--app-text, #1a1a1a)' }}>Pengaturan Model & API Key</h4>
+                <p className="text-xs" style={{ color: 'var(--app-text-muted, #615d59)' }}>
                   Pilih provider AI dan masukkan API Key Anda. Kunci disimpan secara privat di browser (localStorage).
                 </p>
               </div>
 
               {/* Provider Selection */}
               <div>
-                <label className="text-xs font-semibold text-stone-600 uppercase tracking-wider mb-2 block">
+                <label className="text-xs font-semibold uppercase tracking-wider mb-2 block" style={{ color: 'var(--app-text-muted, #615d59)' }}>
                   Pilih Provider
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -295,14 +307,14 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
                           background: isSelected ? 'rgba(0,117,222,0.06)' : 'var(--app-surface, #fbfbfb)',
                         }}
                       >
-                        <div className="font-bold text-xs mb-1">{p.name}</div>
-                        <div className="text-[10px] text-stone-400">
+                        <div className="font-bold text-xs mb-1" style={{ color: 'var(--app-text, #1a1a1a)' }}>{p.name}</div>
+                        <div className="text-[10px]" style={{ color: 'var(--app-text-ash, #a39e98)' }}>
                           {hasKey ? (
-                            <span className="text-emerald-600 font-medium flex items-center gap-1">
+                            <span className="text-emerald-500 font-medium flex items-center gap-1">
                               <Check size={10} /> Key Tersimpan
                             </span>
                           ) : (
-                            <span className="text-amber-600">Belum ada key</span>
+                            <span className="text-amber-500 font-medium">Belum ada key</span>
                           )}
                         </div>
                       </button>
@@ -313,7 +325,7 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
 
               {/* Model Selection */}
               <div>
-                <label className="text-xs font-semibold text-stone-600 uppercase tracking-wider mb-2 block">
+                <label className="text-xs font-semibold uppercase tracking-wider mb-2 block" style={{ color: 'var(--app-text-muted, #615d59)' }}>
                   Model {AI_PROVIDERS[provider]?.name}
                 </label>
                 <select
@@ -327,7 +339,7 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
                   }}
                 >
                   {AI_PROVIDERS[provider]?.availableModels.map((m) => (
-                    <option key={m.id} value={m.id}>
+                    <option key={m.id} value={m.id} style={{ background: 'var(--app-canvas, #ffffff)', color: 'var(--app-text, #1a1a1a)' }}>
                       {m.name} ({m.id})
                     </option>
                   ))}
@@ -337,7 +349,7 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
               {/* API Key Form */}
               <form onSubmit={handleSaveKey} className="flex flex-col gap-3">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-semibold text-stone-600 uppercase tracking-wider">
+                  <label className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--app-text-muted, #615d59)' }}>
                     API Key untuk {AI_PROVIDERS[provider]?.name}
                   </label>
                   <a
@@ -366,21 +378,23 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
                   />
                   <Key
                     size={14}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
+                    className="absolute left-3 top-1/2 -translate-y-1/2"
+                    style={{ color: 'var(--app-text-ash, #a39e98)' }}
                   />
                   <button
                     type="button"
                     onClick={() => setShowKey(!showKey)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+                    style={{ color: 'var(--app-text-ash, #a39e98)' }}
                   >
                     {showKey ? <EyeOff size={14} /> : <Eye size={14} />}
                   </button>
                 </div>
 
                 <div className="flex items-center justify-between pt-2">
-                  <span className="text-[11px] text-stone-400">
+                  <span className="text-[11px]" style={{ color: 'var(--app-text-ash, #a39e98)' }}>
                     {keySavedNotification && (
-                      <span className="text-emerald-600 font-semibold flex items-center gap-1">
+                      <span className="text-emerald-500 font-semibold flex items-center gap-1">
                         <Check size={12} /> API Key berhasil disimpan!
                       </span>
                     )}
@@ -394,6 +408,7 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
                         style={{
                           borderColor: 'var(--app-hairline, #e6e6e6)',
                           background: 'var(--app-surface, #f6f5f4)',
+                          color: 'var(--app-text, #1a1a1a)',
                         }}
                       >
                         Batal
@@ -443,8 +458,11 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
                 {messages.map((m, idx) => {
                   const isUser = m.role === 'user';
                   return (
-                    <div
+                    <motion.div
                       key={idx}
+                      initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                       className={`flex gap-3 ${isUser ? 'justify-end' : 'justify-start'}`}
                     >
                       {!isUser && (
@@ -507,30 +525,32 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
                           <User size={14} />
                         </div>
                       )}
-                    </div>
+                    </motion.div>
                   );
                 })}
 
                 {/* Quick prompts if chat is short */}
                 {messages.length <= 2 && !isLoading && (
                   <div className="pt-2">
-                    <div className="text-[11px] font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                    <div className="text-[11px] font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--app-text-ash, #a39e98)' }}>
                       Saran Pertanyaan Cepat:
                     </div>
                     <div className="flex flex-col gap-1.5">
                       {quickPrompts.map((qp, i) => (
-                        <button
+                        <motion.button
                           key={i}
+                          whileHover={{ scale: 1.01, x: 2 }}
+                          whileTap={{ scale: 0.99 }}
                           onClick={() => handleSendMessage(qp)}
-                          className="text-left px-3 py-2 text-xs rounded-xl border transition-all cursor-pointer hover:border-[#0075de] hover:bg-blue-50/40"
+                          className="text-left px-3 py-2 text-xs rounded-xl border transition-colors cursor-pointer hover:border-[#0075de]"
                           style={{
                             borderColor: 'var(--app-hairline, #e6e6e6)',
                             background: 'var(--app-canvas, #ffffff)',
-                            color: 'var(--app-text-secondary, #31302e)',
+                            color: 'var(--app-text, #31302e)',
                           }}
                         >
                           💡 {qp}
-                        </button>
+                        </motion.button>
                       ))}
                     </div>
                   </div>
@@ -597,7 +617,8 @@ export default function Chatbot({ isOpen, onClose, materialContext = null }) {
             </>
           )}
         </motion.div>
-      </div>
-    </AnimatePresence>
+      </motion.div>
+    )}
+  </AnimatePresence>
   );
 }

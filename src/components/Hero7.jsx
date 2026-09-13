@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, FileText, Settings2, PanelLeftOpen, ExternalLink } from 'lucide-react';
 import GoogleDriveIcon from './GoogleDriveIcon';
-import { GDRIVE_FOLDER_URL } from '../data/materials';
+import { GDRIVE_FOLDER_URL, SUBJECT_GDRIVE_LIST } from '../data/materials';
 
 // Notion design tokens
 const T = {
@@ -24,18 +24,24 @@ const T = {
 // A miniature Smart Reader preview for the right column
 function ReaderPreview() {
   return (
-    <div
+    <motion.div
+      whileHover={{ y: -5, rotateZ: -0.3 }}
+      transition={{ type: 'spring', stiffness: 340, damping: 22 }}
+      className="double-bezel-outer"
       style={{
-        borderRadius: 14,
-        border: `1px solid ${T.hairline}`,
-        overflow: 'hidden',
-        background: T.canvas,
-        boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04)',
         flex: 1,
         maxWidth: 420,
         alignSelf: 'center',
+        boxShadow: '0 12px 40px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04)',
       }}
     >
+      <div
+        className="double-bezel-inner"
+        style={{
+          overflow: 'hidden',
+          background: T.canvas,
+        }}
+      >
       {/* Reader toolbar mockup */}
       <div
         style={{
@@ -139,14 +145,14 @@ function ReaderPreview() {
               Stoikiometri
             </div>
             <div style={{ height: 5, borderRadius: 2, background: T.hairline, width: '85%' }} />
-            <div style={{ height: 4, borderRadius: 2, background: '#e6e6e6', width: '100%' }} />
-            <div style={{ height: 4, borderRadius: 2, background: '#e6e6e6', width: '92%' }} />
+            <div style={{ height: 4, borderRadius: 2, background: T.hairline, width: '100%', opacity: 0.7 }} />
+            <div style={{ height: 4, borderRadius: 2, background: T.hairline, width: '92%', opacity: 0.7 }} />
 
             <div style={{ fontSize: 10, fontWeight: 600, color: T.ink, marginTop: 4 }}>
               Hukum Kekekalan Massa
             </div>
-            <div style={{ height: 4, borderRadius: 2, background: '#e6e6e6', width: '100%' }} />
-            <div style={{ height: 4, borderRadius: 2, background: '#e6e6e6', width: '78%' }} />
+            <div style={{ height: 4, borderRadius: 2, background: T.hairline, width: '100%', opacity: 0.7 }} />
+            <div style={{ height: 4, borderRadius: 2, background: T.hairline, width: '78%', opacity: 0.7 }} />
 
             {/* Math mockup */}
             <div
@@ -225,6 +231,7 @@ function ReaderPreview() {
         </div>
       </div>
     </div>
+  </motion.div>
   );
 }
 
@@ -319,95 +326,116 @@ export default function Hero7({
 
           {/* CTA + compact stats */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <a
+            <motion.a
               href={ctaUrl}
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('materials')?.scrollIntoView({ behavior: 'smooth' });
               }}
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 420, damping: 24 }}
+              className="group"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: 8,
-                padding: '11px 24px',
+                gap: 10,
+                padding: '10px 14px 10px 22px',
                 borderRadius: 'var(--radius-full)',
                 background: T.primary,
                 color: T.onDark,
                 fontSize: 14,
                 fontWeight: 600,
                 textDecoration: 'none',
-                boxShadow: '0 2px 8px rgba(0,117,222,0.22)',
-                transition: 'background 0.15s, transform 0.1s, box-shadow 0.15s',
+                boxShadow: '0 4px 16px rgba(0,117,222,0.28)',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = T.primaryActive;
-                e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,117,222,0.28)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = T.primary;
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,117,222,0.22)';
-              }}
-              onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'translateY(0) scale(0.98)';
-              }}
-              onMouseUp={(e) => {
-                e.currentTarget.style.transform = 'translateY(-1px) scale(1)';
-              }}
             >
-              {ctaText}
-              <ArrowRight size={15} strokeWidth={2.5} />
-            </a>
+              <span>{ctaText}</span>
+              <span className="btn-nested-icon w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5">
+                <ArrowRight size={14} strokeWidth={2.5} />
+              </span>
+            </motion.a>
 
-            <a
+            <motion.a
               href={GDRIVE_FOLDER_URL}
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 420, damping: 24 }}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: 8,
                 padding: '10px 20px',
                 borderRadius: 'var(--radius-full)',
-                background: '#ffffff',
+                background: T.canvas,
                 color: T.ink,
                 fontSize: 14,
                 fontWeight: 600,
                 textDecoration: 'none',
                 border: `1px solid ${T.hairline}`,
                 boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
-                transition: 'all 0.15s ease',
                 cursor: 'pointer',
                 fontFamily: 'inherit',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#0075de';
-                e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,117,222,0.12)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = T.hairline;
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.04)';
               }}
             >
               <GoogleDriveIcon size={16} />
               <span>Google Drive Materi</span>
               <ExternalLink size={13} style={{ color: T.stone }} />
-            </a>
+            </motion.a>
 
             {/* Compact inline stats */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ fontSize: 13, fontWeight: 600, color: T.stone }}>
                 <span style={{ fontWeight: 700, color: T.ink }}>{totalMaterials}</span> materi
               </span>
-              <span style={{ color: T.hairline }}>·</span>
+              <span style={{ color: T.stone, opacity: 0.4 }}>·</span>
               <span style={{ fontSize: 13, fontWeight: 600, color: T.stone }}>
                 <span style={{ fontWeight: 700, color: T.ink }}>3</span> kategori
               </span>
+            </div>
+
+            {/* Folder Google Drive per Mapel quick buttons */}
+            <div style={{ width: '100%', marginTop: 8, paddingTop: 14, borderTop: `1px dashed ${T.hairline}` }}>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: T.stone, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <GoogleDriveIcon size={14} />
+                <span>Folder Google Drive per Mata Pelajaran:</span>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {SUBJECT_GDRIVE_LIST.slice(0, 6).map((item) => (
+                  <motion.a
+                    key={item.subject}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 5,
+                      padding: '5px 11px',
+                      borderRadius: 'var(--radius-full)',
+                      background: T.canvas,
+                      border: `1px solid ${T.hairline}`,
+                      color: T.ink,
+                      fontSize: 12,
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+                    }}
+                    title={`Buka Folder Google Drive ${item.name}`}
+                  >
+                    <GoogleDriveIcon size={12} />
+                    <span>{item.short}</span>
+                    <ExternalLink size={9} style={{ opacity: 0.5 }} />
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, BookOpen, FlaskConical, Landmark, GraduationCap, ExternalLink } from 'lucide-react';
 import MaterialCard from './MaterialCard';
 import Hero7 from './Hero7';
 import Dock from './Dock';
 import GoogleDriveIcon from './GoogleDriveIcon';
-import { categories as catMeta, GDRIVE_FOLDER_URL, ALL_SUBJECTS, getSubjectGdriveUrl } from '../data/materials';
+import { categories as catMeta, GDRIVE_FOLDER_URL, ALL_SUBJECTS, getSubjectGdriveUrl, SUBJECT_GDRIVE_LIST } from '../data/materials';
 
 const T = {
   primary: '#0075de',
@@ -90,25 +90,44 @@ export default function Dashboard({
           </span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 18, flexWrap: 'wrap', position: 'relative' }}>
           {categories.map((cat) => {
             const Icon = cat.icon;
+            const isSelected = activeCategory === cat.id;
             return (
-              <button
+              <motion.button
                 key={cat.id}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 420, damping: 26 }}
                 onClick={() => { setActiveCategory(cat.id); setActiveSubject('all'); }}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold cursor-pointer transition-all duration-150"
+                className="relative inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold cursor-pointer select-none"
                 style={{
                   borderRadius: 'var(--radius-full)',
-                  border: activeCategory === cat.id ? 'none' : `1px solid ${T.hairline}`,
-                  background: activeCategory === cat.id ? cat.color : 'transparent',
-                  color: activeCategory === cat.id ? T.onDark : T.stone,
+                  border: isSelected ? 'none' : `1px solid ${T.hairline}`,
+                  background: 'transparent',
+                  color: isSelected ? T.onDark : T.stone,
                   letterSpacing: '0.01em',
+                  zIndex: 1,
                 }}
               >
+                {isSelected && (
+                  <motion.div
+                    layoutId="activeCategoryIndicator"
+                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      borderRadius: 'var(--radius-full)',
+                      background: cat.color,
+                      zIndex: -1,
+                      boxShadow: `0 2px 10px ${hexToRgba(cat.color, 0.3)}`,
+                    }}
+                  />
+                )}
                 {Icon && <Icon size={12} />}
-                {cat.name}
-              </button>
+                <span>{cat.name}</span>
+              </motion.button>
             );
           })}
         </div>
@@ -150,22 +169,25 @@ export default function Dashboard({
                 </div>
 
                 <a
-                  href={GDRIVE_FOLDER_URL}
+                  href={activeSubject !== 'all' ? getSubjectGdriveUrl(activeSubject) : GDRIVE_FOLDER_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-md border border-blue-200 bg-blue-50/70 text-[#0075de] hover:bg-blue-100 transition-colors"
-                  title="Buka Folder Google Drive Utama (berisi semua folder mapel)"
+                  title={activeSubject !== 'all' ? `Buka Folder Google Drive ${activeSubject}` : 'Buka Folder Google Drive Semua Mapel'}
                 >
                   <GoogleDriveIcon size={13} />
-                  <span>Buka Google Drive Semua Mapel</span>
+                  <span>{activeSubject !== 'all' ? `Buka Drive ${activeSubject}` : 'Buka Google Drive Semua Mapel'}</span>
                   <ExternalLink size={10} />
                 </a>
               </div>
 
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   onClick={() => setActiveSubject('all')}
-                  className="px-3 py-1 text-xs font-semibold cursor-pointer transition-all"
+                  className="px-3 py-1 text-xs font-semibold cursor-pointer transition-colors"
                   style={{
                     borderRadius: 'var(--radius-sm)',
                     border: activeSubject === 'all' ? 'none' : `1px solid ${T.hairline}`,
@@ -174,13 +196,16 @@ export default function Dashboard({
                   }}
                 >
                   Semua Mapel
-                </button>
+                </motion.button>
 
                 {relevantSubjects.map((subName) => {
                   const isSelected = activeSubject === subName;
                   return (
-                    <div
+                    <motion.div
                       key={subName}
+                      whileHover={{ scale: 1.03, y: -1 }}
+                      whileTap={{ scale: 0.97 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -188,6 +213,7 @@ export default function Dashboard({
                         border: `1px solid ${isSelected ? T.primary : T.hairline}`,
                         background: isSelected ? 'rgba(0,117,222,0.06)' : T.canvas,
                         overflow: 'hidden',
+                        boxShadow: isSelected ? '0 1px 4px rgba(0,117,222,0.15)' : 'none',
                       }}
                     >
                       <button
@@ -220,9 +246,71 @@ export default function Dashboard({
                         <span>Drive</span>
                         <ExternalLink size={9} style={{ opacity: 0.6 }} />
                       </a>
-                    </div>
+                    </motion.div>
                   );
                 })}
+              </div>
+
+              {/* Dedicated Google Drive per Mapel grid within subject bar */}
+              <div
+                style={{
+                  marginTop: 14,
+                  paddingTop: 12,
+                  borderTop: `1px dashed ${T.hairline}`,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <GoogleDriveIcon size={14} />
+                    <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: T.stone }}>
+                      Folder Google Drive per Mata Pelajaran
+                    </span>
+                  </div>
+                  <span style={{ fontSize: 10.5, color: T.ash }}>
+                    Folder Drive khusus materi PSTS
+                  </span>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 6 }}>
+                  {SUBJECT_GDRIVE_LIST.map((item) => (
+                    <a
+                      key={item.subject}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 6,
+                        padding: '6px 10px',
+                        borderRadius: 6,
+                        background: T.surface,
+                        border: `1px solid ${T.hairline}`,
+                        color: T.ink,
+                        fontSize: 11.5,
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                        transition: 'all 0.15s ease',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = '#0075de';
+                        e.currentTarget.style.color = '#0075de';
+                        e.currentTarget.style.background = T.canvas;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = T.hairline;
+                        e.currentTarget.style.color = T.ink;
+                        e.currentTarget.style.background = T.surface;
+                      }}
+                      title={`Buka Folder Google Drive ${item.name}`}
+                    >
+                      <GoogleDriveIcon size={12} />
+                      <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {item.short}
+                      </span>
+                      <ExternalLink size={9} style={{ opacity: 0.5, flexShrink: 0 }} />
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           );
@@ -245,20 +333,23 @@ export default function Dashboard({
 
         {materials.length > 0 ? (
           <motion.div
+            layout
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
             className="grid gap-4 materi-grid"
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))' }}
           >
-            {materials.map((material, index) => (
-              <MaterialCard
-                key={material.id}
-                material={material}
-                index={index}
-                onClick={() => onOpenMaterial(material)}
-              />
-            ))}
+            <AnimatePresence mode="popLayout">
+              {materials.map((material, index) => (
+                <MaterialCard
+                  key={material.id}
+                  material={material}
+                  index={index}
+                  onClick={() => onOpenMaterial(material)}
+                />
+              ))}
+            </AnimatePresence>
           </motion.div>
         ) : allMaterials.length === 0 ? (
           <motion.div
@@ -349,7 +440,7 @@ export default function Dashboard({
                             onMouseEnter={(e) => {
                               e.currentTarget.style.color = cat.color;
                               e.currentTarget.style.borderColor = cat.color;
-                              e.currentTarget.style.background = '#ffffff';
+                              e.currentTarget.style.background = T.canvas;
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.color = T.stone;

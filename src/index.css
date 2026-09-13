@@ -79,7 +79,12 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
   --radius-full: 9999px;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
 
   --reading-font-size: 17px;
   --reading-font-family: var(--font-sans);
@@ -361,6 +366,18 @@
     --dock-bg: rgba(30, 31, 38, 0.92);
     --dock-hover-bg: rgba(255, 255, 255, 0.08);
 
+    --color-ink-deep: #ffffff;
+    --color-ink: #f3f4f6;
+    --color-ink-secondary: #d1d5db;
+    --color-stone: #9ca3af;
+    --color-ash: #6b7280;
+    --color-muted: #4b5563;
+    --color-canvas: #1e1f26;
+    --color-surface: #18191e;
+    --color-surface-soft: #23242c;
+    --color-hairline: #2d2f39;
+    --color-hairline-strong: #3b3e4a;
+
     --reading-theme-bg: #16171d;
     --reading-theme-text: #cbd5e1;
     --reading-theme-heading: #f8fafc;
@@ -390,6 +407,18 @@
     --dock-bg: rgba(251, 246, 233, 0.94);
     --dock-hover-bg: rgba(60, 47, 31, 0.07);
 
+    --color-ink-deep: #2a1f14;
+    --color-ink: #3c2f1f;
+    --color-ink-secondary: #5c4832;
+    --color-stone: #7d654a;
+    --color-ash: #9c8367;
+    --color-muted: #bfaea0;
+    --color-canvas: #fbf6e9;
+    --color-surface: #ede4cc;
+    --color-surface-soft: #f4ecdc;
+    --color-hairline: #ded2b6;
+    --color-hairline-strong: #c8bba0;
+
     --reading-theme-bg: #f4ecd8;
     --reading-theme-text: #5c4832;
     --reading-theme-heading: #3d2b1f;
@@ -401,3 +430,186 @@
     --reading-theme-blockquote: #8b7355;
   }
 }
+
+/* =========================================================
+   DARK MODE TEXT CONTRAST OVERRIDES
+   Guarantees light mode dark text turns bright in dark mode
+   ========================================================= */
+.dark,
+[data-theme="dark"],
+[data-reading-theme="dark"] {
+  .text-stone-900,
+  .text-stone-800,
+  .text-stone-700,
+  .text-gray-900,
+  .text-gray-800,
+  .text-gray-700,
+  .text-black {
+    color: #f3f4f6 !important;
+  }
+
+  .text-stone-600,
+  .text-stone-500,
+  .text-gray-600,
+  .text-gray-500 {
+    color: #d1d5db !important;
+  }
+
+  .text-stone-400,
+  .text-gray-400 {
+    color: #9ca3af !important;
+  }
+
+  .bg-white {
+    background-color: var(--app-canvas, #1e1f26) !important;
+  }
+
+  .bg-stone-50,
+  .bg-stone-100,
+  .bg-gray-50,
+  .bg-gray-100 {
+    background-color: var(--app-surface, #18191e) !important;
+  }
+
+  .border-stone-200,
+  .border-stone-300,
+  .border-gray-200,
+  .border-gray-300 {
+    border-color: var(--app-hairline, #2d2f39) !important;
+  }
+
+  .prose {
+    color: #d1d5db !important;
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose strong, .prose th {
+    color: #f3f4f6 !important;
+  }
+  .prose p, .prose li, .prose td {
+    color: #d1d5db !important;
+  }
+  .prose code {
+    color: #f3f4f6 !important;
+    background-color: #1f2028 !important;
+  }
+  .prose blockquote {
+    color: #9ca3af !important;
+    border-left-color: #2d2f39 !important;
+  }
+}
+
+/* =========================================================
+   SEPIA MODE TEXT CONTRAST OVERRIDES
+   Guarantees warm brown tones in sepia mode
+   ========================================================= */
+[data-theme="sepia"],
+[data-reading-theme="sepia"] {
+  .text-stone-900,
+  .text-stone-800,
+  .text-stone-700,
+  .text-gray-900,
+  .text-gray-800,
+  .text-black {
+    color: #3c2f1f !important;
+  }
+
+  .text-stone-600,
+  .text-stone-500,
+  .text-gray-600,
+  .text-gray-500 {
+    color: #5c4832 !important;
+  }
+
+  .text-stone-400,
+  .text-gray-400 {
+    color: #7d654a !important;
+  }
+
+  .bg-white {
+    background-color: var(--app-canvas, #fbf6e9) !important;
+  }
+
+  .bg-stone-50,
+  .bg-stone-100,
+  .bg-gray-50,
+  .bg-gray-100 {
+    background-color: var(--app-surface, #ede4cc) !important;
+  }
+
+  .border-stone-200,
+  .border-stone-300,
+  .border-gray-200,
+  .border-gray-300 {
+    border-color: var(--app-hairline, #ded2b6) !important;
+  }
+
+  .prose {
+    color: #5c4832 !important;
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose strong, .prose th {
+    color: #3d2b1f !important;
+  }
+  .prose p, .prose li, .prose td {
+    color: #5c4832 !important;
+  }
+  .prose code {
+    color: #3d2b1f !important;
+    background-color: #e8dcc8 !important;
+  }
+  .prose blockquote {
+    color: #7d654a !important;
+    border-left-color: #ded2b6 !important;
+  }
+}
+
+/* =========================================================
+   HIGH-END VISUAL DESIGN & MOTION FOUNDATIONS
+   ========================================================= */
+
+/* Double-Bezel (Doppelrand) Hardware Architecture */
+.double-bezel-outer {
+  position: relative;
+  padding: 3px;
+  border-radius: 18px;
+  background: var(--bezel-outer-bg, rgba(0, 0, 0, 0.03));
+  border: 1px solid var(--app-hairline, #e6e6e6);
+  transition: border-color 0.25s var(--ease-expo), box-shadow 0.25s var(--ease-expo), transform 0.2s var(--ease-expo);
+}
+
+.dark .double-bezel-outer {
+  --bezel-outer-bg: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.double-bezel-inner {
+  position: relative;
+  border-radius: calc(18px - 3px);
+  background: var(--app-card-bg, #ffffff);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+}
+
+.dark .double-bezel-inner {
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Kinetic nested icon wrapper for Button-in-Button pattern */
+.btn-nested-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  transition: transform 0.22s var(--ease-expo), background-color 0.2s ease;
+}
+
+/* Fluid accessibility: prefers-reduced-motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

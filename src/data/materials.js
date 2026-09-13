@@ -104,8 +104,138 @@ export const SUBJECT_GDRIVE_URLS = {
     'https://drive.google.com/drive/folders/1iZFm1CYAKNWpo4SAHTcCUB55-8-Jy0H9?usp=drive_link',
 };
 
+export const SUBJECT_GDRIVE_LIST = [
+  {
+    name: 'Kimia',
+    short: 'Kimia',
+    subject: 'Kimia',
+    category: 'ipa',
+    color: '#2a9d99',
+    url: 'https://drive.google.com/drive/folders/1Fgn99Fk233bilMl2uue70mSc1DCIhWwZ?usp=drive_link',
+    isCustom: true,
+  },
+  {
+    name: 'Matematika (Mtk)',
+    short: 'Mtk',
+    subject: 'Matematika',
+    category: 'ipa',
+    color: '#2a9d99',
+    url: 'https://drive.google.com/drive/folders/1ZRRaw5g0wAQ9VLDW-vHNwoGCvG-ADk9Y?usp=drive_link',
+    isCustom: true,
+  },
+  {
+    name: 'Ekonomi',
+    short: 'Ekonomi',
+    subject: 'Ekonomi',
+    category: 'ips',
+    color: '#0075de',
+    url: 'https://drive.google.com/drive/folders/1jADgwD4afeHWCaLGccaKrXNhRBfLYrYu?usp=drive_link',
+    isCustom: true,
+  },
+  {
+    name: 'Sejarah',
+    short: 'Sejarah',
+    subject: 'Sejarah',
+    category: 'ips',
+    color: '#0075de',
+    url: 'https://drive.google.com/drive/folders/1BPTbktn2iuQM7Nv_XXeTXfjUSUS9rsks?usp=drive_link',
+    isCustom: true,
+  },
+  {
+    name: 'Bahasa Arab (B. Arab)',
+    short: 'B. Arab',
+    subject: 'Bahasa Arab',
+    category: 'basic',
+    color: '#dd5b00',
+    url: 'https://drive.google.com/drive/folders/1T1BdGTGl39UtKD45SWa9qon7sGcZKTw1?usp=drive_link',
+    isCustom: true,
+  },
+  {
+    name: 'Pendidikan Agama Islam (PAI)',
+    short: 'PAI',
+    subject: 'Pendidikan Agama Islam',
+    category: 'basic',
+    color: '#dd5b00',
+    url: 'https://drive.google.com/drive/folders/1iZFm1CYAKNWpo4SAHTcCUB55-8-Jy0H9?usp=drive_link',
+    isCustom: true,
+  },
+  {
+    name: 'Biologi',
+    short: 'Biologi',
+    subject: 'Biologi',
+    category: 'ipa',
+    color: '#2a9d99',
+    url: GDRIVE_FOLDER_URL,
+    isCustom: false,
+  },
+  {
+    name: 'Fisika',
+    short: 'Fisika',
+    subject: 'Fisika',
+    category: 'ipa',
+    color: '#2a9d99',
+    url: GDRIVE_FOLDER_URL,
+    isCustom: false,
+  },
+  {
+    name: 'Sosiologi',
+    short: 'Sosiologi',
+    subject: 'Sosiologi',
+    category: 'ips',
+    color: '#0075de',
+    url: GDRIVE_FOLDER_URL,
+    isCustom: false,
+  },
+  {
+    name: 'Geografi',
+    short: 'Geografi',
+    subject: 'Geografi',
+    category: 'ips',
+    color: '#0075de',
+    url: GDRIVE_FOLDER_URL,
+    isCustom: false,
+  },
+  {
+    name: 'Bahasa Indonesia',
+    short: 'B. Indonesia',
+    subject: 'Bahasa Indonesia',
+    category: 'basic',
+    color: '#dd5b00',
+    url: GDRIVE_FOLDER_URL,
+    isCustom: false,
+  },
+  {
+    name: 'Bahasa Inggris',
+    short: 'B. Inggris',
+    subject: 'Bahasa Inggris',
+    category: 'basic',
+    color: '#dd5b00',
+    url: GDRIVE_FOLDER_URL,
+    isCustom: false,
+  },
+];
+
 export const getSubjectGdriveUrl = (subject) => {
   if (!subject) return GDRIVE_FOLDER_URL;
+  const s = String(subject).toLowerCase().replace(/[-_]/g, ' ').trim();
+  if (s === 'mtk' || s === 'matematika' || s.includes('trigonometri')) {
+    return SUBJECT_GDRIVE_URLS.Matematika;
+  }
+  if (s === 'kimia' || s.includes('reaksi')) {
+    return SUBJECT_GDRIVE_URLS.Kimia;
+  }
+  if (s === 'ekonomi') {
+    return SUBJECT_GDRIVE_URLS.Ekonomi;
+  }
+  if (s === 'sejarah') {
+    return SUBJECT_GDRIVE_URLS.Sejarah;
+  }
+  if (s.includes('arab')) {
+    return SUBJECT_GDRIVE_URLS['Bahasa Arab'];
+  }
+  if (s.includes('pai') || s.includes('agama') || s.includes('islam') || s.includes('khairat')) {
+    return SUBJECT_GDRIVE_URLS['Pendidikan Agama Islam'];
+  }
   return SUBJECT_GDRIVE_URLS[subject] || GDRIVE_FOLDER_URL;
 };
 

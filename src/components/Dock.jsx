@@ -6,7 +6,7 @@ import {
   Moon, Sun, Type, ZoomIn, ZoomOut, ExternalLink, Sparkles,
 } from 'lucide-react';
 import GoogleDriveIcon from './GoogleDriveIcon';
-import { GDRIVE_FOLDER_URL } from '../data/materials';
+import { GDRIVE_FOLDER_URL, SUBJECT_GDRIVE_LIST } from '../data/materials';
 
 const T = {
   primary: '#0075de',
@@ -57,6 +57,7 @@ function DockButton({ icon: Icon, label, onClick, active, wide, accent, alwaysWi
         active ? 'is-active' : '',
       ].join(' ')}
       style={{
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         gap: wide ? 6 : 0,
@@ -66,9 +67,8 @@ function DockButton({ icon: Icon, label, onClick, active, wide, accent, alwaysWi
         justifyContent: 'center',
         borderRadius: 12,
         border: 'none',
-        background: active ? (accent ? hexToRgba(accent, 0.1) : 'rgba(0,117,222,0.1)') : 'transparent',
+        background: 'transparent',
         cursor: 'pointer',
-        transition: 'background 0.15s',
         fontFamily: 'inherit',
         fontSize: 13,
         fontWeight: 600,
@@ -79,10 +79,24 @@ function DockButton({ icon: Icon, label, onClick, active, wide, accent, alwaysWi
       onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = 'var(--dock-hover-bg, rgba(0,0,0,0.04))'; }}
       onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = 'transparent'; }}
     >
-      <Icon size={18} style={{ flexShrink: 0 }} />
-      <span className="dock-btn-label" style={{ fontSize: 13, lineHeight: 1 }}>{label}</span>
+      {active && (
+        <motion.div
+          layoutId="activeDockBubble"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: 12,
+            background: accent ? hexToRgba(accent, 0.12) : 'rgba(0,117,222,0.12)',
+            border: `1px solid ${accent ? hexToRgba(accent, 0.25) : 'rgba(0,117,222,0.25)'}`,
+            zIndex: 0,
+          }}
+          transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+        />
+      )}
+      <Icon size={18} style={{ flexShrink: 0, position: 'relative', zIndex: 1 }} />
+      <span className="dock-btn-label" style={{ fontSize: 13, lineHeight: 1, position: 'relative', zIndex: 1 }}>{label}</span>
       {wide && label === 'Materi' && (
-        <ChevronDown className="dock-btn-chevron" size={14} style={{ transition: 'transform 0.2s' }} />
+        <ChevronDown className="dock-btn-chevron" size={14} style={{ transition: 'transform 0.2s', position: 'relative', zIndex: 1 }} />
       )}
     </motion.button>
   );
@@ -99,9 +113,11 @@ function PanelShell({ children, onClose, title, subtitle, accent, initialPanel }
       className="panel-shell"
       style={{
         position: 'fixed',
-        bottom: 90,
-        left: '50%',
-        transform: 'translateX(-50%)',
+        bottom: 84,
+        left: 0,
+        right: 0,
+        marginLeft: 'auto',
+        marginRight: 'auto',
         zIndex: 200,
         width: 'calc(100% - 24px)',
         maxWidth: 640,
@@ -152,7 +168,7 @@ function PanelShell({ children, onClose, title, subtitle, accent, initialPanel }
             cursor: 'pointer', flexShrink: 0,
             color: T.stone,
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.06)'; }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--dock-hover-bg, rgba(0,0,0,0.06))'; }}
           onMouseLeave={(e) => { e.currentTarget.style.background = T.surface; }}
         >
           <X size={14} />
@@ -579,44 +595,83 @@ export default function Dock({
 
                   <div
                     style={{
-                      marginTop: 10,
+                      marginTop: 14,
                       padding: '12px 14px',
                       borderRadius: 'var(--radius-md)',
                       background: 'rgba(0,117,222,0.05)',
                       border: '1px solid rgba(0,117,222,0.15)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 10,
                     }}
                   >
-                    <GoogleDriveIcon size={22} />
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: T.ink }}>Folder Google Drive Mata Pelajaran</div>
-                      <div style={{ fontSize: 10, color: T.stone }}>Buka folder Google Drive materi per mapel</div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 10 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <GoogleDriveIcon size={18} />
+                        <div>
+                          <div style={{ fontSize: 12, fontWeight: 700, color: T.ink }}>Folder Drive per Mapel</div>
+                          <div style={{ fontSize: 10, color: T.stone }}>Buka materi langsung di Google Drive</div>
+                        </div>
+                      </div>
+                      <a
+                        href={GDRIVE_FOLDER_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          padding: '4px 10px',
+                          borderRadius: 6,
+                          background: 'rgba(0,117,222,0.12)',
+                          color: '#0075de',
+                          fontSize: 10.5,
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 3,
+                        }}
+                        title="Buka Folder Google Drive Utama Semua Mapel"
+                      >
+                        <span>Semua</span>
+                        <ExternalLink size={9} />
+                      </a>
                     </div>
-                    <a
-                      href={GDRIVE_FOLDER_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        padding: '6px 12px',
-                        borderRadius: 8,
-                        background: '#0075de',
-                        color: '#ffffff',
-                        border: 'none',
-                        fontSize: 11,
-                        fontWeight: 700,
-                        textDecoration: 'none',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 4,
-                        cursor: 'pointer',
-                        flexShrink: 0,
-                      }}
-                    >
-                      <span>Buka Drive</span>
-                      <ExternalLink size={10} />
-                    </a>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: 6 }}>
+                      {SUBJECT_GDRIVE_LIST.map((item) => (
+                        <a
+                          key={item.subject}
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            padding: '6px 8px',
+                            borderRadius: 6,
+                            background: T.canvas,
+                            border: `1px solid ${T.hairline}`,
+                            color: T.ink,
+                            fontSize: 11,
+                            fontWeight: 600,
+                            textDecoration: 'none',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 5,
+                            transition: 'all 0.15s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.borderColor = '#0075de';
+                            e.currentTarget.style.color = '#0075de';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.borderColor = T.hairline;
+                            e.currentTarget.style.color = T.ink;
+                          }}
+                          title={`Buka Google Drive ${item.name}`}
+                        >
+                          <GoogleDriveIcon size={11} />
+                          <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {item.short}
+                          </span>
+                          <ExternalLink size={8} style={{ opacity: 0.5, flexShrink: 0 }} />
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
@@ -897,6 +952,13 @@ export default function Dock({
       <style>{`
         .dock-root::-webkit-scrollbar { display: none; }
 
+        .panel-shell {
+          left: 0 !important;
+          right: 0 !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
         /* ===== Responsive Dock ===== */
         /* Mobile (sempit): label disembunyikan → icon-only, lebih ramping */
         @media (max-width: 640px) {
@@ -909,7 +971,14 @@ export default function Dock({
             gap: 0 !important;
           }
           .dock-divider-second { display: none !important; }
-          .panel-shell { bottom: 82px !important; }
+          .panel-shell {
+            bottom: 78px !important;
+            left: 0 !important;
+            right: 0 !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: calc(100% - 24px) !important;
+          }
           .panel-materi-grid { grid-template-columns: 1fr !important; }
         }
 
@@ -927,7 +996,11 @@ export default function Dock({
           .panel-shell {
             width: calc(100% - 16px) !important;
             max-height: 78vh !important;
-            bottom: 76px !important;
+            bottom: 72px !important;
+            left: 0 !important;
+            right: 0 !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
           }
           .panel-tabs { gap: 3px !important; }
           .panel-tab-pill { font-size: 11px !important; padding: 4px 10px !important; }

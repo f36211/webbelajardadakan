@@ -99,6 +99,104 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
       } else {
         doc.documentElement.classList.remove('dark');
       }
+
+      // Inject or update theme override stylesheet
+      let styleTag = doc.getElementById('viewer-theme-override');
+      if (!styleTag) {
+        styleTag = doc.createElement('style');
+        styleTag.id = 'viewer-theme-override';
+        if (doc.head) {
+          doc.head.appendChild(styleTag);
+        } else {
+          doc.documentElement.appendChild(styleTag);
+        }
+      }
+
+      if (currentTheme === 'dark') {
+        styleTag.textContent = `
+          html, body {
+            background-color: #16171d !important;
+            color: #e5e7eb !important;
+          }
+          .page {
+            background-color: #1e2028 !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.6) !important;
+          }
+          .t, [class*="c"], p, span, div, li, td, th, h1, h2, h3, h4, h5, h6 {
+            color: #e5e7eb !important;
+          }
+          strong, b {
+            color: #ffffff !important;
+          }
+          a {
+            color: #62aef0 !important;
+          }
+          table {
+            color: #e5e7eb !important;
+            border-color: #2e303a !important;
+          }
+          th {
+            background-color: #1f232e !important;
+            color: #f3f4f6 !important;
+          }
+          td {
+            border-color: #2e303a !important;
+          }
+          .material-brand-badge, .material-meta-pill, blockquote {
+            background-color: #1e2028 !important;
+            border-color: #2e303a !important;
+            color: #cbd5e1 !important;
+          }
+          pre, code {
+            background-color: #1f2028 !important;
+            color: #e5e7eb !important;
+            border-color: #2e303a !important;
+          }
+        `;
+      } else if (currentTheme === 'sepia') {
+        styleTag.textContent = `
+          html, body {
+            background-color: #f4ecd8 !important;
+            color: #5b4636 !important;
+          }
+          .page {
+            background-color: #ede0c8 !important;
+            box-shadow: 0 2px 8px rgba(91,70,54,0.15) !important;
+          }
+          .t, [class*="c"], p, span, div, li, td, th {
+            color: #5b4636 !important;
+          }
+          h1, h2, h3, h4, h5, h6, strong, b {
+            color: #3d2b1f !important;
+          }
+          a {
+            color: #7a5c3a !important;
+          }
+          table {
+            color: #5b4636 !important;
+            border-color: #d4c4a8 !important;
+          }
+          th {
+            background-color: #ede0c8 !important;
+            color: #3d2b1f !important;
+          }
+          td {
+            border-color: #d4c4a8 !important;
+          }
+          .material-brand-badge, .material-meta-pill, blockquote {
+            background-color: #ede0c8 !important;
+            border-color: #d4c4a8 !important;
+            color: #5b4636 !important;
+          }
+          pre, code {
+            background-color: #e8dcc8 !important;
+            color: #3d2b1f !important;
+            border-color: #d4c4a8 !important;
+          }
+        `;
+      } else {
+        styleTag.textContent = '';
+      }
     } catch (e) {
       console.warn('Cannot sync iframe theme:', e);
     }
