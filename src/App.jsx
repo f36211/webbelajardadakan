@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Dashboard from './components/Dashboard';
 import Reader from './components/Reader';
+import Chatbot from './components/Chatbot';
 import { materials } from './data/materials';
 
 export default function App() {
@@ -9,6 +10,7 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeSubject, setActiveSubject] = useState('all');
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const allMaterials = materials;
 
@@ -24,14 +26,29 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const savedTheme = localStorage.getItem('app_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.documentElement.setAttribute('data-reading-theme', savedTheme);
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && selectedMaterial) {
-        handleCloseMaterial();
+      if (e.key === 'Escape') {
+        if (isChatOpen) {
+          setIsChatOpen(false);
+        } else if (selectedMaterial) {
+          handleCloseMaterial();
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedMaterial, handleCloseMaterial]);
+  }, [selectedMaterial, isChatOpen, handleCloseMaterial]);
 
   const filteredMaterials = allMaterials.filter(m => {
     const matchesSearch =
@@ -59,6 +76,7 @@ export default function App() {
             <Reader
               material={selectedMaterial}
               onClose={handleCloseMaterial}
+              onOpenChat={() => setIsChatOpen(true)}
             />
           </motion.div>
         ) : (
@@ -79,10 +97,17 @@ export default function App() {
               activeSubject={activeSubject}
               setActiveSubject={setActiveSubject}
               onOpenMaterial={handleOpenMaterial}
+              onOpenChat={() => setIsChatOpen(true)}
             />
           </motion.div>
         )}
       </AnimatePresence>
+
+      <Chatbot
+        isOpen={isChatOpen}
+        onClose={() => setIsChatOpen(false)}
+        materialContext={selectedMaterial}
+      />
     </div>
   );
 }

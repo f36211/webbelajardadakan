@@ -7,13 +7,13 @@ import { GDRIVE_FOLDER_URL } from '../data/materials';
 const T = {
   primary: '#0075de',
   primaryActive: '#005bab',
-  ink: '#000000',
-  inkSecondary: '#31302e',
-  stone: '#615d59',
-  ash: '#a39e98',
-  hairline: '#e6e6e6',
-  surface: '#f6f5f4',
-  canvas: '#ffffff',
+  ink: 'var(--app-text, #000000)',
+  inkSecondary: 'var(--app-text-secondary, #31302e)',
+  stone: 'var(--app-text-muted, #615d59)',
+  ash: 'var(--app-text-ash, #a39e98)',
+  hairline: 'var(--app-hairline, #e6e6e6)',
+  surface: 'var(--app-surface, #f6f5f4)',
+  canvas: 'var(--app-canvas, #ffffff)',
   onDark: '#ffffff',
   stickerTeal: '#2a9d99',
   stickerOrange: '#dd5b00',
@@ -44,7 +44,7 @@ function ReaderPreview() {
           display: 'flex',
           alignItems: 'center',
           gap: 8,
-          background: 'rgba(255,255,255,0.95)',
+          background: T.surface,
         }}
       >
         <div style={{ display: 'flex', gap: 4 }}>

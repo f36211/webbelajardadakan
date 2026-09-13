@@ -7,10 +7,15 @@ const htmlModules = import.meta.glob('/src/assets/materials/**/*.html', {
 const SUBJECT_ALIASES = {
   'bahasa-indonesia': 'Bahasa Indonesia',
   'bahasa-inggris': 'Bahasa Inggris',
+  'bahasa-arab': 'Bahasa Arab',
+  'b-arab': 'Bahasa Arab',
+  barab: 'Bahasa Arab',
+  sejarah: 'Sejarah',
   'pendidikan-agama-islam': 'Pendidikan Agama Islam',
   pai: 'Pendidikan Agama Islam',
   kimia: 'Kimia',
   matematika: 'Matematika',
+  mtk: 'Matematika',
   biologi: 'Biologi',
   fisika: 'Fisika',
   sosiologi: 'Sosiologi',
@@ -29,8 +34,10 @@ const EXCERPT_PER_SUBJECT = {
   Sosiologi: 'Menganalisis struktur dan permasalahan sosial di masyarakat.',
   Geografi: 'Memahami dinamika bumi, peta, dan persebaran sumber daya.',
   Ekonomi: 'Menguasai mekanisme pasar, harga keseimbangan, dan kebijakan ekonomi.',
+  Sejarah: 'Mempelajari peristiwa penting, kronologi, dan dinamika peradaban masa lalu.',
   'Bahasa Indonesia': 'Kaidah bahasa, karya sastra, dan kemampuan komunikasi tertulis.',
   'Bahasa Inggris': 'Tenses dasar, grammar, vocabulary, dan percakapan sehari-hari.',
+  'Bahasa Arab': 'Kosakata dasar, kaidah nahwu shorof, dan pemahaman teks bahasa Arab.',
   'Pendidikan Agama Islam': 'Rukun iman & islam, akhlak, fiqh ibadah, dan Al-Qur\'an Hadits.',
 };
 
@@ -42,8 +49,10 @@ const DIFFICULTY_PER_SUBJECT = {
   Geografi: 'Dasar',
   Biologi: 'Dasar',
   Sosiologi: 'Dasar',
+  Sejarah: 'Dasar',
   'Bahasa Indonesia': 'Dasar',
   'Bahasa Inggris': 'Dasar',
+  'Bahasa Arab': 'Menengah',
   'Pendidikan Agama Islam': 'Dasar',
 };
 
@@ -66,19 +75,39 @@ export const categories = [
     name: 'IPS',
     description: 'Ilmu Pengetahuan Sosial',
     color: '#0075de',
-    subjects: ['Sosiologi', 'Geografi', 'Ekonomi'],
+    subjects: ['Sosiologi', 'Geografi', 'Ekonomi', 'Sejarah'],
   },
   {
     id: 'basic',
     name: 'Basic',
     description: 'Mata Pelajaran Dasar',
     color: '#dd5b00',
-    subjects: ['Bahasa Inggris', 'Bahasa Indonesia', 'Pendidikan Agama Islam'],
+    subjects: ['Bahasa Inggris', 'Bahasa Indonesia', 'Bahasa Arab', 'Pendidikan Agama Islam'],
   },
 ];
 
 export const GDRIVE_FOLDER_URL =
   'https://drive.google.com/drive/folders/1Zh8JCUWUlQcC402os2fY-Y9WKlT02wjs';
+
+export const SUBJECT_GDRIVE_URLS = {
+  Sejarah:
+    'https://drive.google.com/drive/folders/1BPTbktn2iuQM7Nv_XXeTXfjUSUS9rsks?usp=drive_link',
+  Matematika:
+    'https://drive.google.com/drive/folders/1ZRRaw5g0wAQ9VLDW-vHNwoGCvG-ADk9Y?usp=drive_link',
+  Ekonomi:
+    'https://drive.google.com/drive/folders/1jADgwD4afeHWCaLGccaKrXNhRBfLYrYu?usp=drive_link',
+  'Bahasa Arab':
+    'https://drive.google.com/drive/folders/1T1BdGTGl39UtKD45SWa9qon7sGcZKTw1?usp=drive_link',
+  Kimia:
+    'https://drive.google.com/drive/folders/1Fgn99Fk233bilMl2uue70mSc1DCIhWwZ?usp=drive_link',
+  'Pendidikan Agama Islam':
+    'https://drive.google.com/drive/folders/1iZFm1CYAKNWpo4SAHTcCUB55-8-Jy0H9?usp=drive_link',
+};
+
+export const getSubjectGdriveUrl = (subject) => {
+  if (!subject) return GDRIVE_FOLDER_URL;
+  return SUBJECT_GDRIVE_URLS[subject] || GDRIVE_FOLDER_URL;
+};
 
 export const ALL_SUBJECTS = [
   { name: 'Kimia', category: 'ipa', color: '#2a9d99' },
@@ -88,8 +117,10 @@ export const ALL_SUBJECTS = [
   { name: 'Sosiologi', category: 'ips', color: '#0075de' },
   { name: 'Geografi', category: 'ips', color: '#0075de' },
   { name: 'Ekonomi', category: 'ips', color: '#0075de' },
+  { name: 'Sejarah', category: 'ips', color: '#0075de' },
   { name: 'Bahasa Indonesia', category: 'basic', color: '#dd5b00' },
   { name: 'Bahasa Inggris', category: 'basic', color: '#dd5b00' },
+  { name: 'Bahasa Arab', category: 'basic', color: '#dd5b00' },
   { name: 'Pendidikan Agama Islam', category: 'basic', color: '#dd5b00' },
 ];
 
@@ -136,7 +167,7 @@ const parseDocPath = (rawPath) => {
       categoryId ||
       (['Matematika', 'Fisika', 'Kimia', 'Biologi'].includes(subject)
         ? 'ipa'
-        : ['Sosiologi', 'Geografi', 'Ekonomi'].includes(subject)
+        : ['Sosiologi', 'Geografi', 'Ekonomi', 'Sejarah'].includes(subject)
         ? 'ips'
         : 'basic'),
     subject: subject || 'Umum',
@@ -150,6 +181,7 @@ const buildMaterial = (rawPath, resolvedUrl) => {
   const hashId = `mat-${simpleHash(parsed.path)}`;
   const excerpt = EXCERPT_PER_SUBJECT[parsed.subject] || `${title} — ${parsed.subject}.`;
   const color = CATEGORY_COLORS[parsed.category] || '#615d59';
+  const gdriveUrl = getSubjectGdriveUrl(parsed.subject);
 
   return {
     id: hashId,
@@ -158,8 +190,8 @@ const buildMaterial = (rawPath, resolvedUrl) => {
     category: parsed.category,
     html: resolvedUrl,
     source: 'HTML Materi',
-    sourceUrl: GDRIVE_FOLDER_URL,
-    gdriveUrl: GDRIVE_FOLDER_URL,
+    sourceUrl: gdriveUrl,
+    gdriveUrl: gdriveUrl,
     color,
     sticker: color,
     pages: null,

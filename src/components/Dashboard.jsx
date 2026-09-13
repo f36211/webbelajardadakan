@@ -5,18 +5,18 @@ import MaterialCard from './MaterialCard';
 import Hero7 from './Hero7';
 import Dock from './Dock';
 import GoogleDriveIcon from './GoogleDriveIcon';
-import { categories as catMeta, GDRIVE_FOLDER_URL, ALL_SUBJECTS } from '../data/materials';
+import { categories as catMeta, GDRIVE_FOLDER_URL, ALL_SUBJECTS, getSubjectGdriveUrl } from '../data/materials';
 
 const T = {
   primary: '#0075de',
   primaryActive: '#005bab',
-  ink: '#000000',
-  inkSecondary: '#31302e',
-  stone: '#615d59',
-  ash: '#a39e98',
-  hairline: '#e6e6e6',
-  surface: '#f6f5f4',
-  canvas: '#ffffff',
+  ink: 'var(--app-text, #000000)',
+  inkSecondary: 'var(--app-text-secondary, #31302e)',
+  stone: 'var(--app-text-muted, #615d59)',
+  ash: 'var(--app-text-ash, #a39e98)',
+  hairline: 'var(--app-hairline, #e6e6e6)',
+  surface: 'var(--app-surface, #f6f5f4)',
+  canvas: 'var(--app-canvas, #ffffff)',
   onDark: '#ffffff',
   stickerTeal: '#2a9d99',
   stickerOrange: '#dd5b00',
@@ -47,6 +47,7 @@ export default function Dashboard({
   activeSubject,
   setActiveSubject,
   onOpenMaterial,
+  onOpenChat,
 }) {
   const [activeNavItem, setActiveNavItem] = useState('home');
 
@@ -203,7 +204,7 @@ export default function Dashboard({
                       </button>
 
                       <a
-                        href={GDRIVE_FOLDER_URL}
+                        href={getSubjectGdriveUrl(subName)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-2 py-1 flex items-center gap-1 text-[10px] font-semibold border-l transition-colors"
@@ -327,7 +328,7 @@ export default function Dashboard({
                         {cat.subjects.map((s) => (
                           <a
                             key={s}
-                            href={GDRIVE_FOLDER_URL}
+                            href={getSubjectGdriveUrl(s)}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
@@ -451,6 +452,7 @@ export default function Dashboard({
         activeCategory={activeCategory}
         onCategoryChange={(cat) => { setActiveCategory(cat); setActiveSubject('all'); setActiveNavItem('materi'); }}
         catMeta={catMeta}
+        onOpenChat={onOpenChat}
       />
     </div>
   );

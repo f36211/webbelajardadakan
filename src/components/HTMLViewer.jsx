@@ -82,11 +82,58 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
     else if (e.key === 'End') { e.preventDefault(); scrollToBottom(); }
   }, [zoomIn, zoomOut, zoomReset, scrollToTop, scrollToBottom]);
 
+  const syncIframeTheme = useCallback(() => {
+    if (!iframeRef.current) return;
+    try {
+      const doc = iframeRef.current.contentDocument;
+      if (!doc || !doc.documentElement) return;
+      const currentTheme =
+        document.documentElement.getAttribute('data-reading-theme') ||
+        document.documentElement.getAttribute('data-theme') ||
+        localStorage.getItem('app_theme') ||
+        'light';
+      doc.documentElement.setAttribute('data-reading-theme', currentTheme);
+      doc.documentElement.setAttribute('data-theme', currentTheme);
+      if (currentTheme === 'dark') {
+        doc.documentElement.classList.add('dark');
+      } else {
+        doc.documentElement.classList.remove('dark');
+      }
+    } catch (e) {
+      console.warn('Cannot sync iframe theme:', e);
+    }
+  }, []);
+
   const handleIframeLoad = useCallback(() => {
     setLoading(false);
     setError(null);
+    syncIframeTheme();
     if (loadTimeoutRef.current) clearTimeout(loadTimeoutRef.current);
-  }, []);
+  }, [syncIframeTheme]);
+
+  useEffect(() => {
+    syncIframeTheme();
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === 'attributes' &&
+          (mutation.attributeName === 'data-reading-theme' ||
+            mutation.attributeName === 'data-theme' ||
+            mutation.attributeName === 'class')
+        ) {
+          syncIframeTheme();
+          break;
+        }
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-reading-theme', 'data-theme', 'class'],
+    });
+
+    return () => observer.disconnect();
+  }, [syncIframeTheme]);
 
   const handleIframeError = useCallback(() => {
     setError('Gagal memuat dokumen HTML.');
@@ -104,16 +151,23 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
     <div
       onKeyDown={handleKeyDown}
       tabIndex={-1}
-      className="flex flex-col h-full outline-none bg-stone-100"
+      className="flex flex-col h-full outline-none"
+      style={{ background: 'var(--app-bg, #f6f5f4)', color: 'var(--app-text, #000000)' }}
     >
       {/* Toolbar */}
-      <div className="flex items-center justify-between gap-2 px-3 sm:px-4 py-2 bg-white border-b border-stone-200 flex-wrap flex-shrink-0">
+      <div
+        className="flex items-center justify-between gap-2 px-3 sm:px-4 py-2 border-b flex-wrap flex-shrink-0"
+        style={{
+          background: 'var(--app-canvas, #ffffff)',
+          borderColor: 'var(--app-hairline, #e6e6e6)',
+        }}
+      >
         {/* Scroll nav */}
         <div className="flex items-center gap-1">
           <ToolbarBtn onClick={scrollToTop} title="Ke atas (Home)">
             <ChevronFirst style={{ width: 15, height: 15 }} />
           </ToolbarBtn>
-          <span className="text-xs font-medium text-stone-400 tabular-nums px-1.5">
+          <span className="text-xs font-medium tabular-nums px-1.5" style={{ color: 'var(--app-text-ash, #a39e98)' }}>
             Scroll
           </span>
           <ToolbarBtn onClick={scrollToBottom} title="Ke bawah (End)">
@@ -129,7 +183,12 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
 
           <button
             onClick={zoomReset}
-            className="min-w-[52px] px-2 py-1 rounded-md border border-stone-200 bg-stone-50 text-[11px] font-bold tabular-nums text-stone-900 cursor-pointer text-center hover:bg-white transition-colors"
+            className="min-w-[52px] px-2 py-1 rounded-md border text-[11px] font-bold tabular-nums cursor-pointer text-center transition-colors"
+            style={{
+              background: 'var(--app-surface, #f6f5f4)',
+              borderColor: 'var(--app-hairline, #e6e6e6)',
+              color: 'var(--app-text, #000000)',
+            }}
             title="Reset zoom (0)"
           >
             {zoomPercent}%
@@ -147,7 +206,12 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
               href={sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border border-stone-200 bg-stone-50 text-stone-600 no-underline transition-colors hover:border-[#0075de] hover:text-[#0075de]"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border no-underline transition-colors hover:border-[#0075de] hover:text-[#0075de]"
+              style={{
+                background: 'var(--app-surface, #f6f5f4)',
+                borderColor: 'var(--app-hairline, #e6e6e6)',
+                color: 'var(--app-text-secondary, #31302e)',
+              }}
               title="Buka Folder Google Drive Materi"
             >
               <GoogleDriveIcon size={12} />
@@ -159,7 +223,12 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
             href={htmlUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border border-stone-200 bg-stone-50 text-stone-500 no-underline transition-colors hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border no-underline transition-colors hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]"
+            style={{
+              background: 'var(--app-surface, #f6f5f4)',
+              borderColor: 'var(--app-hairline, #e6e6e6)',
+              color: 'var(--app-text-secondary, #31302e)',
+            }}
             title="Buka di tab baru"
           >
             <ExternalLink style={{ width: 12, height: 12 }} />
@@ -171,25 +240,32 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
       {/* Scrollable content */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-auto overflow-x-hidden bg-[#3a3d40]"
-        style={{ scrollbarGutter: 'stable', WebkitOverflowScrolling: 'touch' }}
+        className="flex-1 overflow-auto overflow-x-hidden"
+        style={{
+          background: 'var(--app-bg, #f6f5f4)',
+          scrollbarGutter: 'stable',
+          WebkitOverflowScrolling: 'touch',
+        }}
       >
         <div
           ref={measureRef}
-          className="flex flex-col items-center bg-stone-100 w-full"
-          style={{ minHeight: loading ? '600px' : undefined }}
+          className="flex flex-col items-center w-full"
+          style={{
+            minHeight: loading ? '600px' : undefined,
+            background: 'var(--app-bg, #f6f5f4)',
+          }}
         >
           {loading && !error && (
             <div className="flex items-center justify-center gap-2.5 py-24">
               <Loader2 className="w-5 h-5 text-[var(--color-cat-ips)] animate-spin" />
-              <span className="text-sm text-stone-500">Memuat dokumen…</span>
+              <span className="text-sm" style={{ color: 'var(--app-text-muted, #615d59)' }}>Memuat dokumen…</span>
             </div>
           )}
 
           {error ? (
             <div className="flex flex-col items-center justify-center gap-3 min-h-[400px] px-6 py-16 text-center">
               <AlertCircle style={{ width: 32, height: 32, color: '#ef4444' }} />
-              <p className="text-sm text-stone-400">{error}</p>
+              <p className="text-sm" style={{ color: 'var(--app-text-muted, #615d59)' }}>{error}</p>
               <a
                 href={htmlUrl}
                 target="_blank"
@@ -237,8 +313,8 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
                     style={{
                       width: PAGE_WIDTH,
                       height: iframePxHeight,
-                      background: '#fff',
-                      boxShadow: '0 4px 28px rgba(0,0,0,0.22)',
+                      background: 'var(--app-canvas, #ffffff)',
+                      boxShadow: '0 4px 28px rgba(0,0,0,0.18)',
                       borderRadius: 4,
                       display: 'block',
                     }}
@@ -262,12 +338,17 @@ function ToolbarBtn({ children, onClick, disabled, title }) {
       className={[
         'w-[30px] h-[30px]',
         'flex items-center justify-center',
-        'rounded-md border border-stone-200',
+        'rounded-md border',
         'transition-colors flex-shrink-0',
         disabled
-          ? 'bg-transparent text-stone-200 cursor-not-allowed border-stone-200'
-          : 'bg-white text-stone-500 cursor-pointer hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]',
+          ? 'opacity-40 cursor-not-allowed'
+          : 'cursor-pointer hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]',
       ].join(' ')}
+      style={{
+        background: 'var(--app-surface, #f6f5f4)',
+        borderColor: 'var(--app-hairline, #e6e6e6)',
+        color: 'var(--app-text-secondary, #31302e)',
+      }}
     >
       {children}
     </button>

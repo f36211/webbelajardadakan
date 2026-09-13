@@ -32,19 +32,19 @@ export default function MaterialCard({ material, index, onClick }) {
       variants={cardVariants}
       className="group relative cursor-pointer"
       style={{
-        background: '#ffffff',
+        background: 'var(--app-card-bg, #ffffff)',
         borderRadius: 'var(--radius-lg)',
-        border: '1px solid #e6e6e6',
+        border: '1px solid var(--app-hairline, #e6e6e6)',
         overflow: 'hidden',
         transition: 'border-color 0.15s, box-shadow 0.2s, transform 0.15s',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(0,117,222,0.25)';
+        e.currentTarget.style.borderColor = 'rgba(0,117,222,0.35)';
         e.currentTarget.style.boxShadow = '0 4px 18px rgba(0,0,0,0.06)';
         e.currentTarget.style.transform = 'translateY(-1px)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = '#e6e6e6';
+        e.currentTarget.style.borderColor = 'var(--app-hairline, #e6e6e6)';
         e.currentTarget.style.boxShadow = 'none';
         e.currentTarget.style.transform = 'translateY(0)';
       }}
@@ -69,8 +69,8 @@ export default function MaterialCard({ material, index, onClick }) {
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: sticker.dot, display: 'inline-block' }} />
               {material.category}
             </span>
-            <span style={{ color: '#a39e98', fontSize: 11 }}>·</span>
-            <span style={{ fontSize: 11, color: '#615d59', fontWeight: 600 }}>
+            <span style={{ color: 'var(--app-text-ash, #a39e98)', fontSize: 11 }}>·</span>
+            <span style={{ fontSize: 11, color: 'var(--app-text-muted, #615d59)', fontWeight: 600 }}>
               {material.subject}
             </span>
           </div>
@@ -80,7 +80,12 @@ export default function MaterialCard({ material, index, onClick }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-md border border-[#e6e6e6] bg-[#fbfbfb] text-[#615d59] hover:bg-white hover:text-[#0075de] hover:border-[#0075de]/40 transition-all cursor-pointer flex-shrink-0"
+            className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-md border transition-all cursor-pointer flex-shrink-0"
+            style={{
+              borderColor: 'var(--app-hairline, #e6e6e6)',
+              background: 'var(--app-surface, #fbfbfb)',
+              color: 'var(--app-text-muted, #615d59)',
+            }}
             title={`Buka Google Drive ${material.subject}`}
           >
             <GoogleDriveIcon size={11} />
@@ -95,7 +100,7 @@ export default function MaterialCard({ material, index, onClick }) {
           style={{
             fontSize: 15,
             fontWeight: 700,
-            color: '#000000',
+            color: 'var(--app-text, #000000)',
             letterSpacing: '-0.015em',
             lineHeight: 1.35,
             marginBottom: 8,
@@ -108,7 +113,7 @@ export default function MaterialCard({ material, index, onClick }) {
         <p
           style={{
             fontSize: 13,
-            color: '#31302e',
+            color: 'var(--app-text-secondary, #31302e)',
             lineHeight: 1.55,
             marginBottom: 12,
             display: '-webkit-box',
@@ -121,7 +126,7 @@ export default function MaterialCard({ material, index, onClick }) {
         </p>
 
         {/* Source file */}
-        <div className="flex items-center gap-1.5 mb-3" style={{ color: '#a39e98', minWidth: 0 }}>
+        <div className="flex items-center gap-1.5 mb-3" style={{ color: 'var(--app-text-ash, #a39e98)', minWidth: 0 }}>
           <FileText style={{ width: 11, height: 11, flexShrink: 0 }} />
           <span style={{ fontSize: 10, fontFamily: 'var(--font-mono)', letterSpacing: '0.02em', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {material.source}
@@ -129,7 +134,10 @@ export default function MaterialCard({ material, index, onClick }) {
         </div>
 
         {/* CTA Bar with Baca Materi and Subject GDrive Button */}
-        <div className="flex items-center justify-between pt-3 border-t border-[#f0f0f0] mt-1">
+        <div
+          className="flex items-center justify-between pt-3 border-t mt-1"
+          style={{ borderColor: 'var(--app-hairline, #f0f0f0)' }}
+        >
           <div className="flex items-center gap-1.5" style={{ fontSize: 13, fontWeight: 600, color: '#0075de' }}>
             <BookOpen style={{ width: 14, height: 14 }} />
             <span>Baca Materi</span>
@@ -140,7 +148,12 @@ export default function MaterialCard({ material, index, onClick }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-md border border-[#e6e6e6] bg-[#fbfbfb] text-[#31302e] hover:text-[#0075de] hover:border-[#0075de]/30 hover:bg-[#eef5fc] transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-md border transition-all cursor-pointer"
+            style={{
+              borderColor: 'var(--app-hairline, #e6e6e6)',
+              background: 'var(--app-surface, #fbfbfb)',
+              color: 'var(--app-text-secondary, #31302e)',
+            }}
             title={`Buka Folder Google Drive ${material.subject}`}
           >
             <GoogleDriveIcon size={12} />

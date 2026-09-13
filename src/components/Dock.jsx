@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Home, BookOpen, ChevronDown, Search, Clock,
   Settings, FlaskConical, Landmark, GraduationCap, X,
-  Moon, Sun, Type, ZoomIn, ZoomOut, ExternalLink,
+  Moon, Sun, Type, ZoomIn, ZoomOut, ExternalLink, Sparkles,
 } from 'lucide-react';
 import GoogleDriveIcon from './GoogleDriveIcon';
 import { GDRIVE_FOLDER_URL } from '../data/materials';
@@ -11,13 +11,13 @@ import { GDRIVE_FOLDER_URL } from '../data/materials';
 const T = {
   primary: '#0075de',
   primaryActive: '#005bab',
-  ink: '#000000',
-  inkSecondary: '#31302e',
-  stone: '#615d59',
-  ash: '#a39e98',
-  hairline: '#e6e6e6',
-  surface: '#f6f5f4',
-  canvas: '#ffffff',
+  ink: 'var(--app-text, #000000)',
+  inkSecondary: 'var(--app-text-secondary, #31302e)',
+  stone: 'var(--app-text-muted, #615d59)',
+  ash: 'var(--app-text-ash, #a39e98)',
+  hairline: 'var(--app-hairline, #e6e6e6)',
+  surface: 'var(--app-surface, #f6f5f4)',
+  canvas: 'var(--app-canvas, #ffffff)',
   onDark: '#ffffff',
   stickerTeal: '#2a9d99',
   stickerOrange: '#dd5b00',
@@ -76,7 +76,7 @@ function DockButton({ icon: Icon, label, onClick, active, wide, accent, alwaysWi
         whiteSpace: 'nowrap',
         flexShrink: 0,
       }}
-      onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = 'rgba(0,0,0,0.04)'; }}
+      onMouseEnter={(e) => { if (!active) e.currentTarget.style.background = 'var(--dock-hover-bg, rgba(0,0,0,0.04))'; }}
       onMouseLeave={(e) => { if (!active) e.currentTarget.style.background = 'transparent'; }}
     >
       <Icon size={18} style={{ flexShrink: 0 }} />
@@ -219,12 +219,15 @@ export default function Dock({
   activeCategory,
   onCategoryChange,
   catMeta = [],
+  onOpenChat,
 }) {
   const [activePanel, setActivePanel] = useState(null);
   const [localSearch, setLocalSearch] = useState('');
   const [activeTab, setActiveTab] = useState('all');
   const [fontSize, setFontSize] = useState(17);
-  const [readingTheme, setReadingTheme] = useState('light');
+  const [readingTheme, setReadingTheme] = useState(() => {
+    return localStorage.getItem('app_theme') || 'light';
+  });
 
   const panelRef = useRef(null);
 
@@ -248,7 +251,14 @@ export default function Dock({
   useEffect(() => {
     const root = document.documentElement;
     root.style.setProperty('--reading-font-size', `${fontSize}px`);
+    root.setAttribute('data-theme', readingTheme);
     root.setAttribute('data-reading-theme', readingTheme);
+    if (readingTheme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('app_theme', readingTheme);
   }, [fontSize, readingTheme]);
 
   const togglePanel = (id) => setActivePanel((cur) => (cur === id ? null : id));
@@ -810,7 +820,7 @@ export default function Dock({
             gap: 2,
             padding: '8px 10px',
             borderRadius: 18,
-            background: 'rgba(255,255,255,0.92)',
+            background: 'var(--dock-bg, rgba(255,255,255,0.92))',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             border: `1px solid ${T.hairline}`,
@@ -849,6 +859,19 @@ export default function Dock({
             active={activePanel === 'kategori'}
             accent={T.stickerOrange}
             onClick={() => togglePanel('kategori')}
+          />
+
+          <div className="dock-divider" style={{ width: 1, height: 24, background: T.hairline, margin: '0 4px', flexShrink: 0 }} />
+
+          <DockButton
+            icon={Sparkles}
+            label="Tanya AI"
+            alwaysWide
+            accent="#9333ea"
+            onClick={() => {
+              togglePanel(null);
+              onOpenChat && onOpenChat();
+            }}
           />
 
           <div className="dock-divider dock-divider-second" style={{ width: 1, height: 24, background: T.hairline, margin: '0 4px', flexShrink: 0 }} />

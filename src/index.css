@@ -320,26 +320,83 @@
 }
 
 @layer base {
-  [data-reading-theme="dark"] {
-    background: var(--color-reading-bg-dark);
-    --reading-theme-text: var(--color-reading-text-light);
-    --reading-theme-heading: var(--color-reading-heading-light);
-    --reading-theme-link: var(--color-reading-link-light);
-    --reading-theme-border: var(--color-reading-border-light);
+  :root {
+    --app-bg: #f6f5f4;
+    --app-surface: #f6f5f4;
+    --app-canvas: #ffffff;
+    --app-card-bg: #ffffff;
+    --app-card-border: #e6e6e6;
+    --app-text: #000000;
+    --app-text-secondary: #31302e;
+    --app-text-muted: #615d59;
+    --app-text-ash: #a39e98;
+    --app-hairline: #e6e6e6;
+    --app-header-bg: rgba(255, 255, 255, 0.94);
+    --dock-bg: rgba(255, 255, 255, 0.94);
+    --dock-hover-bg: rgba(0, 0, 0, 0.05);
+  }
+
+  body {
+    background-color: var(--app-bg, #f6f5f4);
+    color: var(--app-text, #000000);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  [data-theme="dark"],
+  [data-reading-theme="dark"],
+  .dark {
+    background-color: #121316 !important;
+    color: #f3f4f6 !important;
+    --app-bg: #121316;
+    --app-surface: #18191e;
+    --app-canvas: #1e1f26;
+    --app-card-bg: #1e1f26;
+    --app-card-border: #2d2f39;
+    --app-text: #f3f4f6;
+    --app-text-secondary: #d1d5db;
+    --app-text-muted: #9ca3af;
+    --app-text-ash: #6b7280;
+    --app-hairline: #2d2f39;
+    --app-header-bg: rgba(24, 25, 30, 0.92);
+    --dock-bg: rgba(30, 31, 38, 0.92);
+    --dock-hover-bg: rgba(255, 255, 255, 0.08);
+
+    --reading-theme-bg: #16171d;
+    --reading-theme-text: #cbd5e1;
+    --reading-theme-heading: #f8fafc;
+    --reading-theme-link: #62aef0;
+    --reading-theme-border: #2d2f39;
     --reading-theme-table-header: #1f2028;
     --reading-theme-table-alt: #1a1b24;
     --reading-theme-code-bg: #1f2028;
-    --reading-theme-blockquote: #a39e98;
+    --reading-theme-blockquote: #9ca3af;
   }
 
+  [data-theme="sepia"],
   [data-reading-theme="sepia"] {
-    --reading-theme-bg: var(--color-reading-bg-sepia);
-    --reading-theme-text: var(--color-reading-text-sepia);
-    --reading-theme-heading: var(--color-reading-heading-sepia);
-    --reading-theme-link: var(--color-reading-link-sepia);
-    --reading-theme-border: var(--color-reading-border-sepia);
-    --reading-theme-table-header: var(--color-reading-table-header-sepia);
-    --reading-theme-table-alt: var(--color-reading-table-alt-sepia);
+    background-color: #f5eedb !important;
+    color: #3c2f1f !important;
+    --app-bg: #f5eedb;
+    --app-surface: #ede4cc;
+    --app-canvas: #fbf6e9;
+    --app-card-bg: #fbf6e9;
+    --app-card-border: #ded2b6;
+    --app-text: #3c2f1f;
+    --app-text-secondary: #5c4832;
+    --app-text-muted: #7d654a;
+    --app-text-ash: #9c8367;
+    --app-hairline: #ded2b6;
+    --app-header-bg: rgba(237, 228, 204, 0.94);
+    --dock-bg: rgba(251, 246, 233, 0.94);
+    --dock-hover-bg: rgba(60, 47, 31, 0.07);
+
+    --reading-theme-bg: #f4ecd8;
+    --reading-theme-text: #5c4832;
+    --reading-theme-heading: #3d2b1f;
+    --reading-theme-link: #7a5c3a;
+    --reading-theme-border: #d4c4a8;
+    --reading-theme-table-header: #ede0c8;
+    --reading-theme-table-alt: #f4ecd8;
     --reading-theme-code-bg: #e8dcc8;
     --reading-theme-blockquote: #8b7355;
   }

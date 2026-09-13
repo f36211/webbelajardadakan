@@ -2,18 +2,34 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft, Sun, Moon, BookOpen,
-  FileText, Settings2, Code2, ExternalLink,
+  FileText, Settings2, Code2, ExternalLink, Sparkles,
 } from 'lucide-react';
 import HTMLViewer from './HTMLViewer';
 import GoogleDriveIcon from './GoogleDriveIcon';
 import { GDRIVE_FOLDER_URL } from '../data/materials';
 
-export default function Reader({ material, onClose }) {
+export default function Reader({ material, onClose, onOpenChat }) {
   const [showSettings, setShowSettings] = useState(false);
   const [showSource, setShowSource] = useState(false);
+  const [readingTheme, setReadingTheme] = useState(() => {
+    return localStorage.getItem('app_theme') || 'light';
+  });
   const readerRef = useRef(null);
 
   const isHtml = !!material.html;
+
+  const handleThemeChange = (newTheme) => {
+    setReadingTheme(newTheme);
+    const root = document.documentElement;
+    root.setAttribute('data-theme', newTheme);
+    root.setAttribute('data-reading-theme', newTheme);
+    if (newTheme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+    localStorage.setItem('app_theme', newTheme);
+  };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -33,29 +49,39 @@ export default function Reader({ material, onClose }) {
   return (
     <div
       ref={readerRef}
-      className="flex flex-col h-screen bg-stone-100"
+      className="flex flex-col h-screen"
+      style={{ background: 'var(--app-bg, #f6f5f4)', color: 'var(--app-text, #000000)' }}
     >
       <header
-        className="sticky top-0 z-40 border-b border-stone-200"
+        className="sticky top-0 z-40 border-b"
         style={{
-          background: 'rgba(255,255,255,0.93)',
+          background: 'var(--app-header-bg, rgba(255,255,255,0.93))',
+          borderColor: 'var(--app-hairline, #e6e6e6)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
         }}
       >
-        <div className="max-w-[1200px] mx-auto px-6 py-2.5">
-          <div className="flex items-center justify-between gap-4">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-2.5">
+          <div className="flex items-center justify-between gap-3">
           {/* Back + title */}
           <div className="flex items-center gap-3 min-w-0">
               <button
                 onClick={onClose}
-                className="cursor-pointer w-[34px] h-[34px] flex items-center justify-center rounded-md border border-stone-200 bg-white text-stone-500 transition-colors flex-shrink-0 hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]"
+                className="cursor-pointer w-[34px] h-[34px] flex items-center justify-center rounded-md border transition-colors flex-shrink-0 hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]"
+                style={{
+                  background: 'var(--app-canvas, #ffffff)',
+                  borderColor: 'var(--app-hairline, #e6e6e6)',
+                  color: 'var(--app-text-secondary, #31302e)',
+                }}
               >
                 <ArrowLeft style={{ width: 15, height: 15 }} />
               </button>
 
               <div className="min-w-0">
-                <h1 className="text-sm font-bold text-stone-900 tracking-tight max-w-[300px] truncate">
+                <h1
+                  className="text-sm font-bold tracking-tight max-w-[280px] sm:max-w-[400px] truncate"
+                  style={{ color: 'var(--app-text, #000000)' }}
+                >
                   {material.title}
                 </h1>
                 <div className="flex items-center gap-1.5 mt-0.5">
@@ -65,7 +91,7 @@ export default function Reader({ material, onClose }) {
                   >
                     {material.category?.toUpperCase()}
                   </span>
-                  <span className="text-[11px] text-stone-400">{material.subject}</span>
+                  <span className="text-[11px]" style={{ color: 'var(--app-text-muted, #615d59)' }}>{material.subject}</span>
                   {isHtml && (
                     <span
                       className="inline-flex items-center gap-0.5 px-1.5 py-px rounded-full text-[10px] font-semibold"
@@ -83,17 +109,36 @@ export default function Reader({ material, onClose }) {
             </div>
 
             {/* Controls */}
-            <div className="flex items-center gap-1 flex-shrink-0">
+            <div className="flex items-center gap-1.5 flex-shrink-0">
+              <button
+                onClick={onOpenChat}
+                className="cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors border shadow-2xs"
+                style={{
+                  background: 'rgba(147, 51, 234, 0.09)',
+                  borderColor: 'rgba(147, 51, 234, 0.25)',
+                  color: '#9333ea',
+                }}
+                title="Tanya Asisten AI tentang materi ini"
+              >
+                <Sparkles style={{ width: 13, height: 13 }} />
+                <span className="hidden xs:inline">Tanya AI</span>
+              </button>
+
               {(material.sourceUrl || material.gdriveUrl || GDRIVE_FOLDER_URL) && (
                 <a
                   href={material.sourceUrl || material.gdriveUrl || GDRIVE_FOLDER_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold border border-stone-200 bg-white text-stone-700 no-underline transition-colors hover:border-[#0075de] hover:text-[#0075de] shadow-2xs"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold border no-underline transition-colors shadow-2xs"
+                  style={{
+                    background: 'var(--app-canvas, #ffffff)',
+                    borderColor: 'var(--app-hairline, #e6e6e6)',
+                    color: 'var(--app-text-secondary, #31302e)',
+                  }}
                   title={`Buka Folder Google Drive ${material.subject}`}
                 >
                   <GoogleDriveIcon size={14} />
-                  <span className="hidden sm:inline">Drive {material.subject}</span>
+                  <span className="hidden md:inline">Drive {material.subject}</span>
                   <ExternalLink size={11} className="opacity-60" />
                 </a>
               )}
@@ -104,9 +149,9 @@ export default function Reader({ material, onClose }) {
                   'cursor-pointer flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors border-none',
                   showSource
                     ? 'text-white'
-                    : 'bg-transparent text-stone-500 hover:bg-stone-100',
+                    : 'bg-transparent hover:opacity-80',
                 ].join(' ')}
-                style={showSource ? { background: 'var(--color-cat-ips)' } : undefined}
+                style={showSource ? { background: 'var(--color-cat-ips)' } : { color: 'var(--app-text-muted, #615d59)' }}
               >
                 <FileText style={{ width: 13, height: 13 }} />
                 <span className="hidden sm:inline">Dokumen</span>
@@ -118,9 +163,9 @@ export default function Reader({ material, onClose }) {
                   'cursor-pointer w-[34px] h-[34px] flex items-center justify-center rounded-md text-xs font-semibold transition-colors border-none',
                   showSettings
                   ? 'text-white'
-                  : 'bg-transparent text-stone-500 hover:bg-stone-100',
+                  : 'bg-transparent hover:opacity-80',
                 ].join(' ')}
-                style={showSettings ? { background: 'var(--color-cat-ips)' } : undefined}
+                style={showSettings ? { background: 'var(--color-cat-ips)' } : { color: 'var(--app-text-muted, #615d59)' }}
               >
                 <Settings2 style={{ width: 14, height: 14 }} />
               </button>
@@ -135,32 +180,41 @@ export default function Reader({ material, onClose }) {
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden border-t border-stone-200 mt-2.5 pt-3"
+                className="overflow-hidden border-t mt-2.5 pt-3"
+                style={{ borderColor: 'var(--app-hairline, #e6e6e6)' }}
               >
                 <div className="flex flex-wrap items-center gap-5 pb-1">
                   {/* Theme */}
                   <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-bold text-stone-400 uppercase tracking-widest">Tema</span>
+                    <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--app-text-ash, #a39e98)' }}>Tema</span>
                     {[
                       { id: 'light', label: 'Terang', Icon: Sun },
                       { id: 'dark', label: 'Gelap', Icon: Moon },
                       { id: 'sepia', label: 'Sepia', Icon: BookOpen },
-                    ].map(({ id, label, Icon }) => (
-                      <button
-                        key={id}
-                        onClick={() => document.documentElement.setAttribute('data-reading-theme', id === 'light' ? '' : id)}
-                        className="cursor-pointer flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border border-stone-200 bg-white text-stone-500 transition-colors hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]"
-                      >
-                        <Icon style={{ width: 12, height: 12 }} />
-                        {label}
-                      </button>
-                    ))}
+                    ].map(({ id, label, Icon }) => {
+                      const isActive = readingTheme === id;
+                      return (
+                        <button
+                          key={id}
+                          onClick={() => handleThemeChange(id)}
+                          className="cursor-pointer flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors"
+                          style={{
+                            border: isActive ? '1.5px solid var(--color-primary, #0075de)' : '1px solid var(--app-hairline, #e6e6e6)',
+                            background: isActive ? 'rgba(0,117,222,0.1)' : 'var(--app-canvas, #ffffff)',
+                            color: isActive ? 'var(--color-primary, #0075de)' : 'var(--app-text-secondary, #31302e)',
+                          }}
+                        >
+                          <Icon style={{ width: 12, height: 12 }} />
+                          {label}
+                        </button>
+                      );
+                    })}
                   </div>
 
                   {/* Source URL display */}
                   {material.sourceUrl && (
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[11px] font-bold text-stone-400 uppercase tracking-widest">Sumber</span>
+                      <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--app-text-ash, #a39e98)' }}>Sumber</span>
                       <a
                         href={material.sourceUrl}
                         target="_blank"
