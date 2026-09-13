@@ -1,5 +1,7 @@
 import React from 'react';
-import { FileText, Hash } from 'lucide-react';
+import { FileText, Hash, ExternalLink } from 'lucide-react';
+import GoogleDriveIcon from './GoogleDriveIcon';
+import { GDRIVE_FOLDER_URL } from '../data/materials';
 
 const T = {
   primary: '#0075de',
@@ -87,6 +89,19 @@ export default function SourceDocument({ material }) {
             </div>
           </div>
         ))}
+      </div>
+
+      <div style={{ marginTop: 16, display: 'flex', justifyContent: 'flex-end' }}>
+        <a
+          href={material.sourceUrl || material.gdriveUrl || GDRIVE_FOLDER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-[#0075de] text-white no-underline transition-all hover:bg-[#005bab] shadow-xs"
+        >
+          <GoogleDriveIcon size={15} />
+          <span>Buka Folder Google Drive {material.subject}</span>
+          <ExternalLink size={12} />
+        </a>
       </div>
     </div>
   );

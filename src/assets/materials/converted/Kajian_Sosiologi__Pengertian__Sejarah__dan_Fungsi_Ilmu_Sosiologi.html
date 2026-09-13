@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Definisi dan Pengertian Sosiologi</title>
+  <style>
+
+/* Universal Semantic Materials Stylesheet */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --color-bg: #ffffff;
+  --color-surface: #f9f9f8;
+  --color-surface-hover: #f3f3f2;
+  --color-text: #2f343b;
+  --color-text-muted: #6b7280;
+  --color-heading: #111827;
+  --color-border: #e5e7eb;
+  --color-primary: #0075de;
+  --color-primary-light: #eff6ff;
+  --color-accent-orange: #f76703;
+  --color-callout-bg: #fffbf7;
+  --color-callout-border: #f76703;
+  --color-table-header: #f8fafc;
+  --color-table-alt: #fcfcfc;
+  --line-height: 1.75;
+}
+
+[data-reading-theme="dark"] {
+  --color-bg: #16171d;
+  --color-surface: #1e2028;
+  --color-surface-hover: #262933;
+  --color-text: #d1d5db;
+  --color-text-muted: #9ca3af;
+  --color-heading: #f9fafb;
+  --color-border: #2e303a;
+  --color-primary: #62aef0;
+  --color-primary-light: #1e293b;
+  --color-callout-bg: #231c16;
+  --color-callout-border: #dd5b00;
+  --color-table-header: #1f232e;
+  --color-table-alt: #181920;
+}
+
+[data-reading-theme="sepia"] {
+  --color-bg: #f4ecd8;
+  --color-surface: #ede0c8;
+  --color-surface-hover: #e5d6bc;
+  --color-text: #5b4636;
+  --color-text-muted: #7a5c3a;
+  --color-heading: #3d2b1f;
+  --color-border: #d4c4a8;
+  --color-primary: #7a5c3a;
+  --color-primary-light: #ede0c8;
+  --color-callout-bg: #ebdcc0;
+  --color-callout-border: #a85d00;
+  --color-table-header: #ede0c8;
+  --color-table-alt: #f4ecd8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.material {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+}
+
+.material-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.material-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+  padding: 4px 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.material-brand-badge img {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.material-title, h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: var(--color-heading);
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1.35rem, 2.8vw, 1.7rem);
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.018em;
+  line-height: 1.35;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1.025rem;
+  margin-bottom: 1.15rem;
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+ul, ol {
+  margin: 0.75rem 0 1.25rem 1.6rem;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+li > ul, li > ol {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+em {
+  font-style: italic;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+th {
+  background: var(--color-table-header);
+  font-weight: 600;
+  color: var(--color-heading);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) td {
+  background: var(--color-table-alt);
+}
+
+.callout {
+  margin: 1.75rem 0;
+  padding: 1.15rem 1.35rem;
+  background: var(--color-callout-bg);
+  border-left: 4px solid var(--color-callout-border);
+  border-radius: 0 8px 8px 0;
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+.callout-title {
+  font-weight: 700;
+  color: var(--color-accent-orange);
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 3px;
+  font-size: 0.9em;
+  line-height: 1.1;
+}
+
+.frac .num {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.frac .denom {
+  padding-top: 1px;
+}
+
+sub, sup {
+  font-size: 0.78em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+
+@media (max-width: 640px) {
+  .material {
+    padding: 1.5rem 1rem 4rem;
+  }
+  th, td {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="material">
+    <header class="material-header">
+      <div class="material-brand-badge">
+        <img src="data:image/png;base64,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AAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0+R+o6GY5uJ47EgAAAABJRU5ErkJggg==" alt="Icon">
+        <span>TrifectaStudy</span>
+      </div>
+    </header>
+    <h1><strong>Definisi dan Pengertian Sosiologi</strong></h1>
+    <h4><strong>Asal Kata Sosiologi</strong></h4>
+    <p>Istilah <strong>sosiologi</strong> berasal dari bahasa Latin, yakni <em>socius</em> dan <em>logos</em>. <em>Socius</em> berarti "teman" atau "kawan", sedangkan <em>logos</em> berarti "ilmu" atau "kata". Jadi, secara harfiah, sosiologi adalah ilmu tentang teman atau kawan. Namun jangan tertipu oleh makna harfiahnya yang terdengar santai! Bukan ilmu untuk mencari teman makan siang, melainkan ilmu yang meneliti bagaimana manusia, sebagai makhluk sosial, saling berhubungan dan berinteraksi dalam masyarakat.</p>
+    <h4><strong>Pengertian Sosiologi secara Umum</strong></h4>
+    <p>Sosiologi adalah <strong>ilmu pengetahuan yang mempelajari hubungan dan interaksi antar</strong> <strong>manusia dalam masyarakat</strong>. Bayangkan masyarakat sebagai panggung teater yang sangat besar; sosiologi adalah ilmu yang mengamati naskah, dialog, serta blocking para aktor di atas panggung tersebut. Ilmu ini tidak meneliti proses kejiwaan individu secara terisolasi, juga bukan ilmu yang mempelajari benda-benda peninggalan masa lalu atau cara manusia mengelola sumber daya yang terbatas.</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Istilah</strong></th>
+    <th><strong>Asal</strong> <strong>Bahasa</strong></th>
+    <th><strong>Arti</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Socius</strong></td>
+    <td>Latin</td>
+    <td>Teman / kawan</td>
+  </tr>
+  <tr>
+    <td><strong>Logos</strong></td>
+    <td>Latin</td>
+    <td>Ilmu / kata</td>
+  </tr>
+  <tr>
+    <td><strong>Sosiologi</strong></td>
+    <td>Gabungan</td>
+    <td>Ilmu tentang hubungan dan interaksi antarmanusia dalam masyarakat</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong>Definisi menurut Soejono Soekanto</strong></h4>
+    <p>Menurut <strong>Soejono Soekanto</strong>, sosiologi adalah ilmu yang mempelajari <strong>struktur dan</strong> <strong>proses kemasyarakatan</strong>.</p>
+    <ul>
+  <li><strong>Struktur kemasyarakatan</strong>: Susunan hubungan antar berbagai kelompok dalam masyarakat. Analoginya seperti struktur rangka tubuh manusia; ia menopang bentuk masyarakat agar tidak lemas.</li>
+  <li><strong>Proses kemasyarakatan</strong>: Cara berjalinya interaksi sosial yang dinamis. Jika struktur adalah rangka, maka proses adalah aliran darah yang menggerakkan tubuh tersebut setiap hari.</li>
+</ul>
+    <p>Contoh: Keluarga, sekolah, dan pemerintah adalah struktur sosial. Kegiatan gotong royong, musyawarah, atau persaingan bisnis adalah proses sosial.</p>
+    <h4><strong>Definisi menurut Emile Durkheim</strong></h4>
+    <p>Sosiolog asal Prancis, <strong>Emile Durkheim</strong>, mendefinisikan sosiologi sebagai ilmu yang mempelajari <strong>fakta sosial</strong> (<em>fakta sosial</em>). Fakta sosial adalah pola perilaku, cara berpikir, dan bertindak yang berada di luar individu, namun memiliki kekuatan untuk memaksa dan mengendalikan individu.</p>
+    <p>Contoh fakta sosial:</p>
+    <ul>
+  <li><strong>Hukum dan aturan sekolah</strong>: Aturan dibuat oleh struktur di luar dirimu, dan kamu harus taat atau mendapat sanksi.</li>
+  <li><strong>Bahasa</strong>: Kamu tidak menciptakan bahasa sendiri; kamu mempelajari bahasa yang sudah ada di masyarakat dan harus menggunakannya agar bisa berkomunikasi.</li>
+</ul>
+    <h4><strong>Kesimpulan</strong></h4>
+    <p>Sosiologi berperan membantu kita memahami keragaman manusia dan budayanya, serta memahami status dan peran individu dalam kelompok sosial. Secara kritis, analitis, kreatif, dan solutif, sosiologi mengkaji masyarakat agar kita tidak "berjalan di tempat" atau stagnan, melainkan mampu beradaptasi dan berkarya di tengah dinamika sosial.</p>
+    <h2><strong>Ciri-Ciri Sosiologi</strong></h2>
+    <h3><strong>Pengantar</strong></h3>
+    <p>Bayangkan sosiologi sebagai detektif yang menyelidiki "kasus-kasus" kehidupan bermasyarakat. Nah, setiap detektif punya gaya kerja khasnya sendiri. Berikut adalah lima ciri yang membedakan sosiologi dari ilmu pengetahuan lainnya!</p>
+    <h3><strong> Tabel Ringkas Lima Ciri Sosiologi</strong></h3>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Ciri</strong></th>
+    <th><strong>Inti</strong></th>
+    <th><strong>Analogi Singkat</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Empiris</strong></td>
+    <td>Berbasis observasi & akal sehat</td>
+    <td>Mata lihat, otak analisis</td>
+  </tr>
+  <tr>
+    <td><strong>Teoritis</strong></td>
+    <td>Menyusun kesimpulan & konsep</td>
+    <td>Jembatan penghubung fenomena</td>
+  </tr>
+  <tr>
+    <td><strong>Kumulatif</strong></td>
+    <td>Terus berkembang</td>
+    <td>Tumbuh seperti bola salju</td>
+  </tr>
+  <tr>
+    <td><strong>Non-etis</strong></td>
+    <td>Bahas <em>apa yang terjadi</em></td>
+    <td>Wasit, bukan hakim</td>
+  </tr>
+  <tr>
+    <td><strong>Kategoris</strong></td>
+    <td>Mempelajari apa adanya</td>
+    <td>Foto, bukan filter</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h3><strong> Penjelasan Tiap Ciri</strong></h3>
+    <h4><strong>1. Empiris — Berbasis Observasi dan Akal Sehat</strong></h4>
+    <p>Sosiologi tidak menebak-nebak atau berspekulasi. Data dan fakta yang nyata adalah fondasinya. Seorang sosiolog pergi ke lapangan, mengamati, lalu menarik kesimpulan berdasarkan akal sehat.</p>
+    <p><em>Contoh: Daripada sekadar menduga "masyarakat kini individualis," seorang</em> <em>sosiolog menyebarkan kuesioner, melakukan wawancara mendalam, dan</em> <em>mengumpulkan data statistik untuk membuktikan atau menyangkal klaim</em> <em>tersebut. Hasil penelitiannya tidak bersifat spekulatif — semuanya berdasarkan</em> <em>observasi nyata di lapangan!</em></p>
+    <h4><strong>2. Teoritis — Menyusun Konsep yang Menjelaskan Hubungan Antarfenomena</strong></h4>
+    <p>Sosiologi tidak berhenti pada pengumpulan data mentah. Ia berupaya menyusun kesimpulan dan konsep abstrak yang dapat menjelaskan keterkaitan antarfenomena sosial.</p>
+    <p><em>Contoh: Setelah mengumpulkan data tentang interaksi keluarga yang terganggu</em> <em>gawai, sosiologi merumuskan teori mengenai bagaimana teknologi komunikasi</em> <em>mengubah pola hubungan sosial dalam keluarga modern. Konsep ini</em> <em>menjelaskan sebab-akibat, bukan sekadar deskripsi.</em></p>
+    <h4><strong>3. Kumulatif — Terus Berkembang tanpa Stagnan</strong></h4>
+    <p>Sosiologi ibarat bola salju yang sembasar menggelinding semakin besar. Teori-teori lama diperbaiki, disempurnakan, atau digantikan oleh temuan baru. Ilmu ini tidak berjalan di tempat (stagnan).</p>
+    <p><em>Contoh: Teori tentang masyarakat tradisional dikembangkan menjadi teori</em> <em>masyarakat industri, lalu diperkaya lagi dengan kajian masyarakat informasi era</em> <em>digital. Setiap zaman menghasilkan lapisan pemahaman baru!</em></p>
+    <h4><strong>4. Non-etis — Membahas Apa yang Terjadi, Bukan Benar atau Salah</strong></h4>
+    <p>Sosiologi bersikap netral terhadap nilai. Ia mendeskripsikan dan menganalisis peristiwa sosial apa adanya — bukan menghakimi mana yang baik dan mana yang buruk.</p>
+    <p><em>Contoh: Saat mengkaji aksi protes buruh, sosiologi tidak mengatakan "protes itu</em> <em>salah" atau "protes itu benar." Ia fokus pada apa yang terjadi: penyebab, pola,</em> <em>dinamika kelompok, serta dampaknya. Sosiolog bertindak seperti kamera —</em> <em>merekam realitas tanpa menambahkan filter moral.</em></p>
+    <h4><strong>5. Kategoris — Mempelajari Peristiwa Sosial Apa Adanya</strong></h4>
+    <p>Sosiologi mengkategorikan dan mengelompokkan fenomena sosial berdasarkan kenyataan yang terjadi, bukan berdasarkan idealisme yang seharusnya terjadi.</p>
+    <p><em>Contoh: Fenomena seperti mudik Lebaran atau perubahan pola interaksi akibat</em> <em>gawai dikaji sebagai kenyataan sosial yang ada — bukan dievaluasi berdasarkan</em> <em>standar ideal. Yang penting bagi sosiologi: fenomena itu nyata, terjadi, dan layak</em> <em>dipelajari.</em></p>
+    <h3><strong> Mengapa Lima Ciri Ini Penting?</strong></h3>
+    <p>Lima ciri ini membuat sosiologi berdiri kokoh sebagai <strong>ilmu pengetahuan</strong> yang utuh:</p>
+    <ul>
+  <li><strong>Empiris & teoritis</strong> memastikan kajian berbasis data dan menghasilkan pemahaman ilmiah.</li>
+  <li><strong>Kumulatif</strong> menjaga sosiologi tetap dinamis dan relevan.</li>
+  <li><strong>Non-etis & kategoris</strong> menjamin objektivitas — sosiologi mengkaji, bukan menghakimi.</li>
+</ul>
+    <p>Singkatnya, sosiologi meneliti masyarakat dengan <strong>mata terbuka, otak jernih, dan</strong> <strong>tanpa prasangka moral</strong>!</p>
+    <h2><strong>Hakikat Sosiologi</strong></h2>
+    <h3><strong>Hakikat Sosiologi: Ilmu yang Mengupas Kehidupan Bermasyarakat</strong></h3>
+    <p>Bayangkan masyarakat sebagai panggung teater raksasa. Setiap orang berperan, berinteraksi, dan membentuk gengsendiri. Sosiologi adalah ilmu yang "duduk di penonton" — mengamati pola dan bentuk peristiwa di atas panggung tersebut. Berikut hakikat sosiologi yang perlu kamu pahami.</p>
+    <h4><strong>Sosiologi sebagai Ilmu Sosial yang Mengkaji Pola Peristiwa Masyarakat</strong></h4>
+    <p>Sosiologi <strong>memperhatikan bentuk-bentuk dan pola-pola peristiwa dalam</strong> <strong>masyarakat</strong>. Artinya, sosiologi tidak sekadar mencatat <em>"apa yang terjadi"</em>, tetapi juga menelaah <em>"mengapa hal itu terjadi"</em>. Sebagai ilmu, sosiologi bersifat <strong>kategoris</strong> — yaitu menggambarkan dan menganalisis kenyataan masyarakat apa adanya, tanpa memberikan penilaian moral tentang benar atau salahnya tindakan.</p>
+    <p>Sebagai perbandingan, berikut perbedaan pendekatannya:</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Sosiologi (Kategoris)</strong></th>
+    <th><strong>Bukan Pendekatan Sosiologi</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Membahas apa yang terjadi dan mengapa terjadi</td>
+    <td>Menentukan apa yang seharusnya terjadi</td>
+  </tr>
+  <tr>
+    <td>Menganalisis pola perilaku secara objektif</td>
+    <td>Memberikan penilaian moral terhadap masyarakat</td>
+  </tr>
+  <tr>
+    <td>Menggambarkan bentuk peristiwa sosial</td>
+    <td>Mengatur perilaku masyarakat</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p>Dengan demikian, sosiologi tidak berfungsi menentukan benar-salahnya suatu tindakan, melainkan memahami pola di baliknya.</p>
+    <h4><strong>Mempelajari Interaksi Sosial Antarindividu</strong></h4>
+    <p>Sosiologi mempelajari bagaimana individu satu sama lain berhubungan. Interaksi sosial ini bisa memunculkan <strong>nilai</strong> yang dianut bersama. Contoh konkret nilai gotong royong tampak ketika warga bergotong royong membersihkan lingkungan desa — di sana terjadi interaksi yang mewujudkan nilai kebersamaan.</p>
+    <h4><strong>Mempelajari Bentuk-Bentuk Kelompok Sosial</strong></h4>
+    <p>Manusia tidak hidup sendirian; ia selalu bergabung dalam kelompok. Sosiologi menelaah beragam bentuk kelompok sosial dan dampaknya.</p>
+    <p><strong>Contoh analisis sosiologis terhadap kelompok sosial:</strong></p>
+    <ul>
+  <li><strong>Dampak negatif kapitalisme pada masa Revolusi Industri:</strong> Munculnya sistem pelapisan sosial yang semakin jelas akibat pembagian kelas, di mana para buruh mendapat upah rendah meskipun jam kerjanya panjang. Meski terdapat dampak positif seperti spesialisasi pekerjaan dan terbukanya lapangan kerja baru, sosiologi justru menyoroti ketimpangan yang muncul.</li>
+</ul>
+    <h4><strong>Sosiologi sebagai Ilmu Pengetahuan yang Abstrak</strong></h4>
+    <p>Sosiologi termasuk <strong>ilmu pengetahuan yang abstrak</strong>. Apa maksudnya? Jika kamu mengamati gotong royong, yang diteliti bukan sapu atau cangkulnya, melainkan pola hubungan, nilai kebersamaan, dan struktur di baliknya. Konsep seperti "interaksi", "kelompok", dan "pelapisan sosial" tidak bisa diukur dengan penggaris — mereka bersifat abstrak namun nyata pengaruhnya.</p>
+    <h4><strong>Fungsi Sosiologi dalam Kehidupan Nyata</strong></h4>
+    <p>Sosiologi juga punya fungsi praktis. Contoh fungsi sosiologi dalam <strong>perencanaan</strong> <strong>pembangunan</strong> adalah ketika pemerintah melakukan survei kebutuhan masyarakat sebelum membangun fasilitas umum. Hasil kajian sosiologis memastikan pembangunan sesuai kebutuhan riil, bukan asal bangun!</p>
+    <p><strong>Intinya:</strong> Sosiologi adalah ilmu sosial yang abstrak dan kategoris. Ia mengkaji pola peristiwa, interaksi antarindividu, dan bentuk kelompok sosial — semuanya untuk memahami panggung kehidupan manusia secara ilmiah.</p>
+    <h2><strong>Objek Kajian Sosiologi</strong></h2>
+    <p>Bayangkan kamu sedang memotret keramaian pasar malam dari dua sisi: sekadar memotret <em>apa</em> yang ada di sana, lalu memotret <em>bagaimana</em> orang-orang berinteraksi di dalamnya. Nah, itulah inti dari dua objek kajian sosiologi!</p>
+    <h3><strong>Objek Material: "Apa yang Difoto?"</strong></h3>
+    <p>Objek material adalah <strong>segala sesuatu yang menjadi materi atau bahan kajian</strong> <strong>sosiologi</strong>. Ini mencakup hal-hal konkret yang diamati:</p>
+    <ul>
+  <li><strong>Manusia sebagai makhluk sosial</strong> — individu yang tidak bisa hidup sendiri</li>
+  <li><strong>Bentuk-bentuk kelompok sosial</strong> dalam masyarakat</li>
+  <li><strong>Lembaga sosial</strong> yang mengatur tatanan masyarakat</li>
+  <li><strong>Gejala-gejala sosial</strong> dalam kehidupan bersama</li>
+</ul>
+    <p>Singkatnya, objek material itu seperti "bahan baku" — segala fenomena sosial yang bisa kamu lihat dan amati di lapangan.</p>
+    <h3><strong>Objek Formal: "Sudut Pandang Kamera"</strong></h3>
+    <p>Objek formal adalah <strong>sudut pandang atau lensa yang digunakan sosiologi untuk</strong> <strong>menelaah objek materialnya</strong>. Bukan cuma <em>apa</em> yang diamati, tapi <em>bagaimana</em> cara diamati:</p>
+    <ul>
+  <li><strong>Proses interaksi sosial antarindividu</strong></li>
+  <li><strong>Hubungan antarmanusia dalam kelompok</strong></li>
+  <li>Pola hubungan antarkelompok</li>
+</ul>
+    <p>Jadi kalau objek material itu "foto apa", objek formal itu "pakai lensa apa". Sosiologi memakai lensa <strong>interaksi sosial dan pola hubungan antarkelompok</strong> untuk menelaah manusia.</p>
+    <h3><strong>Perbandingan Singkat</strong></h3>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Aspek</strong></th>
+    <th><strong>Objek Material</strong></th>
+    <th><strong>Objek Formal</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Definisi</strong></td>
+    <td>Bahan/materi yang dikaji</td>
+    <td>Sudut pandang/lensi kajian</td>
+  </tr>
+  </tbody>
+</table></div>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Fokus</strong></th>
+    <th><em>Apa</em> yang diamati</th>
+    <th><em>Bagaimana</em> diamati</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Contoh</strong></td>
+    <td>Manusia, kelompok, gejala sosial</td>
+    <td>Interaksi sosial, pola hubungan antarkelompok</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h3><strong>Penerapan: Urbanisasi & Pemukiman Kumuh</strong></h3>
+    <p>Di kota besar, urbanisasi memicu menjamurnya pemukiman kumuh di bantaran sungai. Muncul gesekan antarwarga soal ruang publik dan pola hidup yang kurang peduli kebersihan.</p>
+    <ul>
+  <li><strong>Objek material:</strong> fenomena pemukiman kumuh dan aktivitas warga di dalamnya</li>
+  <li><strong>Objek formal:</strong> sudut pandang interaksi sosial dan pola hubungan antarkelompok</li>
+</ul>
+    <p>Bingung membedakannya? Coba tes pemahamanmu dengan pasangan-pasangan berikut:</p>
+    <ul>
+  <li>Manusia yang melakukan urbanisasi — aturan hukum tata kota → aturan hukum bukan lensa sosiologi</li>
+  <li>Kebijakan pemerintah daerah — kondisi pemukiman kumuh → kebijakan pemerintah bukan fokus sosiologi</li>
+  <li>Proses perpindahan penduduk — ilmu kependudukan dan demografi → demografi itu ilmu lain, bukan sudut pandang sosiologi</li>
+  <li>Struktur sosial masyarakat — interaksi antarmanusia di bantaran sungai → mendekati, tapi belum tepat karena "interaksi antarmanusia" terlalu sempit</li>
+  <li><strong>Fenomena pemukiman kumuh dan aktivitas warga — sudut pandang interaksi</strong> <strong>sosial dan pola hubungan antarkelompok</strong> → ini pasangan paling tepat!</li>
+</ul>
+    <h3><strong>Fenomena Sosial Lain dalam Kajian Sosiologi</strong></h3>
+    <p>Sosiologi juga mengkaji <strong>perubahan pola interaksi</strong> dan <strong>aksi protes buruh</strong>. Keduanya masuk objek kajian sosiologi karena melibatkan:</p>
+    <ul>
+  <li>Individu dan kelompok sebagai aktor sosial <em>(objek material)</em></li>
+  <li>Pola hubungan dan interaksi yang terbentuk, kolaboratif maupun konflik <em>(objek</em> <em>formal)</em></li>
+</ul>
+    <p>Intinya: kapan pun ada manusia berinteraksi membentuk pola hubungan—entah harmonis atau berbenturan—itulah wilayah sosiologi!</p>
+    <h2><strong>Sejarah Lahirnya Sosiologi</strong></h2>
+    <h4><strong>Sekilas tentang Lahirnya Sosiologi di Eropa</strong></h4>
+    <p>Bayangkan Eropa abad ke-18 dan ke-19: zaman di mana masyarakat mengalami perubahan yang sangat besar. Dalam konteks historis ini, sosiologi lahir di Eropa dipicu oleh dua peristiwa besar, yaitu <strong>Revolusi Industri</strong> dan <strong>Revolusi Prancis</strong>. Kedua peristiwa ini mengubah wajah masyarakat secara dramatis, memunculkan berbagai masalah sosial baru, dan menuntut adanya ilmu yang dapat mempelajari fenomena tersebut secara sistematis. Dari sinilah sosiologi mulai menemukan tempatnya.</p>
+    <h4><strong>Revolusi Industri dan Dampak Negatif Kapitalisme</strong></h4>
+    <p>Revolusi Industri membawa perubahan luar biasa dalam cara produksi barang, tetapi juga membawa dampak negatif yang signifikan. Munculnya sistem kapitalisme pada masa ini menciptakan berbagai ketimpangan sosial. Berikut beberapa dampak negatif yang muncul:</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Dampak</strong></th>
+    <th><strong>Penjelasan</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Upah rendah</td>
+    <td>Buruh pabrik bekerja dalam kondisi keras dengan imbalan yang minim, sehingga kesejahteraan hidup mereka rendah.</td>
+  </tr>
+  <tr>
+    <td>Pelapisan sosial</td>
+    <td>Masyarakat terbelah menjadi kelas pemodal (pemilik pabrik) dan kelas pekerja, memunculkan jurang sosial yang lebar.</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p>Selain itu, kondisi kehidupan buruh yang memprihatinkan mendorong munculnya keinginan untuk memahami dan memperbaiki struktur sosial. Para pemikir mulai merespons ketidakadilan ini, yang kemudian menjadi benang merah perkembangan sosiologi.</p>
+    <h4><strong>Tokoh Penting dalam Perkembangan Sosiologi</strong></h4>
+    <p>Dalam merespons gejolak sosial Eropa, muncul beberapa tokoh kunci yang berjasa dalam merumuskan dasar-dasar sosiologi:</p>
+    <ul>
+  <li><strong>Auguste Comte</strong> – Mengembangkan teori bahwa tahap perkembangan manusia terdiri atas tahap <strong>teologis</strong>, <strong>metafisik</strong>, dan <strong>positivistik</strong>.</li>
+  <li><strong>Emile Durkheim</strong> – Mendefinisikan sosiologi sebagai ilmu yang mempelajari <strong>fakta-</strong> <strong>fakta sosial</strong>, yaitu fakta cara bertindak, berpikir, dan berperasaan yang ada di luar individu.</li>
+  <li><strong>Karl Marx</strong> – Menyoroti konflik kelas dan dampak kapitalisme.</li>
+  <li><strong>Max Weber</strong> – Menekankan pemahaman makna tindakan sosial.</li>
+  <li><strong>Ibnu Khaldun</strong> – Tokoh yang dipandang sebagai pendahulu sosiologi dari dunia Islam.</li>
+</ul>
+    <h4><strong>Kemunculan Sosiologi di Indonesia</strong></h4>
+    <p>Sosiologi tidak hanya berkembang di Eropa; ilmu ini juga menemukan tempatnya di Indonesia. Kemunculan sosiologi di Indonesia telah dimulai sejak masa penjajahan Belanda. Pada masa itu, para peneliti dan administratur Belanda melakukan berbagai studi mengenai struktur dan adat istiadat masyarakat pribumi untuk keperluan administrasi kolonial.</p>
+    <h4><strong>Kegunaan Ilmu Sosiologi</strong></h4>
+    <p>Secara umum, ilmu sosiologi memiliki beberapa kegunaan penting dalam memahami masyarakat:</p>
+    <ul>
+  <li>Memahami setiap fenomena sosial yang terjadi dalam masyarakat.</li>
+  <li>Membentuk pola pikir kritis terhadap kondisi lingkungan sosial.</li>
+  <li>Membantu seseorang memecahkan masalah sosial.</li>
+</ul>
+    <p>Dengan demikian, sosiologi hadir sebagai alat untuk membaca dan menanggapi dinamika sosial, mulai dari lapisan masyarakat hingga aturan-aturan kehidupan seperti <strong>norma</strong> yang mengatur cara bertindak manusia.</p>
+    <h2><strong>Tokoh-Tokoh Sosiologi</strong></h2>
+    <h3><strong>Tokoh-Tokoh Sosiologi: Para Arsitek Masyarakat</strong></h3>
+    <p>Bayangkan masyarakat sebagai gedung pencakar langit yang rumit. Para tokoh sosiologi adalah arsitek-arsitek brilian yang menyusun cetak birunya. Mari kita kenal empat sosok yang mengubah cara kita memandang kehidupan bersama.</p>
+    <h4><strong> Auguste Comte: Sang "Bapak Sosiologi"</strong></h4>
+    <p>Auguste Comte adalah orang pertama yang mendalami masyarakat secara sistematis, sehingga ia digelari <strong>Bapak Sosiologi</strong>. Ia meyakini bahwa masyarakat berevolusi melewati tiga tahap:</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Tahap</strong></th>
+    <th><strong>Ciri Khas</strong></th>
+    <th><strong>Analogi Sederhana</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Teologis</strong></td>
+    <td>Fenomena sosial dijelaskan via kekuatan supranatural & dewa-dewi</td>
+    <td>Seperti anak kecil yang menyalahkan hantu saat lampu mati</td>
+  </tr>
+  <tr>
+    <td><strong>Metafisik</strong></td>
+    <td>Penjelasan beralih ke ide abstrak & kekuatan alamiah</td>
+    <td>Seperti remaja yang mencari "takdir" tanpa bukti konkret</td>
+  </tr>
+  <tr>
+    <td><strong>Positivistik</strong></td>
+    <td>Masyarakat memakai data, logika, & observasi empiris</td>
+    <td>Seperti dewasa yang memakai multimeter untuk mencari konslet</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong> Émile Durkheim: Kiprah Fakta Sosial</strong></h4>
+    <p>Émile Durkheim mengusung gagasan <strong>fakta sosial</strong>. Menurutnya, fakta sosial adalah <strong>cara bertindak, berpikir, dan berperasaan</strong> yang berada di luar individu namun mengendalikan individu.</p>
+    <ul>
+  <li><strong>Contoh cara bertindak:</strong> Mengantri rapi saat belanja, meski tidak ada satpam yang memaksa.</li>
+  <li><strong>Contoh cara berpikir & berperasaan:</strong> Rasa sedih dan bangga saat upacara bendera, emosi yang timbul karena "susunan kolektif", bukan murni dari dalam diri sendiri.</li>
+</ul>
+    <p>Fakta sosial ini ibut arus laut: tidak kelihatan, tapi menggerakkan perahu kita semua.</p>
+    <h4><strong> Ibnu Khaldun: Sosiolog dari Dunia Islam</strong></h4>
+    <p>Jauh sebelum istilah "sosiologi" diciptakan, Ibnu Khaldun telah menganalisis dinamika masyarakat. Ia mengkaji:</p>
+    <ul>
+  <li><strong>Asabiyyah (solidaritas sosial):</strong> ikatan kelompok yang merekatkan suku.</li>
+  <li><strong>Siklus dinasti:</strong> kelompok marginal yang bersatu merebut kekuasaan, lalu jadi mewah, dan akhirnya rapuh digantikan kelompok baru.</li>
+</ul>
+    <p>Gagasannya seperti putaran roda: masyarakat naik, berkuasa, lalu turun.</p>
+    <h4><strong> Selo Soemardjan: Tokoh Lokal</strong></h4>
+    <p>Selo Soemardjan ialah tokoh sosiologi Indonesia. Ia memakai pisau analisis sosiologi untuk membedah masyarakat Indonesia yang majemuk. Karyanya membuktikan bahwa teori sosial tak melulu milik Barat; Indonesia punya peta jalan tersendiri.</p>
+    <h4><strong> Kesimpulan Ringkas</strong></h4>
+    <ul>
+  <li><strong>Comte:</strong> merancang metode ilmiah dan tahap evolusi.</li>
+  <li><strong>Durkheim:</strong> menyoroti fakta sosial sebagai kontrol kolektif.</li>
+  <li><strong>Ibnu Khaldun:</strong> memetakan siklus peradaban Islam.</li>
+  <li><strong>Selo Soemardjan:</strong> menampilkan sosiologi Indonesia.</li>
+</ul>
+    <p>Mereka semua sepakat: masyarakat bukan sekadar kumpulan orang, melainkan sistem hidup yang punya pola, hukum, dan alur tersendiri.</p>
+    <h2><strong>Fungsi Sosiologi</strong></h2>
+    <p>Bayangkan kamu mau masak mie goreng. Kalau asal campur bumbu tanpa tahu takarannya, hasilnya bisa berantakan — terlalu asin atau hambar. Nah, sosiologi itu ibarat "buku resep" masyarakat. Tanpa sosiologi, pembangunan dan kebijakan sosial cuma tebak-tebakan. Yuk, kita bedah fungsinya satu per satu!</p>
+    <h3><strong>1. Fungsi Sosiologi dalam Penelitian Sosial</strong></h3>
+    <p>Sosiologi memberi <strong>metode ilmiah</strong> untuk memahami gejala-gejala sosial secara sistematis. Melalui penelitian — survei, observasi, wawancara — data dikumpulkan bukan dari rumor tetapi dari lapangan.</p>
+    <ul>
+  <li><strong>Fungsi utama:</strong> memberikan data akurat tentang kondisi nyata masyarakat.</li>
+  <li><strong>Tujuan:</strong> menghindari asumsi spekulatif, menggantinya dengan bukti empiris.</li>
+  <li><strong>Contoh:</strong> penelitian tentang pola konsumsi masyarakat desa sebelum membangun pasar tradisional.</li>
+</ul>
+    <h3><strong>2. Fungsi Sosiologi dalam Perencanaan Sosial dan Pembangunan</strong></h3>
+    <p>Perencanaan tanpa data sosiologi ibarat membangun jembatan tanpa mengukur kedalaman sungai. Sosiologi berfungsi sebagai <strong>landasan</strong> agar pembangunan tepat sasaran.</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Aspek Perencanaan</strong></th>
+    <th><strong>Kontribusi Sosiologi</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Identifikasi kebutuhan</td>
+    <td>Survei untuk memetakan prioritas warga</td>
+  </tr>
+  <tr>
+    <td>Desain program</td>
+    <td>Menyusun kebijakan sesuai struktur sosial lokal</td>
+  </tr>
+  <tr>
+    <td>Alokasi sumber daya</td>
+    <td>Mencegah pemborosan pada hal yang tidak relevan</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p><strong>Contoh konkret:</strong> sebelum membangun <strong>fasilitas umum</strong> seperti puskesmas atau jembatan desa, pemerintah melakukan survei kebutuhan masyarakat. Sosiologi membantu menentukan: apakah warga lebih butuh puskesmas baru atau perbaikan jalan? Tanpa survei ini, bisa-bisa puskesmas dibangun tapi kosong karena lokasinya terlalu jauh dari permukiman.</p>
+    <h3><strong>3. Fungsi Sosiologi sebagai Pemecahan Masalah Sosial</strong></h3>
+    <p>Masyarakat selalu punya masalah — kemiskinan, kenakalan remaja, konflik antar kelompok. Sosiologi berfungsi sebagai <strong>alat diagnostik</strong>: mencari akar masalah, bukan sekadar gejalanya.</p>
+    <ul>
+  <li><strong>Mengapa penting?</strong> Karena menyelesaikan masalah sosial butuh pemahaman struktural, bukan solusi tempelan.</li>
+</ul>
+    <h3>• <strong>Langkahnya:</strong> identifikasi penyebab → analisis dampak → rumusan solusi berbasis</h3>
+    <p>data.</p>
+    <ul>
+  <li><strong>Contoh:</strong> untuk mengatasi putus sekolah, sosiologi meneliti faktor ekonomi keluarga, akses sekolah, dan budaya lokal — bukan sekadar menyuruh anak kembali ke kelas.</li>
+</ul>
+    <h3><strong>4. Fungsi Sosiologi dalam Evaluasi dan Pengambilan Keputusan</strong></h3>
+    <p>Setelah program berjalan, sosiologi kembali masuk lapangan untuk <strong>evaluasi</strong>. Apakah dampaknya sesuai harapan? Adakah efek samping yang tidak terduga?</p>
+    <ul>
+  <li><strong>Evaluasi:</strong> mengukur keberhasilan program dengan indikator sosial nyata.</li>
+  <li><strong>Pengambilan keputusan:</strong> hasil evaluasi menjadi dasar untuk lanjut, revisi, atau hentikan program.</li>
+  <li><strong>Contoh:</strong> program bantuan langsung dievaluasi apakah benar-benar meningkatkan kesejahteraan atau justru menciptakan ketergantungan. Hasilnya menentukan keputusan kebijakan selanjutnya.</li>
+</ul>
+    <p><strong>Intinya:</strong> sosiologi bukan teori yang nanggung di menara gading. Fungsinya bersentuhan langsung dengan kehidupan nyata — dari meneliti, merencanakan, menyelesaikan masalah, sampai mengevaluasi kebijakan. Dengan sosiologi, pembangunan jadi punya "kompas" yang jelas, bukan sekadar "coba-coba beruntun."</p>
+    <h2><strong>Kegunaan Sosiologi dan Konsep Dasar Masyarakat</strong></h2>
+    <p>Bayangkan kamu punya kacamata ajaib yang bisa memperbesar pola-pola tersembunyi dalam kehidupan sehari-hari—mulai dari antrean di warteg hingga gelombang arus mudik Lebaran. Nah, sosiologi adalah kacamata itu! Bab ini membahas kenapa ilmu ini penting dan konsep dasar apa yang menjadi "roh"-nya.</p>
+    <h3><strong> Kegunaan Sosiologi: Lebih dari Sekadar Teori</strong></h3>
+    <p>Sosiologi bukan ilmu yang cuma enak dibahas di kelas. Ia punya tugas mulia:</p>
+    <ul>
+  <li><strong>Memahami fenomena sosial:</strong> Meneliti gejala sosial dan memberikan data untuk perencanaan pembangunan. Contoh: pemerintah melakukan survei kebutuhan masyarakat sebelum membangun fasilitas umum.</li>
+  <li><strong>Membentuk pola pikir kritis:</strong> Mendorong kita melihat kondisi lingkungan sosial secara analitis, tidak asal menelan informasi.</li>
+  <li><strong>Memecahkan masalah sosial:</strong> Meningkatkan kesadaran masyarakat dan menyelesaikan permasalahan yang terjadi di lingkungan.</li>
+</ul>
+    <h3><strong> Manusia sebagai Makhluk Sosial</strong></h3>
+    <p>Manusia tidak bisa memenuhi kebutuhan hidupnya sendiri (kita tidak bisa hidup sendiri tanpa berinteraksi dengan orang lain). Hal ini sangat sejalan dengan firman Allah SWT dalam <strong>Al-Qur'an Surat Al-Hujurat: 13</strong>, yang mengingatkan bahwa manusia diciptakan dari laki-laki dan perempuan serta berbangsa-bersuku agar saling mengenal.</p>
+    <h3><strong> Konsep Norma Sosial: Kesopanan dan Adat</strong></h3>
+    <p>Norma adalah aturan-aturan yang berlaku dalam kehidupan manusia. Dua jenis norma yang akan kita bahas:</p>
+    <ul>
+  <li><strong>Norma Kesopanan:</strong> Aturan kesopanan mengatur tingkah laku agar manusia beradaptasi dan tidak merasa malu jika melanggarnya. Contoh: memakai pakaian yang sopan dan mengucapkan salam.</li>
+  <li><strong>Norma Adat:</strong> Aturan turun-temurun yang mengatur tatanan hidup masyarakat tertentu, berupa kebiasaan yang diwariskan secara turun-temurun.</li>
+</ul>
+    <h3><strong> Konsep Nilai Sosial: Gotong Royong dan Keagamaan</strong></h3>
+    <p>Nilai adalah landasan ideal yang mendorong tindakan manusia. Dua contoh konkret nilai sosial dalam masyarakat kita:</p>
+    <ul>
+  <li><strong>Nilai Gotong Royong:</strong> Perwujudan kerja sama dan tolong-menolong dalam kehidupan bersama. Contoh: aktivitas membersihkan desa atau membangun rumah bersama warga secara swadaya.</li>
+  <li><strong>Nilai Keagamaan:</strong> Nilai yang menghubungkan tindakan manusia dengan tuntutan agama yang dianutnya. Contoh: melaksanakan ibadah dan menolong tetangga yang sedang kesusahan.</li>
+</ul>
+    <h3>⚖<strong> Perbedaan Nilai, Norma, dan Pranata Sosial</strong></h3>
+    <p>Ketiganya seperti "jarigan tiga serangkai" dalam masyarakat. Nilai adalah cita-citanya, norma adalah aturannya, dan pranata adalah sistem yang menjalankannya.</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Konsep</strong></th>
+    <th><strong>Definisi</strong></th>
+    <th><strong>Contoh Konkret</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Nilai</strong> <strong>Sosial</strong></td>
+    <td>Landasan ideal atau konsep abstrak yang mendorong manusia bertindak.</td>
+    <td>Kebiasaan tolong-menolong antarwarga (gotong royong).</td>
+  </tr>
+  <tr>
+    <td><strong>Norma</strong> <strong>Sosial</strong></td>
+    <td>Aturan tertulis atau tidak tertulis yang wajib ditaati anggota masyarakat.</td>
+    <td>Mengucapkan salam saat bertemu dan berpakaian sopan.</td>
+  </tr>
+  <tr>
+    <td><strong>Pranata</strong> <strong>Sosial</strong></td>
+    <td>Sistem dan lembaga sosial yang mengatur tatanan hidup agar lebih stabil.</td>
+    <td>Lembaga sosial yang mengatur tatanan kehidupan masyarakat.</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p>Dengan memahami konsep-konsep dasar ini, kamu tidak hanya bisa membaca situasi sosial dengan kritis, tetapi juga siap menjadi bagian dari solusi atas masalah di sekitarmu!</p>
+  </main>
+</body>
+</html>

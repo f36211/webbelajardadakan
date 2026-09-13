@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Berlomba dalam Kebaikan (Fastabiqul Khairat)</title>
+  <style>
+
+/* Universal Semantic Materials Stylesheet */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --color-bg: #ffffff;
+  --color-surface: #f9f9f8;
+  --color-surface-hover: #f3f3f2;
+  --color-text: #2f343b;
+  --color-text-muted: #6b7280;
+  --color-heading: #111827;
+  --color-border: #e5e7eb;
+  --color-primary: #0075de;
+  --color-primary-light: #eff6ff;
+  --color-accent-orange: #f76703;
+  --color-callout-bg: #fffbf7;
+  --color-callout-border: #f76703;
+  --color-table-header: #f8fafc;
+  --color-table-alt: #fcfcfc;
+  --line-height: 1.75;
+}
+
+[data-reading-theme="dark"] {
+  --color-bg: #16171d;
+  --color-surface: #1e2028;
+  --color-surface-hover: #262933;
+  --color-text: #d1d5db;
+  --color-text-muted: #9ca3af;
+  --color-heading: #f9fafb;
+  --color-border: #2e303a;
+  --color-primary: #62aef0;
+  --color-primary-light: #1e293b;
+  --color-callout-bg: #231c16;
+  --color-callout-border: #dd5b00;
+  --color-table-header: #1f232e;
+  --color-table-alt: #181920;
+}
+
+[data-reading-theme="sepia"] {
+  --color-bg: #f4ecd8;
+  --color-surface: #ede0c8;
+  --color-surface-hover: #e5d6bc;
+  --color-text: #5b4636;
+  --color-text-muted: #7a5c3a;
+  --color-heading: #3d2b1f;
+  --color-border: #d4c4a8;
+  --color-primary: #7a5c3a;
+  --color-primary-light: #ede0c8;
+  --color-callout-bg: #ebdcc0;
+  --color-callout-border: #a85d00;
+  --color-table-header: #ede0c8;
+  --color-table-alt: #f4ecd8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.material {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+}
+
+.material-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.material-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+  padding: 4px 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.material-brand-badge img {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.material-title, h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: var(--color-heading);
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1.35rem, 2.8vw, 1.7rem);
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.018em;
+  line-height: 1.35;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1.025rem;
+  margin-bottom: 1.15rem;
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+ul, ol {
+  margin: 0.75rem 0 1.25rem 1.6rem;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+li > ul, li > ol {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+em {
+  font-style: italic;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+th {
+  background: var(--color-table-header);
+  font-weight: 600;
+  color: var(--color-heading);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) td {
+  background: var(--color-table-alt);
+}
+
+.callout {
+  margin: 1.75rem 0;
+  padding: 1.15rem 1.35rem;
+  background: var(--color-callout-bg);
+  border-left: 4px solid var(--color-callout-border);
+  border-radius: 0 8px 8px 0;
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+.callout-title {
+  font-weight: 700;
+  color: var(--color-accent-orange);
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 3px;
+  font-size: 0.9em;
+  line-height: 1.1;
+}
+
+.frac .num {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.frac .denom {
+  padding-top: 1px;
+}
+
+sub, sup {
+  font-size: 0.78em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+
+@media (max-width: 640px) {
+  .material {
+    padding: 1.5rem 1rem 4rem;
+  }
+  th, td {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="material">
+    <header class="material-header">
+      <div class="material-brand-badge">
+        <img src="data:image/png;base64,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AAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0+R+o6GY5uJ47EgAAAABJRU5ErkJggg==" alt="Icon">
+        <span>TrifectaStudy</span>
+      </div>
+    </header>
+    <h1><strong>Berlomba dalam Kebaikan (Fastabiqul Khairat)</strong></h1>
+    <h4><strong>Kandungan Tiga Ayat Al-Qur'an</strong></h4>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Ayat</strong></th>
+    <th><strong>Kandungan Pokok</strong></th>
+    <th>&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>QS Al-</strong> <strong>Maidah: 48</strong></td>
+    <td>Al-Qur'an diturunkan dengan kebenaran, membenarkan kitab sebelumnya, menjadi pengawas dan penjaga. Setiap umat diberi syariat dan jalan terang. Perintah berlomba dalam kebaikan sebagai ujian atas pemberian Allah.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>QS Al-</strong> <strong>Baqarah:</strong> <strong>148</strong></td>
+    <td>Setiap umat memiliki kiblat. Perintah berlomba dalam kebajikan sebagai bekal menghadap Allah. Allah pasti mengumpulkan seluruh manusia untuk dihisab; Allah Mahakuasa.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>QS Fatir: 32</strong></td>
+    <td>Kitab diwariskan kepada hamba pilihan Allah. Terbagi menjadi tiga golongan: Zhalim, Muqtashid, dan Sabiqun bil Khairat.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Tiga Golongan Penerima Warisan Kitab (QS Fatir: 32)</strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Golongan</strong></td>
+    <td>&nbsp;</td>
+    <td><strong>Keterangan</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Zhalim</strong></td>
+    <td>&nbsp;</td>
+    <td>Menzalimi diri sendiri; dosa menonjol dibanding ketaatan.</td>
+  </tr>
+  <tr>
+    <td><strong>Muqtashid</strong></td>
+    <td>&nbsp;</td>
+    <td>Bersikap pertengahan; seimbang antara ketaatan dan dosa.</td>
+  </tr>
+  <tr>
+    <td><strong>Sabiqun bil</strong> <strong>Khairat</strong></td>
+    <td>&nbsp;</td>
+    <td>Lebih dahulu berbuat kebaikan dengan izin Allah; ketaatan mendominasi.</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong>Kepribadian Manusia (Nafs)</strong></h4>
+    <ul>
+  <li><strong>Ammarah:</strong> Nafs yang selalu mendorong pada keburukan dan maksiat; tidak terkendali.</li>
+  <li><strong>Lawwamah:</strong> Nafs yang sering menyalahkan diri sendiri setelah berbuat dosa; mulai sadar dan terdorong menuju kebaikan.</li>
+  <li><strong>Muthmainnah:</strong> Nafs yang tenang dan stabil dalam ketaatan; mendapat ridha Allah.</li>
+</ul>
+    <h4><strong>Fungsi Al-Qur'an dan Syariat</strong></h4>
+    <ul>
+  <li>Al-Qur'an diturunkan membawa <strong>kebenaran</strong> dalam kandungan, cara turun, dan pengantarnya.</li>
+  <li><strong>Membenarkan</strong> kitab-kitab sebelumnya (Taurat, Injil).</li>
+  <li>Menjadi <strong>pengawas, pemelihara, dan tolak ukur kebenaran</strong> atas kitab terdahulu.</li>
+  <li>Menjadi <strong>pedoman hidup</strong> utama umat Islam.</li>
+  <li>Syariat Nabi Muhammad SAW menjadi <strong>penyempurna sekaligus pembatal</strong> syariat sebelumnya.</li>
+  <li>Setiap umat memiliki aturan (syariat) penuntun menuju kebahagiaan abadi.</li>
+</ul>
+    <h4><strong>Masalah Ushul dan Furu'</strong></h4>
+    <ul>
+  <li><strong>Ushul (pokok):</strong> Jelas dan tegas dalam Al-Qur'an dan Hadits. Contoh: rukun iman, rukun Islam, kewajiban shalat, larangan riba.</li>
+  <li><strong>Furu' (cabang):</strong> Tidak tegas atau bahkan tidak disebut. Contoh: qunut dalam shalat, posisi tangan dalam shalat.</li>
+  <li>Perbedaan adalah rahmat selama berlandaskan ilmu dan niat yang benar.</li>
+</ul>
+    <h4><strong>Penerapan Perilaku Fastabiqul Khairat</strong></h4>
+    <ul>
+  <li>Mengawali setiap kegiatan dengan <strong>basmalah</strong> dan niat ikhlas karena Allah.</li>
+  <li>Melakukan setiap pekerjaan dengan <strong>semangat maksimal</strong>.</li>
+  <li>Menjaga <strong>konsistensi</strong> dalam beramal saleh.</li>
+  <li>Mempelajari ilmu yang terkait dengan amal yang dilakukan.</li>
+  <li>Membiasakan <strong>kerja sama</strong> dan kompetisi sehat saling memotivasi.</li>
+  <li>Mengamati, meniru, dan memodifikasi hal-hal baik.</li>
+</ul>
+    <h4><strong>Manfaat Berperilaku Fastabiqul Khairat</strong></h4>
+    <ol>
+  <li>Memperoleh ridha dan pahala dari Allah SWT.</li>
+  <li>Menjadi manusia yang bermanfaat bagi sesama.</li>
+  <li>Mempercepat penyelesaian pekerjaan.</li>
+  <li>Termotivasi untuk terus menjadi lebih baik.</li>
+  <li>Membentuk pribadi disiplin dan bertanggung jawab.</li>
+  <li>Mempererat hubungan antar sesama manusia.</li>
+</ol>
+    <h4><strong>Hikmah Perpindahan Kiblat</strong></h4>
+    <ol>
+  <li>Menghilangkan alasan orang kafir untuk menghina umat Islam.</li>
+  <li>Menyempurnakan nikmat Allah kepada kaum muslimin.</li>
+  <li>Memberi petunjuk agar umat Islam tetap dalam kebenaran.</li>
+</ol>
+    <h2><strong>Pengertian, Urgensi, dan Hukum Pernikahan</strong></h2>
+    <h4><strong>Pengertian Pernikahan</strong></h4>
+    <p><strong>Pernikahan</strong> adalah akad yang menghalalkan pergaulan serta membatasi hak dan kewajiban dan tolong-menolong antara seorang laki-laki dengan perempuan yang bukan mahram. Dasar hukumnya merujuk pada <strong>Q.S. An-Nisa: 3</strong>.</p>
+    <h4><strong>Dalil Pernikahan dalam Al-Qur'an dan Hadits</strong></h4>
+    <ul>
+  <li><strong>Q.S. Ar-Ra'd: 38</strong>: Allah mengutus rasul-rasul dan memberi mereka istri serta keturunan.</li>
+  <li><strong>Q.S. Ar-Ruum: 21</strong>: Penciptaan pasangan sebagai tanda kekuasaan Allah agar manusia tenteram dan merasakan kasih sayang.</li>
+  <li><strong>Q.S. An-Nur: 32</strong>: Perintah menikah; jika miskin, Allah akan mencukupkan rezeki.</li>
+  <li><strong>HR. At-Tirmizi</strong>: Menikah termasuk empat sunnah para rasul (bersiwak, memakai parfum, menghenna, dan menikah).</li>
+  <li><strong>HR. Thabarani & Al-Hakim</strong>: Diberikan istri shalihah berarti ditolong pada separuh agama.</li>
+</ul>
+    <h4><strong>Urgensi Menikah</strong></h4>
+    <ul>
+  <li><strong>Sunnah Nabi</strong>: Mengikuti tradisi para rasul.</li>
+  <li><strong>Setengah Agama</strong>: Memiliki pasangan shalihah membantu menyempurnakan separuh agama yang tersisa.</li>
+  <li><strong>Tanda Kekuasaan Allah</strong>: Menciptakan ketenteraman dan kasih sayang.</li>
+  <li><strong>Menjaga Diri</strong>: Mencegah perbuatan dosa dan maksiat.</li>
+  <li><strong>Membangun Keluarga</strong>: Membentuk keluarga sakinah, mawaddah, dan warahmah.</li>
+  <li><strong>Saling Menolong</strong>: Menjadi partner hidup dalam kebaikan dan ketaatan.</li>
+  <li><strong>Menjaga Keturunan</strong>: Meneruskan keturunan yang diridhai Allah.</li>
+</ul>
+    <h4><strong>Hukum Nikah</strong></h4>
+    <p>Hukum pernikahan bersifat kondisional sesuai situasi calon mempelai:</p>
+    <p><strong>Hukum</strong> <strong>Kondisi</strong></p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Wajib</strong></th>
+    <th>Mampu secara fisik, finansial, dan memiliki kebutuhan biologis mendesak; takut jatuh pada perbuatan haram jika tidak menikah.</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Sunnah</strong></td>
+    <td>Mampu memenuhi kebutuhan fisik dan finansial, serta memiliki keinginan untuk menikah.</td>
+  </tr>
+  <tr>
+    <td><strong>Mubah</strong></td>
+    <td>Tidak ada dorongan kuat untuk menikah maupun halangan yang berarti.</td>
+  </tr>
+  <tr>
+    <td><strong>Makruh</strong></td>
+    <td>Tidak mampu menjamin keadilan lahiriah dan batiniah bagi istri, namun belum memicu perbuatan haram.</td>
+  </tr>
+  <tr>
+    <td><strong>Haram</strong></td>
+    <td>Niat menikah untuk menyakiti atau menzalimi pasangan, atau tidak mampu sama sekali memenuhi tanggung jawab suami.</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong>Rukun Nikah</strong></h4>
+    <p>Rukun nikah merupakan elemen wajib sahnya akad:</p>
+    <ul>
+  <li><strong>Sighat</strong>: Ijab dan qabul sebagai pernyataan persetujuan akad.</li>
+  <li><strong>Wali</strong>: Pihak yang mewakili keabsahan mempelai wanita.</li>
+  <li><strong>Saksi</strong>: Dua orang saksi yang menyaksikan akad nikah.</li>
+  <li><strong>Mempelai Pria</strong>: Calon suami yang bertindak sebagai pihak penerima akad.</li>
+  <li><strong>Mempelai Wanita</strong>: Calon istri yang menjadi pihak yang dinikahkan.</li>
+</ul>
+    <h4><strong>Syarat Wali dan Saksi</strong></h4>
+    <p>Agar akad sah, wali dan saksi harus memenuhi syarat berikut:</p>
+    <ul>
+  <li><strong>Islam</strong>: Beragama Islam dan memahami hukum nikah.</li>
+  <li><strong>Balligh</strong>: Dewasa dan berakal sehat.</li>
+  <li><strong>Laki-laki</strong>: Berjenis kelamin laki-laki.</li>
+  <li><strong>Adil</strong>: Berakhlak baik, jujur, menjaga kesaksian, dan menjauhi dosa besar.</li>
+</ul>
+    <h2><strong>Sunnah, Adab, dan Pemilihan Pasangan</strong></h2>
+    <h4><strong>Sunnah Nikah</strong></h4>
+    <p>Meneladani Rasulullah  dalam setiap langkah pernikahan. "Nikahku termasuk sunnahku, maka barang siapa yang tidak mengikuti sunnahku, bukanlah golonganku." (HR. Ibnu Majah)</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Tahap</strong></th>
+    <th><strong>Penjelasan</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Melihat calon</strong></td>
+    <td>Melihat calon pasangan untuk meyakinkan hati.</td>
+  </tr>
+  <tr>
+    <td><strong>Khitbah (lamaran)</strong></td>
+    <td>Meminang dengan cara baik dan sesuai syariat.</td>
+  </tr>
+  <tr>
+    <td><strong>Menetapkan mahar</strong></td>
+    <td>Ditentukan dengan penuh kerelaan, tidak memberatkan.</td>
+  </tr>
+  <tr>
+    <td><strong>Menentukan waktu</strong></td>
+    <td>Memilih waktu yang baik dan penuh keberkahan.</td>
+  </tr>
+  <tr>
+    <td><strong>Akad nikah</strong></td>
+    <td>Dilakukan di tempat baik, dihadiri wali dan saksi.</td>
+  </tr>
+  <tr>
+    <td><strong>Diumumkan</strong></td>
+    <td>Mengumumkan sebagai wujud keterbukaan.</td>
+  </tr>
+  <tr>
+    <td><strong>Walimah</strong></td>
+    <td>Mengundang dan menjamu tamu sebagai bentuk syukur.</td>
+  </tr>
+  <tr>
+    <td><strong>Doa & tahniah</strong></td>
+    <td>Memohon doa dan menerima ucapan selamat.</td>
+  </tr>
+  <tr>
+    <td><strong>Doa suami untuk istri</strong></td>
+    <td>Mendoakan kebaikan istri dan membimbing ke jalan Allah.</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong>Empat Pertimbangan Utama Memilih Pasangan</strong></h4>
+    <p>"Wanita itu dinikahi karena 4 hal: karena hartanya, keturunannya, kecantikannya, dan agamanya. Maka pilihlah yang beragama, niscaya engkau beruntung." (HR. Bukhari & Muslim)</p>
+    <ol>
+  <li><strong>Harta</strong> — stabilitas finansial untuk menjamin nafkah dan kesejahteraan keluarga.</li>
+  <li><strong>Keturunan</strong> — nasab dan keluarga yang baik agar kelak memiliki keturunan yang baik pula.</li>
+  <li><strong>Kecantikan</strong> — daya tarik fisik yang menumbuhkan rasa cinta dan kasih sayang.</li>
+  <li><strong>Agama</strong> — ketaatan, akhlak, dan pemahaman agama; fondasi utama keharmonisan rumah tangga.</li>
+</ol>
+    <p><strong>Kunci utama:</strong> Utamakan agama di atas segalanya. Harta bisa dicari, kecantikan akan berubah, tetapi agama menjaga sampai akhir hayat.</p>
+    <h4><strong>Adab dalam Pernikahan</strong></h4>
+    <p>"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya." (QS. Ar-Rum: 21)</p>
+    <ul>
+  <li><strong>Saling mencintai karena Allah</strong> — menjadikan cinta karena Allah sebagai dasar utama.</li>
+  <li><strong>Saling menghargai dan menghormati</strong> — menghargai peran, pendapat, dan perbedaan pasangan.</li>
+  <li><strong>Komunikasi baik dan jujur</strong> — lembut, jujur, dan terbuka untuk mencegah salah paham.</li>
+  <li><strong>Menjaga aurat dan privasi</strong> — menjaga kehormatan pasangan serta tidak membuka aib.</li>
+  <li><strong>Saling menolong dalam kebaikan</strong> — menjadi partner ibadah, saling mengingatkan dalam kebaikan.</li>
+  <li><strong>Adil dan berlaku baik</strong> — berlaku adil dalam sikap dan perhatian, memenuhi hak pasangan.</li>
+  <li><strong>Bersabar dan pemaaf</strong> — bersabar atas kekurangan pasangan dan mudah memaafkan kesalahan.</li>
+</ul>
+    <p>"Sebaik-baik kamu adalah yang paling baik kepada keluarganya, dan aku adalah yang paling baik kepada keluargaku." (HR. Tirmidzi)</p>
+    <h4><strong>Ciri-ciri Keluarga Sakinah, Mawaddah, Warahmah</strong></h4>
+    <ul>
+  <li>Ada cinta dan kasih sayang</li>
+  <li>Terbiasa bermusyawarah dan menghargai</li>
+  <li>Saling memaafkan dan sabar</li>
+  <li>Bersama dalam ibadah dan kebaikan</li>
+  <li>Memberi manfaat bagi sesama</li>
+</ul>
+    <p><strong>Tujuan akhir pernikahan:</strong> menjaga kehormatan, mencapai ketenangan, mewujudkan kebahagiaan, dan melahirkan generasi terbaik.</p>
+    <h2><strong>Mahram dan Pernikahan Tidak Sah</strong></h2>
+    <h3><strong>Mahram Selamanya (Mahram Muabbad)</strong></h3>
+    <p>Mahram adalah orang yang <strong>haram dinikahi selama-lamanya</strong>. Mereka sah dilihat auratnya (pada batas kewajaran) dan diperbolehkan menjadi pendamping bepergian. Mahram terbagi atas tiga sebab:</p>
+    <h4><strong>1. Karena Nasab (Hubungan Darah)</strong></h4>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Garis Keturunan</strong></th>
+    <th><strong>Golongan Mahram</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Garis ke atas</td>
+    <td>Ibu, nenek, buyut, dan seterusnya</td>
+  </tr>
+  <tr>
+    <td>Garis ke bawah</td>
+    <td>Anak perempuan, cucu perempuan, dan seterusnya</td>
+  </tr>
+  <tr>
+    <td>Garis samping</td>
+    <td>Saudara kandung perempuan, saudara seayah, saudara seibu</td>
+  </tr>
+  <tr>
+    <td>Keturunan saudara</td>
+    <td>Keponakan perempuan (anak dari saudara laki-laki atau perempuan)</td>
+  </tr>
+  <tr>
+    <td>Saudara orang tua</td>
+    <td>Bibi dari pihak ayah dan bibi dari pihak ibu</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong>2. Karena Mushaharah (Pernikahan)</strong></h4>
+    <ul>
+  <li><strong>Mertua:</strong> Ibu mertua dan nenek istri/suami.</li>
+  <li><strong>Anak tiri:</strong> Anak perempuan dari pasangan (istri/suami) dengan syarat telah menggauli ibunya.</li>
+  <li><strong>Menantu:</strong> Istri dari anak kandung atau istri dari cucu.</li>
+  <li><strong>Istri ayah/kakek:</strong> Ibu tiri atau istri dari kakek.</li>
+</ul>
+    <h4><strong>3. Karena Radha'ah (Persusuan)</strong></h4>
+    <ul>
+  <li><strong>Ibu susu dan nenek susu:</strong> Wanita yang menyusui dan ibunya.</li>
+  <li><strong>Saudara sepersusuan:</strong> Anak perempuan kandung dari ibu susu, atau wanita lain yang disusui oleh ibu yang sama.</li>
+  <li><strong>Keturunan saudara sepersusuan:</strong> Keponakan dari saudara sepersusuan.</li>
+</ul>
+    <h3><strong>Pernikahan Tidak Sah</strong></h3>
+    <p>Pernikahan yang tidak sah <strong>tidak memiliki akibat hukum syar'i</strong> dan dapat menimbulkan dosa serta kerusakan. Bentuk-bentuknya:</p>
+    <ol>
+  <li><strong>Mut'ah:</strong> Pernikahan sementara dengan batas waktu tertentu untuk mendapatkan kesenangan. Diharamkan secara ijma' (kesepakatan ulama).</li>
+  <li><strong>Syighar:</strong> Tukar menukar wanita untuk dinikahi tanpa mahar. Contoh: "Kau nikahkan aku dengan putrimu, aku nikahkan kamu dengan putriku."</li>
+  <li><strong>Muhallil:</strong> Pria menikahi wanita yang telah diceraikan suaminya agar wanita itu halal kembali bagi suami pertamanya, lalu menceraikannya setelahnya.</li>
+  <li><strong>Tanpa Wali:</strong> Pernikahan wanita tanpa wali yang sah (bapak, kakek, atau wali hakim). Tidak sah menurut mayoritas ulama.</li>
+  <li><strong>Dalam Masa Iddah:</strong> Wanita yang masih dalam masa iddah (karena cerai atau kematian suami) haram dinikahi sampai masa iddahnya selesai.</li>
+  <li><strong>Sedang Ihram:</strong> Pria yang sedang ihram (niat haji/umrah) haram melakukan akad nikah, menikahi, atau dinikahi.</li>
+  <li><strong>Menikahi Wanita Kafir:</strong> Pria muslim haram menikahi wanita musyrik atau ahlul kitab yang bukan muslim.</li>
+  <li><strong>Menikahi Mahram:</strong> Menikahi wanita yang haram dinikahi karena hubungan darah, persusuan, atau pernikahan.</li>
+</ol>
+    <p>Pernikahan yang sah merupakan ibadah untuk membangun keluarga sakinah, mawaddah, warahmah, serta menjaga kehormatan diri dan masyarakat.</p>
+    <h2><strong>Talak, Rujuk, dan Iddah</strong></h2>
+    <h3><strong>Pengertian dan Hukum Talak</strong></h3>
+    <ul>
+  <li><strong>Talak</strong> adalah ikrar suami di hadapan Pengadilan Agama yang menjadi sebab putusnya perkawinan.</li>
+  <li><strong>Hukum talak</strong> bergantung konteks: dapat haram, makruh, sunnah, wajib, atau mubah, disesuaikan dengan situasi dan kondisi rumah tangga.</li>
+  <li>Pelaksanaan talak harus melalui sidang Pengadilan Agama dan diputus oleh hakim.</li>
+</ul>
+    <h3><strong>Lafaz Talak: Sarih dan Kinayah</strong></h3>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Jenis</strong> <strong>Lafaz</strong></th>
+    <th>&nbsp;</th>
+    <th><strong>Pengertian</strong></th>
+    <th><strong>Contoh</strong></th>
+    <th>&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Sarih</strong></td>
+    <td>&nbsp;</td>
+    <td>Lafaz eksplisit yang jelas bermakna talak; tidak membutuhkan niat</td>
+    <td>"Engkau kuceraikan" atau "Aku talak kamu"</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Kinayah</strong></td>
+    <td>&nbsp;</td>
+    <td>Lafaz tidak langsung/Kiasan; membutuhkan niat agar jatuh talak</td>
+    <td>"Pergilah kau ke rumah ayahmu" atau "Engkau engkau bebas"</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Jenis-Jenis Talak</strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Jenis</strong></td>
+    <td>&nbsp;</td>
+    <td><strong>Definisi</strong></td>
+    <td>&nbsp;</td>
+    <td><strong>Konsekuensi</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Raj'i</strong></td>
+    <td>&nbsp;</td>
+    <td>Talak pertama atau kedua; suami berhak rujuk dalam masa iddah</td>
+    <td>&nbsp;</td>
+    <td>Dapat dirujuk tanpa akad nikah baru</td>
+  </tr>
+  <tr>
+    <td><strong>Ba'in</strong> <strong>Sughra</strong></td>
+    <td>&nbsp;</td>
+    <td>Talak yang tidak memungkinkan rujuk, tetapi dapat nikah kembali dengan akad baru</td>
+    <td>&nbsp;</td>
+    <td>Memerlukan akad nikah baru untuk bersatu kembali</td>
+  </tr>
+  <tr>
+    <td><strong>Ba'in</strong> <strong>Kubra</strong></td>
+    <td>&nbsp;</td>
+    <td>Talak ketiga setelah tiga kali jatuh; tidak boleh rujuk atau nikah ulang kecuali setelah istri menikah dengan pria lain, bercerai secara sah, dan menjalani iddah</td>
+    <td>&nbsp;</td>
+    <td>Harus melalui proses <em>muhallil</em></td>
+  </tr>
+  </tbody>
+</table></div>
+    <h3><strong>Rukun dan Hukum Rujuk</strong></h3>
+    <ul>
+  <li><strong>Rujuk</strong> adalah kembalinya suami kepada istrinya selama masa iddah talak raj'i.</li>
+  <li><strong>Hukum rujuk</strong>: dapat wajib, sunnah, mubah, makruh, atau haram, tergantung kondisi.</li>
+  <li><strong>Rukun rujuk</strong>:</li>
+</ul>
+    <ol>
+  <li>Ikrar rujuk dari suami</li>
+  <li>Istri dalam masa iddah talak raj'i (bukan ba'in)</li>
+  <li>Ada saksi</li>
+  <li>Disampaikan kepada istri</li>
+</ol>
+    <h3><strong>Sebab Putusnya Perkawinan</strong></h3>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Sebab</strong></th>
+    <th><strong>Pengertian</strong></th>
+    <th>&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Zhihar</strong></td>
+    <td>Suami menyerupakan istrinya dengan ibunya atau perempuan mahram lain; dapat dijatuhkan talak jika tidak dipenuhi kewajiban tebusan</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Ila'</strong></td>
+    <td>Suami bersumpah tidak akan menggauli istrinya; jika melebihi batas waktu empat bulan, gugat perceraian dapat diajukan</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Khulu'</strong></td>
+    <td>Cerai dengan tebusan; istri memberikan kompensasi kepada suami untuk melepaskan ikatan perkawinan</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Fasakh</strong></td>
+    <td>Perceraian melalui putusan Pengadilan Agama akibat pelanggaran hukum perkawinan atau alasan syar'i</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Ketentuan Masa Iddah</strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Kondisi Perempuan</strong></td>
+    <td>&nbsp;</td>
+    <td><strong>Masa Iddah</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Hamil</strong></td>
+    <td>&nbsp;</td>
+    <td>Sampai melahirkan (mengikuti yang paling lama antara melahirkan atau 4 bulan 10 hari)</td>
+  </tr>
+  <tr>
+    <td><strong>Cerai mati</strong> hamil)</td>
+    <td>(tidak</td>
+    <td>4 bulan 10 hari sejak suami meninggal</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p>Dihitung sejak putusan Pengadilan Agama berkekuatan hukum <strong>Cerai hidup</strong> tetap</p>
+    <h3><strong>Larangan Selama Masa Iddah</strong></h3>
+    <ul>
+  <li>Dilarang menerima pinangan ( <em>khitbah</em>) dan melangsungkan pernikahan dengan pria lain.</li>
+  <li><strong>Ihdad</strong> (berkabung) bagi perempuan cerai mati: tidak diperkenankan berhias atau memakai wewangian.</li>
+  <li>Perempuan dalam masa iddah cerai mati atau cerai talak masih diperbolehkan keluar rumah untuk kebutuhan mendesak, seperti bekerja memenuhi nafkah.</li>
+</ul>
+    <h2><strong>Larangan Zina dan Pergaulan Bebas</strong></h2>
+    <h4><strong>Pengertian Zina dan Dalil Larangannya</strong></h4>
+    <p><strong>Zina</strong> adalah perbuatan menyetubuhi perempuan yang bukan istri sah tanpa syubhat, dilakukan dengan sengaja. Islam secara tegas melarang zina berdasarkan firman Allah Swt. dalam <strong>QS. Al-Isra [17]: 32</strong>:</p>
+    <h3>"Dan janganlah kamu mendekati zina; sesungguhnya zina itu adalah suatu perbuatan yang keji dan suatu jalan yang buruk."</h3>
+    <p>Larangan menggunakan ungkapan <strong>"jangan mendekati"</strong> menunjukkan bahwa Islam tidak hanya melarang perbuatan zina itu sendiri, tetapi juga segala hal yang dapat membawa kepada zina, seperti pergaulan bebas, ikhtilath, dan sebab-sebab lainnya.</p>
+    <h4><strong>Hukum Zina sebagai Dosa Besar</strong></h4>
+    <ul>
+  <li>Zina termasuk <strong>dosa besar</strong> yang ancamannya telah dijelaskan secara tegas dalam al-Qur'an dan as-Sunnah.</li>
+  <li>Pelaku zina terancam dosa besar karena merusak <strong>kehormatan, nasab, dan</strong> <strong>ketertiban masyarakat</strong>.</li>
+  <li>Hukum asal zina adalah <strong>haram</strong> berdasarkan ijma' ulama.</li>
+</ul>
+    <h4><strong>Hukuman Had bagi Pelaku Zina</strong></h4>
+    <p>Hukuman had ditetapkan berdasarkan <strong>status pernikahan</strong> pelaku, sebagaimana ketentuan dalam fikih:</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Kategori</strong> <strong>Pelaku</strong></th>
+    <th><strong>Status</strong></th>
+    <th><strong>Hukuman Had</strong></th>
+    <th><strong>Dasar Hukum</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Ghairu</strong> <strong>Muhsan</strong></td>
+    <td>Belum pernah menikah secara sah</td>
+    <td><strong>100 kali cambuk</strong> + diasingkan selama satu tahun di depan umum</td>
+    <td>QS. An-Nur [24]: 2</td>
+  </tr>
+  <tr>
+    <td><strong>Muhsan</strong></td>
+    <td>Sudah atau pernah menikah secara sah</td>
+    <td><strong>Rajam</strong> hingga meninggal dunia</td>
+    <td>Hadits Nabi dan fikih klasik</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p><strong>Dalil Hukuman Cambuk (QS. An-Nur [24]: 2):</strong></p>
+    <p><em>"Perempuan yang berzina dan laki-laki yang berzina, maka deralah tiap-tiap</em> <em>seorang dari keduanya seratus kali dera. Janganlah belas kasihan kepada</em> <em>keduanya mencegah kamu untuk menjalankan agama Allah, jika kamu beriman</em> <em>kepada Allah dan hari akhir. Dan hendaklah pelaksanaan hukuman mereka</em> <em>disaksikan oleh sebagian orang-orang yang beriman."</em></p>
+    <p><strong>Catatan penting:</strong></p>
+    <ul>
+  <li>Hukuman dilaksanakan secara <strong>terbuka</strong> dan disaksikan sebagian mukmin sebagai <strong>jerminan</strong>.</li>
+  <li><strong>Tidak boleh ada belas kasihan</strong> yang menghalangi pelaksanaan hukuman.</li>
+  <li>Tujuan hukuman bukan untuk menyiksa, melainkan <strong>melindungi dan memuliakan</strong> <strong>manusia</strong> sesuai <em>Maqashid Syariah</em>.</li>
+</ul>
+    <h4><strong>Tingkatan Dosa Zina</strong></h4>
+    <p>Tidak semua perbuatan zina berada pada tingkatan dosa yang sama. Beberapa bentuk zina memiliki <strong>tingkatan dosa yang lebih berat</strong>:</p>
+    <ol>
+  <li><strong>Zina dengan Mahram</strong> — Zina dengan orang yang memiliki hubungan mahram (sedarah) seperti ibu, saudara perempuan, atau anak kandung. Perbuatan ini memiliki <strong>dosa paling berat</strong> karena merusak nasab dan kehormatan keluarga secara langsung.</li>
+  <li><strong>Zina dengan Tetangga</strong> — Zina dengan tetangga memiliki dosa yang lebih berat dibandingkan zina biasa karena bertentangan dengan hak tetangga dan amanah sosial dalam Islam.</li>
+  <li><strong>Liwath (Homoseksual/LGBT)</strong> — Perbuatan amalan kaum Luth yang dilaknat oleh Allah Swt. dan Rasulullah SAW.</li>
+</ol>
+    <p><strong>Dalil Larangan Liwath:</strong></p>
+    <p>Rasulullah SAW bersabda:</p>
+    <p><em>"Terlaknatlah siapa yang melakukan amalan kaum Luth." (HR. Tirmidzi)</em></p>
+    <p><em>"Sungguh yang aku sangat takutkan menimpa umatku adalah perbuatan kaum</em> <em>Luth." (HR. Tirmidzi, Ibnu Majah)</em></p>
+    <p><strong>Hukuman bagi Pelaku Liwath menurut para ulama:</strong></p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Pendapat Ulama</strong></th>
+    <th><strong>Hukuman</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Malik, Syafi'i, Ahmad, dan Ishaq</strong></td>
+    <td>Dirajam baik pelaku sudah menikah atau belum</td>
+  </tr>
+  <tr>
+    <td><strong>Hasan al-Basri, Ibrahim an-Nakhai,</strong> <strong>dan Atha bin Abi Rabah</strong></td>
+    <td>Sama seperti hukuman zina (didasarkan pada status muhsan/ghairu muhsan)</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong>Tujuan Hukuman (Maqashid Syariah)</strong></h4>
+    <p>Hukuman dalam Islam bertujuan menjaga lima hal:</p>
+    <ol>
+  <li><strong>Agama (Hifzh ad-Din)</strong> — Menjaga kemurnian akidah dan nilai-nilai agama.</li>
+  <li><strong>Jiwa (Hifzh an-Nafs)</strong> — Menjaga keselamatan jiwa dari segala bentuk kezaliman.</li>
+  <li><strong>Keturunan (Hifzh an-Nasl)</strong> — Menjaga kelangsungan nasab dan generasi.</li>
+  <li><strong>Kehormatan (Hifzh al-'Irdh)</strong> — Menjaga martabat dan harga diri manusia.</li>
+  <li><strong>Ketertiban Masyarakat</strong> — Menjaga keamanan, keadilan, dan ketenteraman sosial.</li>
+</ol>
+    <h2><strong>Khutbah, Tabligh, dan Dakwah</strong></h2>
+    <h4><strong>Pengertian dan Perbedaan</strong></h4>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Aspek</strong></th>
+    <th><strong>Khutbah</strong></th>
+    <th><strong>Tabligh</strong></th>
+    <th><strong>Dakwah</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Asal kata</strong></td>
+    <td>Khotaba – yakhthubu (berpidato)</td>
+    <td>Ballaga – yuballigu (menyampaikan)</td>
+    <td>Da'a – yad'u (memanggil, menyeru)</td>
+  </tr>
+  <tr>
+    <td><strong>Pengertian</strong></td>
+    <td>Pidato keagamaan yang disampaikan pada ibadah tertentu (Jumat, Idain)</td>
+    <td>Menyampaikan ajaran Islam agar dijadikan pedoman hidup demi kebahagiaan dunia- akhirat</td>
+    <td>Menyeru, mengajak, dan memanggil orang untuk beriman dan taat kepada Allah SWT</td>
+  </tr>
+  <tr>
+    <td><strong>Pelaku</strong></td>
+    <td>Khatib</td>
+    <td>Mubalig / Mubaligah</td>
+    <td>Da'i</td>
+  </tr>
+  <tr>
+    <td><strong>Sasaran</strong></td>
+    <td>Jamaah ibadah</td>
+    <td>Seluruh umat manusia</td>
+    <td>Orang yang belum beriman atau belum taat</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong>Syarat, Rukun, dan Sunnah Khutbah Jumat</strong></h4>
+    <p><strong>Syarat Khatib:</strong> Menutup aurat dan tertib dalam penyampaian.</p>
+    <p><strong>Rukun Khutbah Jumat:</strong></p>
+    <ol>
+  <li>Membaca hamdalah</li>
+  <li>Membaca syahadatain (tauhid dan kerasulan)</li>
+  <li>Membaca shalawat kepada Nabi Muhammad SAW</li>
+  <li>Berwasiat atau memberi nasihat tentang takwa, akidah, ibadah, dan akhlak</li>
+  <li>Membaca ayat Al-Qur'an pada salah satu dari dua khutbah</li>
+  <li>Berdoa pada khutbah kedua untuk memohon ampunan dan rahmat Allah</li>
+</ol>
+    <p><strong>Sunnah Khutbah Jumat:</strong></p>
+    <ol>
+  <li>Khatib berdiri di atas mimbar atau tempat yang tinggi</li>
+  <li>Mengawali khutbah dengan memberi salam</li>
+  <li>Penyampaian jelas, tidak terlalu panjang dan tidak terlalu pendek</li>
+  <li>Khatib menghadap jamaah dan tidak berputar-putar</li>
+  <li>Membaca surah Al-Ikhlas saat duduk di antara dua khutbah</li>
+</ol>
+    <h4><strong>Hukum Diam dan Mendengarkan Khutbah</strong></h4>
+    <p>Hukum diam dan mendengarkan khutbah saat khatib berkhutbah adalah <strong>wajib</strong>. Rasulullah SAW bersabda bahwa orang yang berbicara saat khutbah berlaku seperti keledai yang memikul kitab, dan Jumatnya tidak sempurna. Menegur orang yang berbicara secara langsung juga membatalkan kekhusyukan; cukup diam sebagai bentuk adab.</p>
+    <p><strong>Manfaat mendengarkan khutbah:</strong></p>
+    <ul>
+  <li>Memperoleh ilmu dan nasihat yang bermanfaat</li>
+  <li>Menumbuhkan takwa kepada Allah</li>
+  <li>Menjadi pengingat untuk memperbaiki amal dan akhlak</li>
+  <li>Mendapat pahala</li>
+  <li>Menjaga kekhusyukan ibadah Jumat</li>
+</ul>
+    <h4><strong>Metode Dakwah</strong></h4>
+    <p>Berdasarkan QS. An-Nahl: 125, terdapat tiga metode utama dakwah:</p>
+    <ol>
+  <li><strong>Bil Hikmah</strong> — Menyeru dengan hikmah dan kebijaksanaan, sesuai situasi dan kebutuhan mad'u (objek dakwah).</li>
+  <li><strong>Mau'izhah Hasanah</strong> — Menyampaikan pelajaran dan nasihat yang baik, menyentuh hati dengan lembut.</li>
+  <li><strong>Mujadalah</strong> — Berbantahan atau berdialog dengan cara yang terbaik, tanpa menyinggung perasaan.</li>
+</ol>
+    <p><strong>Bentuk penyampaian dakwah lain:</strong></p>
+    <ul>
+  <li><strong>Fardiah:</strong> Dakwah perorangan kepada satu orang atau beberapa orang</li>
+  <li><strong>Ammah:</strong> Dakwah kepada masyarakat umum</li>
+  <li><strong>Bil Lisan:</strong> Dakwah melalui ucapan dan lisan</li>
+  <li><strong>Bil Hal:</strong> Dakwah melalui perbuatan dan teladan</li>
+  <li><strong>Bit Tadwin:</strong> Dakwah melalui tulisan dan karya ilmiah</li>
+</ul>
+    <h4><strong>Pola Dakwah: Dimulai dari Diri Sendiri dan Diteladani</strong></h4>
+    <p>Pola dakwah yang efektif dimulai dari <strong>perbaikan diri sendiri</strong> sebelum menyeru orang lain. Da'i harus mengamalkan apa yang disampaikan agar menjadi teladan nyata. Pola ini mencakup:</p>
+    <ul>
+  <li><strong>Bil Hal (perbuatan):</strong> Menjadi teladan dalam sikap dan perbuatan sehari-hari</li>
+  <li><strong>Ikhlas:</strong> Niat karena Allah semata, bukan untuk pujian atau keduniaan</li>
+  <li><strong>Ilmu yang bermanfaat:</strong> Menyampaikan kebenaran berdasarkan Al-Qur'an dan Sunnah</li>
+</ul>
+    <p>Sebagaimana ditegaskan dalam QS. Al-Ahzab: 21:</p>
+    <p><em>"Sesungguhnya telah ada pada diri Rasulullah itu suri teladan yang baik bagimu."</em></p>
+    <p>Konsisten antara ucapan dan tindakan adalah inti dakwah yang membawa dampak abadi.</p>
+  </main>
+</body>
+</html>

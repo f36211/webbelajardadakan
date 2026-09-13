@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, X, BookOpen, FlaskConical, Landmark, GraduationCap } from 'lucide-react';
+import { Search, X, BookOpen, FlaskConical, Landmark, GraduationCap, ExternalLink } from 'lucide-react';
 import MaterialCard from './MaterialCard';
 import Hero7 from './Hero7';
 import Dock from './Dock';
-import { categories as catMeta } from '../data/materials';
+import GoogleDriveIcon from './GoogleDriveIcon';
+import { categories as catMeta, GDRIVE_FOLDER_URL, ALL_SUBJECTS } from '../data/materials';
 
 const T = {
   primary: '#0075de',
@@ -88,7 +89,7 @@ export default function Dashboard({
           </span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
           {categories.map((cat) => {
             const Icon = cat.icon;
             return (
@@ -110,6 +111,121 @@ export default function Dashboard({
             );
           })}
         </div>
+
+        {/* Baris Tombol Mata Pelajaran + Tombol Google Drive per Mapel */}
+        {(() => {
+          const currentCategoryMeta = catMeta.find((c) => c.id === activeCategory);
+          const relevantSubjects = currentCategoryMeta
+            ? currentCategoryMeta.subjects
+            : ALL_SUBJECTS.map((s) => s.name);
+
+          return (
+            <div
+              style={{
+                marginBottom: 20,
+                padding: '12px 14px',
+                background: T.canvas,
+                borderRadius: 'var(--radius-lg)',
+                border: `1px solid ${T.hairline}`,
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: 10,
+                  marginBottom: 10,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: T.stone }}>
+                    Mata Pelajaran {activeCategory !== 'all' ? `· ${activeCategory.toUpperCase()}` : ''}
+                  </span>
+                  <span style={{ fontSize: 11, color: T.ash }}>
+                    ({relevantSubjects.length} mapel)
+                  </span>
+                </div>
+
+                <a
+                  href={GDRIVE_FOLDER_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-md border border-blue-200 bg-blue-50/70 text-[#0075de] hover:bg-blue-100 transition-colors"
+                  title="Buka Folder Google Drive Utama (berisi semua folder mapel)"
+                >
+                  <GoogleDriveIcon size={13} />
+                  <span>Buka Google Drive Semua Mapel</span>
+                  <ExternalLink size={10} />
+                </a>
+              </div>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
+                <button
+                  onClick={() => setActiveSubject('all')}
+                  className="px-3 py-1 text-xs font-semibold cursor-pointer transition-all"
+                  style={{
+                    borderRadius: 'var(--radius-sm)',
+                    border: activeSubject === 'all' ? 'none' : `1px solid ${T.hairline}`,
+                    background: activeSubject === 'all' ? T.inkSecondary : T.surface,
+                    color: activeSubject === 'all' ? T.onDark : T.stone,
+                  }}
+                >
+                  Semua Mapel
+                </button>
+
+                {relevantSubjects.map((subName) => {
+                  const isSelected = activeSubject === subName;
+                  return (
+                    <div
+                      key={subName}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        borderRadius: 'var(--radius-sm)',
+                        border: `1px solid ${isSelected ? T.primary : T.hairline}`,
+                        background: isSelected ? 'rgba(0,117,222,0.06)' : T.canvas,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <button
+                        onClick={() => setActiveSubject(isSelected ? 'all' : subName)}
+                        className="px-2.5 py-1 text-xs font-medium cursor-pointer transition-colors"
+                        style={{
+                          border: 'none',
+                          background: 'transparent',
+                          color: isSelected ? T.primary : T.inkSecondary,
+                          fontWeight: isSelected ? 700 : 500,
+                        }}
+                      >
+                        {subName}
+                      </button>
+
+                      <a
+                        href={GDRIVE_FOLDER_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-2 py-1 flex items-center gap-1 text-[10px] font-semibold border-l transition-colors"
+                        style={{
+                          borderColor: isSelected ? 'rgba(0,117,222,0.2)' : T.hairline,
+                          background: isSelected ? 'rgba(0,117,222,0.1)' : T.surface,
+                          color: isSelected ? T.primary : T.stone,
+                          textDecoration: 'none',
+                        }}
+                        title={`Buka Folder Google Drive ${subName}`}
+                      >
+                        <GoogleDriveIcon size={11} />
+                        <span>Drive</span>
+                        <ExternalLink size={9} style={{ opacity: 0.6 }} />
+                      </a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
 
         {searchQuery && (
           <div className="mb-4" style={{ padding: '8px 14px', background: T.canvas, borderRadius: 10, border: `1px solid ${T.hairline}`, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', width: '100%', boxSizing: 'border-box' }}>
@@ -207,25 +323,45 @@ export default function Dashboard({
                       <div style={{ fontSize: 12, color: T.stone, lineHeight: 1.5, marginBottom: 12 }}>
                         {cat.description}
                       </div>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
-                        {cat.subjects.slice(0, 3).map((s) => (
-                          <span
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 6 }}>
+                        {cat.subjects.map((s) => (
+                          <a
                             key={s}
+                            href={GDRIVE_FOLDER_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
                             style={{
-                              fontSize: 10,
+                              fontSize: 11,
                               fontWeight: 600,
-                              padding: '2px 8px',
-                              borderRadius: 'var(--radius-full)',
+                              padding: '3px 8px',
+                              borderRadius: 'var(--radius-sm)',
                               background: T.surface,
                               color: T.stone,
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: 4,
+                              textDecoration: 'none',
+                              border: `1px solid ${T.hairline}`,
+                              transition: 'all 0.15s ease',
                             }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.color = cat.color;
+                              e.currentTarget.style.borderColor = cat.color;
+                              e.currentTarget.style.background = '#ffffff';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.color = T.stone;
+                              e.currentTarget.style.borderColor = T.hairline;
+                              e.currentTarget.style.background = T.surface;
+                            }}
+                            title={`Buka Google Drive ${s}`}
                           >
-                            {s}
-                          </span>
+                            <GoogleDriveIcon size={11} />
+                            <span>{s}</span>
+                            <ExternalLink size={9} style={{ opacity: 0.6 }} />
+                          </a>
                         ))}
-                        {cat.subjects.length > 3 && (
-                          <span style={{ fontSize: 10, color: T.ash, fontWeight: 500 }}>+{cat.subjects.length - 3}</span>
-                        )}
                       </div>
                     </motion.button>
                   );

@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText, Settings2, PanelLeftOpen } from 'lucide-react';
+import { ArrowRight, FileText, Settings2, PanelLeftOpen, ExternalLink } from 'lucide-react';
+import GoogleDriveIcon from './GoogleDriveIcon';
+import { GDRIVE_FOLDER_URL } from '../data/materials';
 
 // Notion design tokens
 const T = {
@@ -358,6 +360,43 @@ export default function Hero7({
             >
               {ctaText}
               <ArrowRight size={15} strokeWidth={2.5} />
+            </a>
+
+            <a
+              href={GDRIVE_FOLDER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '10px 20px',
+                borderRadius: 'var(--radius-full)',
+                background: '#ffffff',
+                color: T.ink,
+                fontSize: 14,
+                fontWeight: 600,
+                textDecoration: 'none',
+                border: `1px solid ${T.hairline}`,
+                boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+                transition: 'all 0.15s ease',
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#0075de';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,117,222,0.12)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = T.hairline;
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 1px 4px rgba(0,0,0,0.04)';
+              }}
+            >
+              <GoogleDriveIcon size={16} />
+              <span>Google Drive Materi</span>
+              <ExternalLink size={13} style={{ color: T.stone }} />
             </a>
 
             {/* Compact inline stats */}

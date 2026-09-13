@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft, Sun, Moon, BookOpen,
-  FileText, Settings2, Code2,
+  FileText, Settings2, Code2, ExternalLink,
 } from 'lucide-react';
 import HTMLViewer from './HTMLViewer';
+import GoogleDriveIcon from './GoogleDriveIcon';
+import { GDRIVE_FOLDER_URL } from '../data/materials';
 
 export default function Reader({ material, onClose }) {
   const [showSettings, setShowSettings] = useState(false);
@@ -82,19 +84,17 @@ export default function Reader({ material, onClose }) {
 
             {/* Controls */}
             <div className="flex items-center gap-1 flex-shrink-0">
-              {material.sourceUrl && (
+              {(material.sourceUrl || material.gdriveUrl || GDRIVE_FOLDER_URL) && (
                 <a
-                  href={material.sourceUrl}
+                  href={material.sourceUrl || material.gdriveUrl || GDRIVE_FOLDER_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold border border-stone-200 bg-white text-stone-500 no-underline transition-colors hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold border border-stone-200 bg-white text-stone-700 no-underline transition-colors hover:border-[#0075de] hover:text-[#0075de] shadow-2xs"
+                  title={`Buka Folder Google Drive ${material.subject}`}
                 >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                  <span className="hidden sm:inline">Sumber</span>
+                  <GoogleDriveIcon size={14} />
+                  <span className="hidden sm:inline">Drive {material.subject}</span>
+                  <ExternalLink size={11} className="opacity-60" />
                 </a>
               )}
 

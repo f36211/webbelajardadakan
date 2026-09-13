@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, FileText } from 'lucide-react';
+import { ArrowRight, BookOpen, FileText, ExternalLink } from 'lucide-react';
+import GoogleDriveIcon from './GoogleDriveIcon';
+import { GDRIVE_FOLDER_URL } from '../data/materials';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 16 },
@@ -22,6 +24,7 @@ export default function MaterialCard({ material, index, onClick }) {
   };
 
   const sticker = stickerColors[material.category] || { top: '#615d59', dot: '#615d59', tint: 'rgba(97,93,89,0.04)' };
+  const gdriveLink = material.gdriveUrl || material.sourceUrl || GDRIVE_FOLDER_URL;
 
   return (
     <motion.article
@@ -51,24 +54,39 @@ export default function MaterialCard({ material, index, onClick }) {
       <div style={{ height: 3, background: sticker.top }} />
 
       <div style={{ padding: '20px 20px 16px' }}>
-        {/* Category + subject */}
-        <div className="flex items-center gap-2 mb-3">
-          <span
-            className="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide"
-            style={{
-              background: sticker.tint,
-              color: sticker.top,
-              borderRadius: 'var(--radius-full)',
-              letterSpacing: '0.03em',
-            }}
+        {/* Category + subject + GDrive Pill */}
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <div className="flex items-center gap-2 min-w-0">
+            <span
+              className="inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide"
+              style={{
+                background: sticker.tint,
+                color: sticker.top,
+                borderRadius: 'var(--radius-full)',
+                letterSpacing: '0.03em',
+              }}
+            >
+              <span style={{ width: 5, height: 5, borderRadius: '50%', background: sticker.dot, display: 'inline-block' }} />
+              {material.category}
+            </span>
+            <span style={{ color: '#a39e98', fontSize: 11 }}>·</span>
+            <span style={{ fontSize: 11, color: '#615d59', fontWeight: 600 }}>
+              {material.subject}
+            </span>
+          </div>
+
+          <a
+            href={gdriveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-md border border-[#e6e6e6] bg-[#fbfbfb] text-[#615d59] hover:bg-white hover:text-[#0075de] hover:border-[#0075de]/40 transition-all cursor-pointer flex-shrink-0"
+            title={`Buka Google Drive ${material.subject}`}
           >
-            <span style={{ width: 5, height: 5, borderRadius: '50%', background: sticker.dot, display: 'inline-block' }} />
-            {material.category}
-          </span>
-          <span style={{ color: '#a39e98', fontSize: 11 }}>·</span>
-          <span style={{ fontSize: 11, color: '#615d59', fontWeight: 500 }}>
-            {material.subject}
-          </span>
+            <GoogleDriveIcon size={11} />
+            <span>Drive</span>
+            <ExternalLink size={9} style={{ opacity: 0.6 }} />
+          </a>
         </div>
 
         {/* Title */}
@@ -110,21 +128,25 @@ export default function MaterialCard({ material, index, onClick }) {
           </span>
         </div>
 
-        {/* CTA */}
-        <div className="flex items-center justify-between pt-1">
+        {/* CTA Bar with Baca Materi and Subject GDrive Button */}
+        <div className="flex items-center justify-between pt-3 border-t border-[#f0f0f0] mt-1">
           <div className="flex items-center gap-1.5" style={{ fontSize: 13, fontWeight: 600, color: '#0075de' }}>
             <BookOpen style={{ width: 14, height: 14 }} />
             <span>Baca Materi</span>
           </div>
-          <motion.div
-            initial={{ x: 0, opacity: 0.5 }}
-            whileHover={{ x: 3 }}
-            className="flex items-center gap-1"
-            style={{ fontSize: 12, color: '#615d59' }}
+
+          <a
+            href={gdriveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold rounded-md border border-[#e6e6e6] bg-[#fbfbfb] text-[#31302e] hover:text-[#0075de] hover:border-[#0075de]/30 hover:bg-[#eef5fc] transition-all cursor-pointer"
+            title={`Buka Folder Google Drive ${material.subject}`}
           >
-            <span className="hidden group-hover:inline" style={{ fontSize: 12 }}>Buka</span>
-            <ArrowRight style={{ width: 13, height: 13 }} />
-          </motion.div>
+            <GoogleDriveIcon size={12} />
+            <span>Folder {material.subject}</span>
+            <ExternalLink size={10} style={{ opacity: 0.6 }} />
+          </a>
         </div>
       </div>
 

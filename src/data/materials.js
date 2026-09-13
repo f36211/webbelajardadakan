@@ -77,6 +77,22 @@ export const categories = [
   },
 ];
 
+export const GDRIVE_FOLDER_URL =
+  'https://drive.google.com/drive/folders/1Zh8JCUWUlQcC402os2fY-Y9WKlT02wjs';
+
+export const ALL_SUBJECTS = [
+  { name: 'Kimia', category: 'ipa', color: '#2a9d99' },
+  { name: 'Matematika', category: 'ipa', color: '#2a9d99' },
+  { name: 'Biologi', category: 'ipa', color: '#2a9d99' },
+  { name: 'Fisika', category: 'ipa', color: '#2a9d99' },
+  { name: 'Sosiologi', category: 'ips', color: '#0075de' },
+  { name: 'Geografi', category: 'ips', color: '#0075de' },
+  { name: 'Ekonomi', category: 'ips', color: '#0075de' },
+  { name: 'Bahasa Indonesia', category: 'basic', color: '#dd5b00' },
+  { name: 'Bahasa Inggris', category: 'basic', color: '#dd5b00' },
+  { name: 'Pendidikan Agama Islam', category: 'basic', color: '#dd5b00' },
+];
+
 const humanizeWord = (w) => {
   if (!w) return '';
   if (SUBJECT_ALIASES[w.toLowerCase()]) return SUBJECT_ALIASES[w.toLowerCase()];
@@ -142,7 +158,8 @@ const buildMaterial = (rawPath, resolvedUrl) => {
     category: parsed.category,
     html: resolvedUrl,
     source: 'HTML Materi',
-    sourceUrl: null,
+    sourceUrl: GDRIVE_FOLDER_URL,
+    gdriveUrl: GDRIVE_FOLDER_URL,
     color,
     sticker: color,
     pages: null,
@@ -155,15 +172,20 @@ const buildMaterial = (rawPath, resolvedUrl) => {
 };
 
 const scanMaterials = () => {
-  const entries = Object.entries(htmlModules || {}).map(([rawPath, resolvedUrl]) => {
-    const url =
-      typeof resolvedUrl === 'string'
-        ? resolvedUrl
-        : rawPath.startsWith('/')
-        ? rawPath
-        : `/${rawPath}`;
-    return buildMaterial(rawPath, url);
-  });
+  const entries = Object.entries(htmlModules || {})
+    .filter(([rawPath]) => !rawPath.includes('/converted/'))
+    .map(([rawPath, resolvedUrl]) => {
+      // If a converted semantic version exists, prioritize it for the reader
+      const convertedPath = rawPath.replace('/src/assets/materials/', '/src/assets/materials/converted/');
+      const resolvedTarget = htmlModules[convertedPath] || resolvedUrl;
+      const url =
+        typeof resolvedTarget === 'string'
+          ? resolvedTarget
+          : rawPath.startsWith('/')
+          ? rawPath
+          : `/${rawPath}`;
+      return buildMaterial(rawPath, url);
+    });
   entries.sort((a, b) => {
     if (a.category !== b.category) return a.category.localeCompare(b.category);
     if (a.subject !== b.subject) return a.subject.localeCompare(b.subject);

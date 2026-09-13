@@ -3,6 +3,7 @@ import {
   ChevronFirst, ChevronLast, ZoomIn, ZoomOut,
   Loader2, AlertCircle, ExternalLink,
 } from 'lucide-react';
+import GoogleDriveIcon from './GoogleDriveIcon';
 
 const PAGE_WIDTH = 794;
 const PAGE_HEIGHT = 1123;
@@ -146,14 +147,12 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
               href={sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border border-stone-200 bg-stone-50 text-stone-500 no-underline transition-colors hover:border-[var(--color-cat-ips)] hover:text-[var(--color-cat-ips)]"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold border border-stone-200 bg-stone-50 text-stone-600 no-underline transition-colors hover:border-[#0075de] hover:text-[#0075de]"
+              title="Buka Folder Google Drive Materi"
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
-              <span className="hidden sm:inline">Sumber</span>
+              <GoogleDriveIcon size={12} />
+              <span className="hidden sm:inline">Google Drive</span>
+              <ExternalLink style={{ width: 10, height: 10, opacity: 0.6 }} />
             </a>
           )}
           <a

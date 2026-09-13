@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Home, BookOpen, ChevronDown, Search, Clock,
   Settings, FlaskConical, Landmark, GraduationCap, X,
-  Moon, Sun, Type, ZoomIn, ZoomOut,
+  Moon, Sun, Type, ZoomIn, ZoomOut, ExternalLink,
 } from 'lucide-react';
+import GoogleDriveIcon from './GoogleDriveIcon';
+import { GDRIVE_FOLDER_URL } from '../data/materials';
 
 const T = {
   primary: '#0075de',
@@ -345,6 +347,32 @@ export default function Dock({
                           {tab.name}
                         </button>
                       ))}
+                      <a
+                        href={GDRIVE_FOLDER_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="panel-tab-pill"
+                        style={{
+                          padding: '4px 10px',
+                          borderRadius: 'var(--radius-full)',
+                          border: `1px solid rgba(0,117,222,0.25)`,
+                          background: 'rgba(0,117,222,0.06)',
+                          color: '#0075de',
+                          fontSize: 11,
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          flexShrink: 0,
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 4,
+                          textDecoration: 'none',
+                        }}
+                        title="Buka Folder Google Drive Semua Materi"
+                      >
+                        <GoogleDriveIcon size={12} />
+                        <span>Folder Drive</span>
+                        <ExternalLink size={9} />
+                      </a>
                     </div>
                   </div>
 
@@ -537,6 +565,48 @@ export default function Dock({
                     >
                       Semua
                     </button>
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 10,
+                      padding: '12px 14px',
+                      borderRadius: 'var(--radius-md)',
+                      background: 'rgba(0,117,222,0.05)',
+                      border: '1px solid rgba(0,117,222,0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 10,
+                    }}
+                  >
+                    <GoogleDriveIcon size={22} />
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: T.ink }}>Folder Google Drive Mata Pelajaran</div>
+                      <div style={{ fontSize: 10, color: T.stone }}>Buka folder Google Drive materi per mapel</div>
+                    </div>
+                    <a
+                      href={GDRIVE_FOLDER_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        padding: '6px 12px',
+                        borderRadius: 8,
+                        background: '#0075de',
+                        color: '#ffffff',
+                        border: 'none',
+                        fontSize: 11,
+                        fontWeight: 700,
+                        textDecoration: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 4,
+                        cursor: 'pointer',
+                        flexShrink: 0,
+                      }}
+                    >
+                      <span>Buka Drive</span>
+                      <ExternalLink size={10} />
+                    </a>
                   </div>
                 </div>
               )}

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pengertian, Manfaat, dan Ancaman Keanekaragaman Hayati</title>
+  <style>
+
+/* Universal Semantic Materials Stylesheet */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --color-bg: #ffffff;
+  --color-surface: #f9f9f8;
+  --color-surface-hover: #f3f3f2;
+  --color-text: #2f343b;
+  --color-text-muted: #6b7280;
+  --color-heading: #111827;
+  --color-border: #e5e7eb;
+  --color-primary: #0075de;
+  --color-primary-light: #eff6ff;
+  --color-accent-orange: #f76703;
+  --color-callout-bg: #fffbf7;
+  --color-callout-border: #f76703;
+  --color-table-header: #f8fafc;
+  --color-table-alt: #fcfcfc;
+  --line-height: 1.75;
+}
+
+[data-reading-theme="dark"] {
+  --color-bg: #16171d;
+  --color-surface: #1e2028;
+  --color-surface-hover: #262933;
+  --color-text: #d1d5db;
+  --color-text-muted: #9ca3af;
+  --color-heading: #f9fafb;
+  --color-border: #2e303a;
+  --color-primary: #62aef0;
+  --color-primary-light: #1e293b;
+  --color-callout-bg: #231c16;
+  --color-callout-border: #dd5b00;
+  --color-table-header: #1f232e;
+  --color-table-alt: #181920;
+}
+
+[data-reading-theme="sepia"] {
+  --color-bg: #f4ecd8;
+  --color-surface: #ede0c8;
+  --color-surface-hover: #e5d6bc;
+  --color-text: #5b4636;
+  --color-text-muted: #7a5c3a;
+  --color-heading: #3d2b1f;
+  --color-border: #d4c4a8;
+  --color-primary: #7a5c3a;
+  --color-primary-light: #ede0c8;
+  --color-callout-bg: #ebdcc0;
+  --color-callout-border: #a85d00;
+  --color-table-header: #ede0c8;
+  --color-table-alt: #f4ecd8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.material {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 6rem;
+}
+
+.material-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.material-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+  padding: 4px 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.material-brand-badge img {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.material-title, h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: var(--color-heading);
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: clamp(1.35rem, 2.8vw, 1.7rem);
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.018em;
+  line-height: 1.35;
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1.025rem;
+  margin-bottom: 1.15rem;
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+ul, ol {
+  margin: 0.75rem 0 1.25rem 1.6rem;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+li > ul, li > ol {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+em {
+  font-style: italic;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+th {
+  background: var(--color-table-header);
+  font-weight: 600;
+  color: var(--color-heading);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) td {
+  background: var(--color-table-alt);
+}
+
+.callout {
+  margin: 1.75rem 0;
+  padding: 1.15rem 1.35rem;
+  background: var(--color-callout-bg);
+  border-left: 4px solid var(--color-callout-border);
+  border-radius: 0 8px 8px 0;
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+.callout-title {
+  font-weight: 700;
+  color: var(--color-accent-orange);
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 3px;
+  font-size: 0.9em;
+  line-height: 1.1;
+}
+
+.frac .num {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.frac .denom {
+  padding-top: 1px;
+}
+
+sub, sup {
+  font-size: 0.78em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub { bottom: -0.25em; }
+sup { top: -0.5em; }
+
+@media (max-width: 640px) {
+  .material {
+    padding: 1.5rem 1rem 4rem;
+  }
+  th, td {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <main class="material">
+    <header class="material-header">
+      <div class="material-brand-badge">
+        <img src="data:image/png;base64,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AAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0iQAAAAD0+R+o6GY5uJ47EgAAAABJRU5ErkJggg==" alt="Icon">
+        <span>TrifectaStudy</span>
+      </div>
+    </header>
+    <h1><strong>Pengertian, Manfaat, dan Ancaman Keanekaragaman</strong> <strong>Hayati</strong></h1>
+    <h3><strong>Pengertian Keanekaragaman Hayati</strong></h3>
+    <p><strong>Keanekaragaman hayati</strong> (biodiversitas) merupakan variasi organisme hidup di seluruh bentuk, sumber, dan interaksinya di berbagai tingkatan organisasi biologi. Konsep ini mencakup keberagaman antarspesies maupun keberagaman di dalam spesies itu sendiri, serta keberagaman ekosistem tempat organisme tersebut berada.</p>
+    <h3><strong>Tingkatan Keanekaragaman Hayati</strong></h3>
+    <p>Keanekaragaman hayati diklasifikasikan ke dalam tiga tingkatan utama, yaitu:</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Tingkatan</strong></th>
+    <th><strong>Definisi</strong></th>
+    <th><strong>Contoh</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Gen</strong></td>
+    <td>Variasi susunan dan kombinasi materi genetik di dalam satu spesies yang menyebabkan perbedaan ciri antarindividu</td>
+    <td>Variasi warna kulit dan bentuk buah pada jeruk; perbedaan rambut dan warna mata pada manusia</td>
+  </tr>
+  <tr>
+    <td><strong>Spesies</strong></td>
+    <td>Keberagaman jumlah dan jenis makhluk hidup antarspesies dalam suatu wilayah tertentu</td>
+    <td>Adanya rumput, pohon, burung, dan serangga di dalam satu hutan</td>
+  </tr>
+  <tr>
+    <td><strong>Ekosistem</strong></td>
+    <td>Keberagaman habitat, komunitas, dan interaksi biologis di berbagai lingkungan</td>
+    <td>Perbedaan antara ekosistem hutan hujan tropis, padang rumput, dan ekosistem laut</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h3><strong>Manfaat Keanekaragaman Hayati</strong></h3>
+    <p>Keanekaragaman hayati memberikan kontribusi fundamental bagi kehidupan, yang dapat dianalisis melalui beberapa aspek:</p>
+    <ul>
+  <li><strong>Aspek Ekologis</strong>: Menjaga keseimbangan ekosistem melalui jaring-jaring makanan, siklus biogeokimia, dan rantai pemuliharaan tanah. Spesies tertentu berperan sebagai penopang ekosistem; kepunahannya dapat memicu efek dominan terhadap spesies lainnya.</li>
+  <li><strong>Aspek Ekonomis</strong>: Menyediakan bahan baku industri, bahan pangan, obat-obatan, serta komoditas perdagangan. Contohnya adalah pemanfaatan kayu jati untuk konstruksi dan getah karet untuk industri karet sintetis.</li>
+  <li><strong>Aspek Sosial</strong>: Menjadi sumber estetika, rekreasi, budaya, dan spiritual bagi masyarakat. Kebudayaan lokal sering kali terikat dengan spesies atau lanskap tertentu yang memengaruhi identitas sosial.</li>
+  <li><strong>Aspek Ilmiah</strong>: Menjadi basis penelitian biologi, farmakologi, dan bioteknologi. Keberagaman genetik memungkinkan pengembangan varietas unggul tahan hama melalui pemuliaan tanaman.</li>
+</ul>
+    <h3><strong>Ancaman terhadap Keanekaragaman Hayati</strong></h3>
+    <p>Ancaman terhadap keanekaragaman hayati berasal dari aktivitas alami maupun antropogenik, yang mencakup:</p>
+    <ul>
+  <li><strong>Degradasi dan fragmentasi habitat</strong>: Konversi lahan hutan menjadi pemukiman atau perkebunan mengurangi ruang hidup spesies.</li>
+  <li><strong>Eksploitasi berlebihan</strong>: Perburuan dan penangkapan ikan melampaui kapasitas regenerasi alami.</li>
+  <li><strong>Introduksi spesies asing invasif</strong>: Spesies pendatang yang tidak memiliki predator alami dapat mendominasi dan menggantikan spesies asli.</li>
+  <li><strong>Pencemaran lingkungan</strong>: Buangan limbah industri dan pertanian merusak kualitas tanah, air, serta udara.</li>
+  <li><strong>Perubahan iklim global</strong>: Peningkatan suhu dan perubahan pola curah hujan menggeser sebaran spesies dan menambah tekanan pada ekosistem yang sudah rentan.</li>
+</ul>
+    <h3><strong>Upaya Pelestarian Keanekaragaman Hayati</strong></h3>
+    <p>Pelestarian dilaksanakan melalui dua pendekatan komplementer, yaitu:</p>
+    <ul>
+  <li><strong>Pelestarian </strong><em>in situ</em>: Menjaga spesies di habitat aslinya. Contoh: cagar alam, taman nasional, dan suaka margasatwa.</li>
+  <li><strong>Pelestarian </strong><em>ex situ</em>: Memelihara spesies di luar habitat aslinya. Contoh: kebun raya, kebun binatang, bank gen, dan akuarium.</li>
+</ul>
+    <p>Upaya tambahan mencakup penegakan hukum konservasi, edukasi publik, serta penerapan teknologi tepat guna untuk mengurangi emisi gas rumah kaca. Sinergi antarpendekatan ini esensial demi menjamin keberlanjutan fungsi ekologis, ekonomis, sosial, dan ilmiah bagi generasi mendatang.</p>
+    <h2><strong>Observasi Keanekaragaman Hayati di Lingkungan Sekitar</strong></h2>
+    <h4><strong>Prinsip Dasar Observasi Keanekaragaman Hayati</strong></h4>
+    <p>Observasi keanekaragaman hayati merupakan kegiatan sistematis untuk mengidentifikasi, mencatat, dan menganalisis berbagai jenis makhluk hidup di suatu area tertentu. Tujuannya adalah memperoleh data komprehensif mengenai keanekaragaman hayati yang dapat digunakan untuk identifikasi, klasifikasi, serta pelestarian spesies.</p>
+    <h4><strong>Metode Observasi Keanekaragaman Hayati</strong></h4>
+    <p>Pemilihan metode observasi yang tepat bergantung pada jenis ekosistem dan kelompok organisme yang diteliti.</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Metode</strong></th>
+    <th><strong>Deskripsi</strong></th>
+    <th><strong>Contoh Penerapan</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><strong>Metode</strong> <strong>Kuadrat</strong></td>
+    <td>Pembuatan petak contoh berukuran tertentu untuk menghitung populasi tumbuhan atau organisme sesil</td>
+    <td>Menghitung kepadatan rumput di lapangan</td>
+  </tr>
+  <tr>
+    <td><strong>Metode Jalur</strong> <strong>(Transek)</strong></td>
+    <td>Pengamatan sepanjang garis transek untuk melihat perubahan komposisi spesies</td>
+    <td>Survei vegetasi di sepanjang lereng bukit</td>
+  </tr>
+  <tr>
+    <td>**Metode Poin</td>
+    <td>Pengamatan pada titik-titik tertentu untuk organisme mobile</td>
+    <td>Observasi burung di lokasi tetap</td>
+  </tr>
+  <tr>
+    <td><strong>Metode</strong> <strong>Langsung</strong></td>
+    <td>Pengamatan visual tanpa intervensi terhadap organisme</td>
+    <td>Mencatat serangga yang terlihat di kebun</td>
+  </tr>
+  </tbody>
+</table></div>
+    <h4><strong>Penentuan Lokasi Observasi</strong></h4>
+    <p>Pemilihan lokasi observasi harus mempertimbangkan keterwakilan ekosistem dan aksesibilitas. Lokasi yang ideal mencakup ekosistem dengan tingkat keanekaragaman yang bervariasi. Pertimbangan utama meliputi:</p>
+    <ul>
+  <li><strong>Keterwakilan habitat:</strong> Lokasi harus mencakup berbagai mikrohabitat agar data merefleksikan keanekaragaman aktual.</li>
+  <li><strong>Aksesibilitas dan keamanan:</strong> Lokasi harus mudah dijangkau dan aman dari risiko lingkungan.</li>
+  <li><strong>Skala area observasi:</strong> Ukuran area harus disesuaikan dengan metode yang dipilih; semakin luas area, semakin besar skala pengamatan.</li>
+</ul>
+    <h4><strong>Pengumpulan Data Keanekaragaman Hayati</strong></h4>
+    <p>Data dikumpulkan melalui pencatatan jenis spesies, jumlah individu, serta karakteristik morfologi. Instrumen yang umum digunakan meliputi kunci determinasi, lup, dan alat ukur lingkungan. Data yang dicatat mencakup:</p>
+    <ul>
+  <li><strong>Nama spesies dan takson</strong> (kingdom hingga spesies) untuk klasifikasi yang akurat.</li>
+  <li><strong>Jumlah individu per spesies</strong> untuk menghitung indeks keanekaragaman seperti</li>
+</ul>
+    <h3><strong>Indeks Shannon-Wiener</strong> (H ′= − ∑ p lnp ), di mana p adalah proporsi spesies</h3>
+    <p>i i i</p>
+    <h3>ke-i.</h3>
+    <ul>
+  <li><strong>Parameter lingkungan</strong> seperti suhu, kelembapan, dan intensitas cahaya yang memengaruhi distribusi organisme.</li>
+</ul>
+    <h4><strong>Dokumentasi dan Analisis Hasil Observasi</strong></h4>
+    <p><strong>Dokumentasi</strong> dilakukan dengan fotografi, pengambilan sampel (bila diperlukan), serta pencatatan terstruktur dalam tabel observasi. Setiap spesies yang ditemukan didokumentasikan beserta ciri morfologi dan habitatnya.</p>
+    <p><strong>Analisis hasil</strong> meliputi:</p>
+    <ol>
+  <li><strong>Identifikasi dan klasifikasi</strong> spesies menggunakan kunci determinasi untuk menempatkan organisme pada takson yang tepat.</li>
+  <li><strong>Perhitungan indeks keanekaragaman</strong> untuk menilai kesehatan ekosistem; nilai</li>
+</ol>
+    <h3>H ′> 3 menandakan keanekaragaman tinggi.</h3>
+    <ol>
+  <li><strong>Interpretasi data</strong> untuk memahami relasi antara keanekaragaman hayati dengan faktor abiotik lingkungan.</li>
+</ol>
+    <p>Dokumentasi yang baik mendukung validitas data dan memungkinkan verifikasi ulang oleh peneliti lain.</p>
+    <h2><strong>Praktikum Kultur Biologis dan Pengamatan Protozoa</strong></h2>
+    <h4><strong>Alat dan Bahan untuk Pembuatan Kultur Biologis</strong></h4>
+    <p>Pembuatan kultur mikroorganisme memerlukan persiapan alat dan bahan yang sesuai untuk menumbuhkan protozoa secara optimal.</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Alat</strong></th>
+    <th><strong>Fungsi</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Mikroskop</td>
+    <td>Pengamatan morfologi protozoa</td>
+  </tr>
+  <tr>
+    <td>Kaca objek dan kaca penutup</td>
+    <td>Preparat sediaan awetan segar</td>
+  </tr>
+  <tr>
+    <td>Pipet tetes</td>
+    <td>Pengambilan sampel kultur</td>
+  </tr>
+  <tr>
+    <td>Botol atau wadah kaca</td>
+    <td>Wadah media kultur</td>
+  </tr>
+  <tr>
+    <td>Sedotan atau jerami</td>
+    <td>Sumber serat untuk media</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p><strong>Bahan utama:</strong></p>
+    <ul>
+  <li>Beras atau sari beras — sumber karbohidrat</li>
+  <li>Air sumur atau air kolam — medium cair alami</li>
+  <li>sampel air dari tempat basah atau perairan</li>
+</ul>
+    <h4><strong>Prosedur Pembuatan Kultur Mikroorganisme</strong></h4>
+    <p>Berikut tahapan sistematis pembuatan kultur:</p>
+    <ol>
+  <li>Masukkan air ke dalam wadah kaca bersih.</li>
+  <li>Tambahkan beberapa butir beras atau sari beras sebagai sumber nutrisi.</li>
+  <li>Masukkan sampel dari lingkungan perairan atau tempat lembab ke dalam wadah.</li>
+  <li>Tutup wadah dengan kain tipis untuk mencegah kontaminasi serangga.</li>
+  <li>Simpan di tempat terkena cahaya tidak langsung selama 5–7 hari.</li>
+  <li>Lakukan pengamatan berkala untuk memantau pertumbuhan mikroorganisme.</li>
+</ol>
+    <p>Rasio beras dan air memengaruhi konsentrasi nutrien; kelebihan beras dapat menyebabkan fermentasi berlebihan dan menurunkan kualitas kultur.</p>
+    <h4><strong>Pengamatan Ciri-Ciri Protozoa</strong></h4>
+    <p>Pengamatan dilakukan dengan mengambil setetes sampel kultur menggunakan pipet, meneteskannya pada kaca objek, dan menutup dengan kaca penutup. Preparat diamati di bawah mikroskop pada pembesaran 10× hingga 40×.</p>
+    <p><strong>Ciri morfologi dan fisiologis yang diamati:</strong></p>
+    <ul>
+  <li>Bentuk sel — bulat, lonjong, atau tidak beraturan</li>
+  <li>Alat gerak — silia, flagela, atau pseudopodia</li>
+  <li>Inti sel — visibility nukleus</li>
+  <li>Sitoplasma — kejernihan dan granula</li>
+  <li>Pola pergerakan — aktif berenang, merayap, atau stasioner</li>
+</ul>
+    <h4><strong>Identifikasi dan Perbandingan Keanekaragaman Protozoa</strong></h4>
+    <p>Berdasarkan alat geraknya, protozoa dikelompokkan ke dalam empat kelas utama:</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Kelas</strong></th>
+    <th><strong>Alat Gerak</strong></th>
+    <th><strong>Contoh</strong></th>
+    <th><strong>Ciri Khas</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Rhizopoda</td>
+    <td>Pseudopodia</td>
+    <td><em>Amoeba</em></td>
+    <td>Bentuk berubah-ubah</td>
+  </tr>
+  <tr>
+    <td>Ciliata</td>
+    <td>Silia</td>
+    <td><em>Paramecium</em></td>
+    <td>Silia seluruh permukaan tubuh</td>
+  </tr>
+  <tr>
+    <td>Flagellata</td>
+    <td>Flagela</td>
+    <td><em>Euglena</em></td>
+    <td>Berklorofil pada beberapa spesies</td>
+  </tr>
+  <tr>
+    <td>Sporozoa</td>
+    <td>Tidak punya alat gerak</td>
+    <td><em>Plasmodium</em></td>
+    <td>Bersifat parasit</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p>Perbandingan keanekaragaman dilakukan dengan mencatat jumlah jenis dan kelimpahan tiap kelas dalam kultur. Hal ini menggambarkan keseimbangan ekosistem mikro di dalam wadah kultur.</p>
+    <h4><strong>Penyusunan Laporan Praktikum</strong></h4>
+    <p>Laporan disusun secara sistematis dengan struktur:</p>
+    <ol>
+  <li><strong>Tujuan</strong> — rumusan tujuan praktikum</li>
+  <li><strong>Dasar teori</strong> — konsep dasar protozoa</li>
+  <li><strong>Alat dan bahan</strong> — daftar lengkap</li>
+  <li><strong>Prosedur</strong> — langkah kerja</li>
+  <li><strong>Hasil pengamatan</strong> — gambar dan deskripsi</li>
+  <li><strong>Analisis</strong> — interpretasi data temuan</li>
+  <li><strong>Kesimpulan</strong> — ringkasan temuan</li>
+</ol>
+    <p>Laporan harus disertai gambar hasil pengamatan dengan mikroskop, beserta label struktur yang teramati. Data kuantitatif seperti jumlah individu per jenis dianalisis</p>
+    <h3>menggunakan indeks keanekaragaman seperti rumus Shannon-Wiener: H ′=</h3>
+    <h3>− ∑ p lnp , di mana p adalah proporsi tiap jenis.</h3>
+    <p>i i i</p>
+    <h2><strong>Identifikasi dan Klasifikasi Makhluk Hidup</strong></h2>
+    <h3><strong>Ciri-Ciri Makhluk Hidup untuk Identifikasi</strong></h3>
+    <p>Identifikasi makhluk hidup dilakukan dengan mengamati ciri-ciri umum yang membedakan organisme dari benda tak hidup. Berikut tujuh ciri esensial yang menjadi dasar identifikasi:</p>
+    <h3>• <strong>Bernapas</strong> : pertukaran gas untuk memperoleh oksigen ( O <sub>2</sub>) dan melepaskan karbon</h3>
+    <h3>dioksida (CO <sub>2</sub>).</h3>
+    <ul>
+  <li><strong>Bergerak</strong>: perubahan posisi tubuh atau bagian tubuh, baik secara aktif maupun pasif.</li>
+  <li><strong>Tumbuh dan berkembang</strong>: penambahan ukuran dan diferensiasi sel menuju bentuk dewasa.</li>
+  <li><strong>Memerlukan nutrisi</strong>: intake zat hara sebagai sumber energi dan bahan pembangun tubuh.</li>
+  <li>** Berkembang biak (reproduksi)**: menghasilkan keturunan untuk menjaga kelestaran spesies; contoh: membelah diri pada bakteri, bertelur pada unggas.</li>
+  <li><strong>Peka terhadap rangsang (iritabilitas)</strong>: kemampuan memberi respons terhadap cahaya, suhu, sentuhan, atau bahan kimia.</li>
+  <li><strong>Mengeluarkan zat sisa (ekskresi)</strong>: pembuangan hasil metabolisme yang tidak diperlukan tubuh.</li>
+</ul>
+    <h3><strong>Prinsip Dasar Klasifikasi Makhluk Hidup</strong></h3>
+    <p>Klasifikasi adalah penyusunan makhluk hidup ke dalam kelompok-kelompok berdasarkan persamaan dan perbedaan ciri. Prinsip utama yang diterapkan:</p>
+    <ul>
+  <li><strong>Pengelompokan sistematis</strong>: dimulai dari ciri yang paling umum menuju ciri yang paling khusus.</li>
+  <li><strong>Dasar pengelompokan</strong>: dapat berupa morfologi, anatomi, fisiologi, atau biokimia (misalnya urutan DNA).</li>
+  <li><strong>Hierarki takson</strong>: tingkatan pengelompokan dari tingkat tertinggi hingga terendah yakni Kingdom → Filum/Divisio → Kelas → Ordo → Famili → Genus → Spesies.</li>
+</ul>
+    <h3><strong>Tujuan dan Manfaat Klasifikasi</strong></h3>
+    <p>Klasifikasi makhluk hidup memiliki beberapa tujuan penting:</p>
+    <div class="table-wrap"><table>
+  <thead>
+  <tr>
+    <th><strong>Tujuan</strong></th>
+    <th>&nbsp;</th>
+    <th><strong>Penjelasan</strong></th>
+    <th>&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Memudahkan identifikasi</td>
+    <td>&nbsp;</td>
+    <td>Menyusun organisme dalam sistem teratur agar mudah dipelajari</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Menunjukkan hubungan kekerabatan</td>
+    <td>&nbsp;</td>
+    <td>Mengetahui tingkat kedekatan antar makhluk hidup</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Memprediksi ciri organisme</td>
+    <td>&nbsp;</td>
+    <td>Jika satu spesies memiliki ciri tertentu, spesies terkait kemungkinan memiliki ciri serupa</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Memberi nama ilmiah</td>
+    <td>&nbsp;</td>
+    <td>Menggunakan sistem tata nama yang baku dan diakui internasional</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Manfaat utama klasifikasi adalah memungkinkan komunikasi ilmiah yang seragam di seluruh dunia melalui penggunaan nama ilmiah, sehingga organisme yang sama tidak diberi nama berbeda di tiap daerah. <strong>Sistem Pengelompokan Makhluk Hidup</strong> Sistem klasifikasi terus berkembang seiring kemajuan ilmu pengetahuan. Berikut perbandingan sistem klasifikasi utama:</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Sistem</strong></td>
+    <td><strong>Pemisahan Kingdom</strong></td>
+    <td>&nbsp;</td>
+    <td><strong>Tokoh</strong></td>
+  </tr>
+  <tr>
+    <td>Dua kingdom</td>
+    <td>Plantae dan Animalia</td>
+    <td>&nbsp;</td>
+    <td>Aristoteles</td>
+  </tr>
+  <tr>
+    <td>Tiga kingdom</td>
+    <td>Plantae, Animalia, dan Protista</td>
+    <td>&nbsp;</td>
+    <td>Ernst Haeckel</td>
+  </tr>
+  <tr>
+    <td>Lima kingdom</td>
+    <td>Monera, Protista, Fungi, Plantae, Animalia</td>
+    <td>&nbsp;</td>
+    <td>Robert H. Whittaker</td>
+  </tr>
+  <tr>
+    <td>Enam kingdom</td>
+    <td>Eubacteria, Archaebacteria, Protista, Fungi, Plantae, Animalia</td>
+    <td>&nbsp;</td>
+    <td>Carl Woese</td>
+  </tr>
+  </tbody>
+</table></div>
+    <p>Pergeseran dari sistem lima menjadi enam kingdom didasarkan pada perbedaan struktur molekuler, khususnya urutan asam nukleat ribosomal. Pengelompokan modern menggabungkan data morfologi, sitologi, dan biokimia untuk menghasilkan sistem klasifikasi yang lebih mencerminkan hubungan evolusi yang sebenarnya.</p>
+  </main>
+</body>
+</html>
