@@ -50,46 +50,24 @@ export default function MaterialCard({ material, index, onClick }) {
         <div style={{ height: 3, background: sticker.top }} />
 
         <div style={{ padding: '18px 18px 16px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-          {/* Category + subject + GDrive Pill */}
-          <div className="flex items-center justify-between gap-2 mb-3">
-            <div className="flex items-center gap-2 min-w-0">
-              <span
-                className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide"
-                style={{
-                  background: sticker.tint,
-                  color: sticker.top,
-                  borderRadius: 'var(--radius-full)',
-                  letterSpacing: '0.04em',
-                }}
-              >
-                <span style={{ width: 5, height: 5, borderRadius: '50%', background: sticker.dot, display: 'inline-block' }} />
-                {material.category}
-              </span>
-              <span style={{ color: 'var(--app-text-ash, #a39e98)', fontSize: 11 }}>·</span>
-              <span style={{ fontSize: 11, color: 'var(--app-text-muted, #615d59)', fontWeight: 600 }}>
-                {material.subject}
-              </span>
-            </div>
-
-            <motion.a
-              href={gdriveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold rounded-md border transition-all cursor-pointer flex-shrink-0"
+          {/* Category + subject */}
+          <div className="flex items-center gap-2 min-w-0 mb-3">
+            <span
+              className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide"
               style={{
-                borderColor: 'var(--app-hairline, #e6e6e6)',
-                background: 'var(--app-surface, #fbfbfb)',
-                color: 'var(--app-text-muted, #615d59)',
+                background: sticker.tint,
+                color: sticker.top,
+                borderRadius: 'var(--radius-full)',
+                letterSpacing: '0.04em',
               }}
-              title={`Buka Google Drive ${material.subject}`}
             >
-              <GoogleDriveIcon size={11} />
-              <span>Drive</span>
-              <ExternalLink size={9} style={{ opacity: 0.6 }} />
-            </motion.a>
+              <span style={{ width: 5, height: 5, borderRadius: '50%', background: sticker.dot, display: 'inline-block' }} />
+              {material.category}
+            </span>
+            <span style={{ color: 'var(--app-text-ash, #a39e98)', fontSize: 11 }}>·</span>
+            <span style={{ fontSize: 11, color: 'var(--app-text-muted, #615d59)', fontWeight: 600 }}>
+              {material.subject}
+            </span>
           </div>
 
           {/* Title */}

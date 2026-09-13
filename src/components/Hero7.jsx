@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, FileText, Settings2, PanelLeftOpen, ExternalLink } from 'lucide-react';
 import GoogleDriveIcon from './GoogleDriveIcon';
-import { GDRIVE_FOLDER_URL, SUBJECT_GDRIVE_LIST } from '../data/materials';
+import { GDRIVE_FOLDER_URL } from '../data/materials';
 
 // Notion design tokens
 const T = {
@@ -396,46 +396,6 @@ export default function Hero7({
               <span style={{ fontSize: 13, fontWeight: 600, color: T.stone }}>
                 <span style={{ fontWeight: 700, color: T.ink }}>3</span> kategori
               </span>
-            </div>
-
-            {/* Folder Google Drive per Mapel quick buttons */}
-            <div style={{ width: '100%', marginTop: 8, paddingTop: 14, borderTop: `1px dashed ${T.hairline}` }}>
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: T.stone, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 6 }}>
-                <GoogleDriveIcon size={14} />
-                <span>Folder Google Drive per Mata Pelajaran:</span>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                {SUBJECT_GDRIVE_LIST.slice(0, 6).map((item) => (
-                  <motion.a
-                    key={item.subject}
-                    href={item.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ y: -2, scale: 1.05 }}
-                    whileTap={{ scale: 0.96 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 5,
-                      padding: '5px 11px',
-                      borderRadius: 'var(--radius-full)',
-                      background: T.canvas,
-                      border: `1px solid ${T.hairline}`,
-                      color: T.ink,
-                      fontSize: 12,
-                      fontWeight: 600,
-                      textDecoration: 'none',
-                      boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
-                    }}
-                    title={`Buka Folder Google Drive ${item.name}`}
-                  >
-                    <GoogleDriveIcon size={12} />
-                    <span>{item.short}</span>
-                    <ExternalLink size={9} style={{ opacity: 0.5 }} />
-                  </motion.a>
-                ))}
-              </div>
             </div>
           </div>
         </motion.div>
