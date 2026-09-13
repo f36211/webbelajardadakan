@@ -11,6 +11,18 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeSubject, setActiveSubject] = useState('all');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('app_theme') || 'light';
+  });
+  const [fontFamily, setFontFamily] = useState(() => {
+    return localStorage.getItem('reading_font_family') || 'sans';
+  });
+  const [lineHeight, setLineHeight] = useState(() => {
+    return localStorage.getItem('reading_line_height') || '1.7';
+  });
+  const [focusMode, setFocusMode] = useState(() => {
+    return localStorage.getItem('reading_focus_mode') === 'true';
+  });
 
   const allMaterials = materials;
 
@@ -26,21 +38,52 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('app_theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    document.documentElement.setAttribute('data-reading-theme', savedTheme);
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    const root = document.documentElement;
+    root.setAttribute('data-theme', theme);
+    root.setAttribute('data-reading-theme', theme);
+    root.classList.remove('dark', 'sepia');
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else if (theme === 'sepia') {
+      root.classList.add('sepia');
     }
-  }, []);
+    localStorage.setItem('app_theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty(
+      '--reading-font-family',
+      fontFamily === 'serif' ? 'var(--font-serif)' : 'var(--font-sans)'
+    );
+    root.setAttribute('data-font-family', fontFamily);
+    localStorage.setItem('reading_font_family', fontFamily);
+  }, [fontFamily]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--reading-line-height', lineHeight);
+    root.setAttribute('data-line-height', lineHeight);
+    localStorage.setItem('reading_line_height', lineHeight);
+  }, [lineHeight]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (focusMode) {
+      root.classList.add('focus-mode');
+    } else {
+      root.classList.remove('focus-mode');
+    }
+    localStorage.setItem('reading_focus_mode', focusMode ? 'true' : 'false');
+  }, [focusMode]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         if (isChatOpen) {
           setIsChatOpen(false);
+        } else if (focusMode) {
+          setFocusMode(false);
         } else if (selectedMaterial) {
           handleCloseMaterial();
         }
@@ -48,7 +91,7 @@ export default function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedMaterial, isChatOpen, handleCloseMaterial]);
+  }, [selectedMaterial, isChatOpen, focusMode, handleCloseMaterial]);
 
   const filteredMaterials = allMaterials.filter(m => {
     const matchesSearch =
@@ -63,7 +106,13 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen transition-colors duration-300">
+    <div
+      className="min-h-screen transition-colors duration-300"
+      style={{
+        backgroundColor: 'var(--app-bg, #f6f5f4)',
+        color: 'var(--app-text, #000000)',
+      }}
+    >
       <AnimatePresence mode="wait">
         {selectedMaterial ? (
           <motion.div
@@ -77,6 +126,14 @@ export default function App() {
               material={selectedMaterial}
               onClose={handleCloseMaterial}
               onOpenChat={() => setIsChatOpen(true)}
+              theme={theme}
+              onThemeChange={setTheme}
+              fontFamily={fontFamily}
+              onFontFamilyChange={setFontFamily}
+              lineHeight={lineHeight}
+              onLineHeightChange={setLineHeight}
+              focusMode={focusMode}
+              onFocusModeChange={setFocusMode}
             />
           </motion.div>
         ) : (
@@ -98,6 +155,14 @@ export default function App() {
               setActiveSubject={setActiveSubject}
               onOpenMaterial={handleOpenMaterial}
               onOpenChat={() => setIsChatOpen(true)}
+              theme={theme}
+              onThemeChange={setTheme}
+              fontFamily={fontFamily}
+              onFontFamilyChange={setFontFamily}
+              lineHeight={lineHeight}
+              onLineHeightChange={setLineHeight}
+              focusMode={focusMode}
+              onFocusModeChange={setFocusMode}
             />
           </motion.div>
         )}

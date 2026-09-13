@@ -113,11 +113,14 @@ export default function MaterialCard({ material, index, onClick }) {
           {/* CTA Bar with Button-in-Button Trailing Icon & Subject GDrive Button */}
           <div
             className="flex items-center justify-between pt-3 border-t mt-auto"
-            style={{ borderColor: 'var(--app-hairline, #f0f0f0)' }}
+            style={{ borderColor: 'var(--app-hairline, #e6e6e6)' }}
           >
             <div className="flex items-center gap-2" style={{ fontSize: 13, fontWeight: 700, color: '#0075de' }}>
               <span>Baca Materi</span>
-              <span className="btn-nested-icon w-6 h-6 rounded-full bg-blue-50 text-[#0075de] flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5 shadow-2xs">
+              <span
+                className="btn-nested-icon w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-0.5 shadow-2xs"
+                style={{ background: 'rgba(0,117,222,0.12)', color: '#0075de' }}
+              >
                 <ArrowRight size={12} strokeWidth={2.4} />
               </span>
             </div>

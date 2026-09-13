@@ -48,6 +48,14 @@ export default function Dashboard({
   setActiveSubject,
   onOpenMaterial,
   onOpenChat,
+  theme,
+  onThemeChange,
+  fontFamily,
+  onFontFamilyChange,
+  lineHeight,
+  onLineHeightChange,
+  focusMode,
+  onFocusModeChange,
 }) {
   const [activeNavItem, setActiveNavItem] = useState('home');
 
@@ -174,7 +182,12 @@ export default function Dashboard({
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-md border border-blue-200 bg-blue-50/70 text-[#0075de] hover:bg-blue-100 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-md border transition-colors"
+                  style={{
+                    borderColor: 'rgba(0,117,222,0.25)',
+                    background: 'rgba(0,117,222,0.08)',
+                    color: T.primary,
+                  }}
                   title={activeSubject !== 'all' ? `Buka Folder Google Drive ${activeSubject}` : 'Buka Folder Google Drive Semua Mapel'}
                 >
                   <GoogleDriveIcon size={13} />
@@ -193,8 +206,8 @@ export default function Dashboard({
                   style={{
                     borderRadius: 'var(--radius-sm)',
                     border: activeSubject === 'all' ? 'none' : `1px solid ${T.hairline}`,
-                    background: activeSubject === 'all' ? T.inkSecondary : T.surface,
-                    color: activeSubject === 'all' ? T.onDark : T.stone,
+                    background: activeSubject === 'all' ? T.primary : T.surface,
+                    color: activeSubject === 'all' ? '#ffffff' : T.stone,
                   }}
                 >
                   Semua Mapel
@@ -454,6 +467,14 @@ export default function Dashboard({
         onCategoryChange={(cat) => { setActiveCategory(cat); setActiveSubject('all'); setActiveNavItem('materi'); }}
         catMeta={catMeta}
         onOpenChat={onOpenChat}
+        theme={theme}
+        onThemeChange={onThemeChange}
+        fontFamily={fontFamily}
+        onFontFamilyChange={onFontFamilyChange}
+        lineHeight={lineHeight}
+        onLineHeightChange={onLineHeightChange}
+        focusMode={focusMode}
+        onFocusModeChange={onFocusModeChange}
       />
     </div>
   );

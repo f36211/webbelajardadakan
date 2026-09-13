@@ -173,8 +173,8 @@ function ReaderPreview() {
               <span style={{ fontSize: 9, color: T.ash }}>← Mol</span>
             </div>
 
-            <div style={{ height: 4, borderRadius: 2, background: '#e6e6e6', width: '88%' }} />
-            <div style={{ height: 4, borderRadius: 2, background: '#e6e6e6', width: '95%' }} />
+            <div style={{ height: 4, borderRadius: 2, background: T.hairline, width: '88%' }} />
+            <div style={{ height: 4, borderRadius: 2, background: T.hairline, width: '95%' }} />
 
             {/* Table mockup */}
             <div style={{ marginTop: 2, borderRadius: 6, border: `1px solid ${T.hairline}`, overflow: 'hidden' }}>
@@ -192,7 +192,7 @@ function ReaderPreview() {
                   }}
                 >
                   <div style={{ width: 14, height: 10, borderRadius: 2, background: T.primary, opacity: 0.6, marginRight: 4 }} />
-                  <div style={{ flex: 1, height: 4, borderRadius: 2, background: '#e6e6e6' }} />
+                  <div style={{ flex: 1, height: 4, borderRadius: 2, background: T.hairline }} />
                 </div>
               ))}
             </div>
@@ -262,39 +262,6 @@ export default function Hero7({
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           style={{ minWidth: 0, maxWidth: 600 }}
         >
-          {/* Eyebrow */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              padding: '6px 14px',
-              borderRadius: 999,
-              background: 'rgba(0,117,222,0.08)',
-              marginBottom: 18,
-            }}
-          >
-            <span
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                background: T.primary,
-                boxShadow: `0 0 0 3px rgba(0,117,222,0.15)`,
-              }}
-            />
-            <span
-              style={{
-                fontSize: 13,
-                fontWeight: 700,
-                color: T.primary,
-                letterSpacing: '0.01em',
-              }}
-            >
-              TrifectaStudy
-            </span>
-          </div>
-
           {/* Heading */}
           <h1
             style={{

@@ -15,7 +15,13 @@ const MAX_USER_ZOOM = 2.0;
 const ZOOM_STEP = 0.15;
 const DEFAULT_USER_ZOOM = 1.0;
 
-export default function HTMLViewer({ htmlUrl, sourceUrl }) {
+export default function HTMLViewer({
+  htmlUrl,
+  sourceUrl,
+  theme,
+  fontFamily = 'sans',
+  lineHeight = '1.7',
+}) {
   const [userZoom, setUserZoom] = useState(DEFAULT_USER_ZOOM);
   const [fitScale, setFitScale] = useState(1.0);
   const [loading, setLoading] = useState(true);
@@ -88,17 +94,32 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
       const doc = iframeRef.current.contentDocument;
       if (!doc || !doc.documentElement) return;
       const currentTheme =
+        theme ||
         document.documentElement.getAttribute('data-reading-theme') ||
         document.documentElement.getAttribute('data-theme') ||
         localStorage.getItem('app_theme') ||
         'light';
+
       doc.documentElement.setAttribute('data-reading-theme', currentTheme);
       doc.documentElement.setAttribute('data-theme', currentTheme);
+      doc.documentElement.classList.remove('dark', 'sepia');
       if (currentTheme === 'dark') {
         doc.documentElement.classList.add('dark');
-      } else {
-        doc.documentElement.classList.remove('dark');
+      } else if (currentTheme === 'sepia') {
+        doc.documentElement.classList.add('sepia');
       }
+
+      // Inject Google Font Lora if serif is active
+      if (fontFamily === 'serif' && !doc.getElementById('viewer-font-lora')) {
+        const link = doc.createElement('link');
+        link.id = 'viewer-font-lora';
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap';
+        if (doc.head) doc.head.appendChild(link);
+      }
+
+      const fontCss = fontFamily === 'serif' ? "'Lora', Georgia, 'Times New Roman', serif" : "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+      const lineCss = lineHeight || '1.7';
 
       // Inject or update theme override stylesheet
       let styleTag = doc.getElementById('viewer-theme-override');
@@ -112,15 +133,24 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
         }
       }
 
+      const typoRules = `
+        body, p, li, td, th, blockquote, .reading-content {
+          font-family: ${fontCss} !important;
+          line-height: ${lineCss} !important;
+        }
+      `;
+
       if (currentTheme === 'dark') {
         styleTag.textContent = `
+          ${typoRules}
           html, body {
             background-color: #16171d !important;
             color: #e5e7eb !important;
           }
-          .page {
+          .page, .card, .paper {
             background-color: #1e2028 !important;
             box-shadow: 0 2px 12px rgba(0,0,0,0.6) !important;
+            border-color: #2e303a !important;
           }
           .t, [class*="c"], p, span, div, li, td, th, h1, h2, h3, h4, h5, h6 {
             color: #e5e7eb !important;
@@ -155,52 +185,59 @@ export default function HTMLViewer({ htmlUrl, sourceUrl }) {
         `;
       } else if (currentTheme === 'sepia') {
         styleTag.textContent = `
+          ${typoRules}
           html, body {
-            background-color: #f4ecd8 !important;
-            color: #5b4636 !important;
+            background-color: #f8f6f1 !important;
+            color: #1c1917 !important;
           }
-          .page {
-            background-color: #ede0c8 !important;
-            box-shadow: 0 2px 8px rgba(91,70,54,0.15) !important;
-          }
-          .t, [class*="c"], p, span, div, li, td, th {
-            color: #5b4636 !important;
+          .page, .card, .paper {
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 24px rgba(40, 30, 20, 0.06), 0 1px 4px rgba(40, 30, 20, 0.04) !important;
+            border: 1px solid #e8e3d8 !important;
           }
           h1, h2, h3, h4, h5, h6, strong, b {
-            color: #3d2b1f !important;
+            color: #1c1917 !important;
+          }
+          p, li {
+            color: #1c1917 !important;
           }
           a {
-            color: #7a5c3a !important;
+            color: #0075de !important;
           }
           table {
-            color: #5b4636 !important;
-            border-color: #d4c4a8 !important;
+            color: #1c1917 !important;
+            border-color: #e8e3d8 !important;
           }
           th {
-            background-color: #ede0c8 !important;
-            color: #3d2b1f !important;
+            background-color: #f8f6f1 !important;
+            color: #1c1917 !important;
+            border-color: #e8e3d8 !important;
           }
           td {
-            border-color: #d4c4a8 !important;
+            border-color: #ede8df !important;
           }
-          .material-brand-badge, .material-meta-pill, blockquote {
-            background-color: #ede0c8 !important;
-            border-color: #d4c4a8 !important;
-            color: #5b4636 !important;
+          blockquote {
+            border-left-color: #0075de !important;
+            background-color: rgba(0, 117, 222, 0.04) !important;
+            color: #57534e !important;
           }
           pre, code {
-            background-color: #e8dcc8 !important;
-            color: #3d2b1f !important;
-            border-color: #d4c4a8 !important;
+            background-color: #f6f3eb !important;
+            color: #1c1917 !important;
+            border-color: #e8e3d8 !important;
           }
         `;
       } else {
-        styleTag.textContent = '';
+        styleTag.textContent = typoRules;
       }
     } catch (e) {
       console.warn('Cannot sync iframe theme:', e);
     }
-  }, []);
+  }, [theme, fontFamily, lineHeight]);
+
+  useEffect(() => {
+    syncIframeTheme();
+  }, [theme, fontFamily, lineHeight, syncIframeTheme]);
 
   const handleIframeLoad = useCallback(() => {
     setLoading(false);

@@ -236,14 +236,20 @@ export default function Dock({
   onCategoryChange,
   catMeta = [],
   onOpenChat,
+  theme,
+  onThemeChange,
+  fontFamily = 'sans',
+  onFontFamilyChange,
+  lineHeight = '1.7',
+  onLineHeightChange,
+  focusMode = false,
+  onFocusModeChange,
 }) {
   const [activePanel, setActivePanel] = useState(null);
   const [localSearch, setLocalSearch] = useState('');
   const [activeTab, setActiveTab] = useState('all');
   const [fontSize, setFontSize] = useState(17);
-  const [readingTheme, setReadingTheme] = useState(() => {
-    return localStorage.getItem('app_theme') || 'light';
-  });
+  const currentTheme = theme || localStorage.getItem('app_theme') || 'light';
 
   const panelRef = useRef(null);
 
@@ -265,17 +271,8 @@ export default function Dock({
   }, [activePanel]);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.style.setProperty('--reading-font-size', `${fontSize}px`);
-    root.setAttribute('data-theme', readingTheme);
-    root.setAttribute('data-reading-theme', readingTheme);
-    if (readingTheme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    localStorage.setItem('app_theme', readingTheme);
-  }, [fontSize, readingTheme]);
+    document.documentElement.style.setProperty('--reading-font-size', `${fontSize}px`);
+  }, [fontSize]);
 
   const togglePanel = (id) => setActivePanel((cur) => (cur === id ? null : id));
 
@@ -718,20 +715,20 @@ export default function Dock({
                     >
                       {[
                         { id: 'light', label: 'Terang', Ic: Sun, bg: '#ffffff', fg: '#1a1a1a', border: '#e6e6e6' },
-                        { id: 'sepia', label: 'Sepia', Ic: Sun, bg: '#f4ecd8', fg: '#5b4636', border: '#d4c4a8' },
+                        { id: 'sepia', label: 'Sepia', Ic: Sun, bg: '#f8f6f1', fg: '#1c1917', border: '#e8e3d8' },
                         { id: 'dark', label: 'Gelap', Ic: Moon, bg: '#16171d', fg: '#f3f4f6', border: '#2e303a' },
                       ].map((t) => (
                         <button
                           key={t.id}
-                          onClick={() => setReadingTheme(t.id)}
+                          onClick={() => onThemeChange && onThemeChange(t.id)}
                           className="cursor-pointer transition-all"
                           style={{
                             padding: '10px',
                             borderRadius: 'var(--radius-md)',
-                            border: readingTheme === t.id
+                            border: currentTheme === t.id
                               ? `1.5px solid ${T.primary}`
                               : `1px solid ${T.hairline}`,
-                            background: readingTheme === t.id ? hexToRgba(T.primary, 0.04) : 'transparent',
+                            background: currentTheme === t.id ? hexToRgba(T.primary, 0.04) : 'transparent',
                             fontFamily: 'inherit',
                           }}
                         >
@@ -753,7 +750,7 @@ export default function Dock({
                           <div style={{
                             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4,
                             fontSize: 11, fontWeight: 600,
-                            color: readingTheme === t.id ? T.primary : T.inkSecondary,
+                            color: currentTheme === t.id ? T.primary : T.inkSecondary,
                           }}>
                             <t.Ic size={12} />
                             {t.label}
@@ -810,20 +807,192 @@ export default function Dock({
                         borderRadius: 'var(--radius-md)',
                         background: T.surface,
                         border: `1px solid ${T.hairline}`,
-                        fontSize: 11, color: T.stone, lineHeight: 1.7,
+                        fontSize: 11, color: T.stone,
+                        lineHeight: lineHeight || 1.7,
+                        fontFamily: fontFamily === 'serif' ? 'var(--font-serif)' : 'var(--font-sans)',
+                        transition: 'font-family 0.2s, line-height 0.2s',
                       }}
                     >
                       <div style={{ display: 'inline-block', marginBottom: 4, fontSize: 10, fontWeight: 700, color: T.ink, letterSpacing: '0.03em' }}>
-                        <Type size={10} style={{ verticalAlign: '-2px', marginRight: 4 }} /> PREVIEW
+                        <Type size={10} style={{ verticalAlign: '-2px', marginRight: 4 }} /> PREVIEW ({fontFamily === 'serif' ? 'Serif' : 'Sans'}, {lineHeight}x)
                       </div>
                       <br />
                       Ini adalah contoh paragraf teks bacaan yang akan tampil di Smart Reader. Sesuaikan ukuran agar paling nyaman di mata dan perangkatmu.
                     </div>
                   </div>
 
+                  {/* Pengaturan Lanjutan (Interaktif) */}
+                  <div style={{ marginBottom: 16 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: T.ink, letterSpacing: '0.02em' }}>
+                        PENGATURAN LANJUTAN
+                      </div>
+                      <span
+                        style={{
+                          fontSize: 10,
+                          fontWeight: 700,
+                          color: '#16a34a',
+                          background: 'rgba(22,163,74,0.08)',
+                          border: '1px solid rgba(22,163,74,0.2)',
+                          padding: '2px 8px',
+                          borderRadius: 99,
+                        }}
+                      >
+                        Aktif
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      {/* Font Sans / Serif */}
+                      <div
+                        style={{
+                          padding: '10px 12px',
+                          borderRadius: 'var(--radius-md)',
+                          background: T.surface,
+                          border: `1px solid ${T.hairline}`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: 10,
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontSize: 11, fontWeight: 600, color: T.ink }}>
+                            Jenis Font (Sans / Serif)
+                          </div>
+                          <div style={{ fontSize: 10, color: T.stone }}>
+                            {fontFamily === 'serif' ? 'Serif (Lora Editorial)' : 'Sans (Inter Modern)'}
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
+                          <button
+                            type="button"
+                            onClick={() => onFontFamilyChange && onFontFamilyChange('sans')}
+                            className="cursor-pointer transition-all"
+                            style={{
+                              padding: '3px 9px',
+                              borderRadius: 6,
+                              fontSize: 10,
+                              fontWeight: 600,
+                              background: fontFamily === 'sans' ? 'rgba(0,117,222,0.1)' : 'var(--app-canvas, #ffffff)',
+                              border: fontFamily === 'sans' ? '1.5px solid var(--color-primary, #0075de)' : `1px solid ${T.hairline}`,
+                              color: fontFamily === 'sans' ? 'var(--color-primary, #0075de)' : T.stone,
+                            }}
+                          >
+                            Sans
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => onFontFamilyChange && onFontFamilyChange('serif')}
+                            className="cursor-pointer transition-all"
+                            style={{
+                              padding: '3px 9px',
+                              borderRadius: 6,
+                              fontSize: 10,
+                              fontWeight: 600,
+                              fontFamily: 'serif',
+                              background: fontFamily === 'serif' ? 'rgba(0,117,222,0.1)' : 'var(--app-canvas, #ffffff)',
+                              border: fontFamily === 'serif' ? '1.5px solid var(--color-primary, #0075de)' : `1px solid ${T.hairline}`,
+                              color: fontFamily === 'serif' ? 'var(--color-primary, #0075de)' : T.stone,
+                            }}
+                          >
+                            Serif
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Spacing Baris */}
+                      <div
+                        style={{
+                          padding: '10px 12px',
+                          borderRadius: 'var(--radius-md)',
+                          background: T.surface,
+                          border: `1px solid ${T.hairline}`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: 10,
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontSize: 11, fontWeight: 600, color: T.ink }}>
+                            Spacing Baris
+                          </div>
+                          <div style={{ fontSize: 10, color: T.stone }}>
+                            Jarak vertikal antar baris teks ({lineHeight}x)
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
+                          {['1.4', '1.7', '2.0'].map((sp) => (
+                            <button
+                              key={sp}
+                              type="button"
+                              onClick={() => onLineHeightChange && onLineHeightChange(sp)}
+                              className="cursor-pointer transition-all"
+                              style={{
+                                padding: '3px 8px',
+                                borderRadius: 6,
+                                fontSize: 10,
+                                fontWeight: 600,
+                                background: lineHeight === sp ? 'rgba(0,117,222,0.1)' : 'var(--app-canvas, #ffffff)',
+                                border: lineHeight === sp ? '1.5px solid var(--color-primary, #0075de)' : `1px solid ${T.hairline}`,
+                                color: lineHeight === sp ? 'var(--color-primary, #0075de)' : T.stone,
+                              }}
+                            >
+                              {sp}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Mode Fokus */}
+                      <div
+                        style={{
+                          padding: '10px 12px',
+                          borderRadius: 'var(--radius-md)',
+                          background: T.surface,
+                          border: `1px solid ${T.hairline}`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: 10,
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontSize: 11, fontWeight: 600, color: T.ink }}>
+                            Mode Fokus (Zen)
+                          </div>
+                          <div style={{ fontSize: 10, color: T.stone }}>
+                            {focusMode ? 'Aktif (bilah disembunyikan saat membaca)' : 'Nonaktif'}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => onFocusModeChange && onFocusModeChange(!focusMode)}
+                          className="cursor-pointer transition-all"
+                          style={{
+                            width: 36,
+                            height: 20,
+                            borderRadius: 99,
+                            background: focusMode ? 'var(--color-primary, #0075de)' : 'rgba(0,0,0,0.15)',
+                            border: `1px solid ${focusMode ? 'var(--color-primary, #0075de)' : T.hairline}`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: focusMode ? 'flex-end' : 'flex-start',
+                            padding: '0 2px',
+                            flexShrink: 0,
+                          }}
+                          title="Klik untuk aktifkan/nonaktifkan Mode Fokus"
+                        >
+                          <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#ffffff', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                   <div
                     style={{
-                      padding: '14px 16px',
+                      padding: '12px 14px',
                       borderRadius: 'var(--radius-md)',
                       background: hexToRgba(T.primary, 0.04),
                       border: `1px solid ${hexToRgba(T.primary, 0.12)}`,
@@ -832,11 +1001,11 @@ export default function Dock({
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                       <Settings size={14} style={{ color: T.primary, flexShrink: 0 }} />
                       <div style={{ fontSize: 12, fontWeight: 700, color: T.ink }}>
-                        Lebih banyak preferensi
+                        Preferensi Reader Aktif
                       </div>
                     </div>
                     <div style={{ fontSize: 11, color: T.stone, lineHeight: 1.6 }}>
-                      Font Sans/Serif, spacing baris, & mode fokus akan segera hadir di pembaruan berikutnya.
+                      Font Sans/Serif, spacing baris, & mode fokus aktif dan tersinkronisasi langsung ke Smart Reader.
                     </div>
                   </div>
                 </div>

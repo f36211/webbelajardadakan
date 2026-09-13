@@ -8,36 +8,45 @@ import HTMLViewer from './HTMLViewer';
 import GoogleDriveIcon from './GoogleDriveIcon';
 import { GDRIVE_FOLDER_URL } from '../data/materials';
 
-export default function Reader({ material, onClose, onOpenChat }) {
+export default function Reader({
+  material,
+  onClose,
+  onOpenChat,
+  theme,
+  onThemeChange,
+  fontFamily = 'sans',
+  onFontFamilyChange,
+  lineHeight = '1.7',
+  onLineHeightChange,
+  focusMode = false,
+  onFocusModeChange,
+}) {
   const [showSettings, setShowSettings] = useState(false);
   const [showSource, setShowSource] = useState(false);
-  const [readingTheme, setReadingTheme] = useState(() => {
-    return localStorage.getItem('app_theme') || 'light';
-  });
   const readerRef = useRef(null);
 
   const isHtml = !!material.html;
+  const activeTheme = theme || localStorage.getItem('app_theme') || 'light';
 
   const handleThemeChange = (newTheme) => {
-    setReadingTheme(newTheme);
-    const root = document.documentElement;
-    root.setAttribute('data-theme', newTheme);
-    root.setAttribute('data-reading-theme', newTheme);
-    if (newTheme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
+    if (onThemeChange) {
+      onThemeChange(newTheme);
     }
-    localStorage.setItem('app_theme', newTheme);
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        if (focusMode && onFocusModeChange) {
+          onFocusModeChange(false);
+        } else {
+          onClose();
+        }
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [onClose, focusMode, onFocusModeChange]);
 
   const stickerColors = {
     IPA: { tint: 'rgba(42,157,153,0.06)', text: '#2a9d99' },
@@ -53,7 +62,7 @@ export default function Reader({ material, onClose, onOpenChat }) {
       style={{ background: 'var(--app-bg, #f6f5f4)', color: 'var(--app-text, #000000)' }}
     >
       <header
-        className="sticky top-0 z-40 border-b"
+        className="reader-header sticky top-0 z-40 border-b transition-all"
         style={{
           background: 'var(--app-header-bg, rgba(255,255,255,0.93))',
           borderColor: 'var(--app-hairline, #e6e6e6)',
@@ -183,16 +192,16 @@ export default function Reader({ material, onClose, onOpenChat }) {
                 className="overflow-hidden border-t mt-2.5 pt-3"
                 style={{ borderColor: 'var(--app-hairline, #e6e6e6)' }}
               >
-                <div className="flex flex-wrap items-center gap-5 pb-1">
+                <div className="flex flex-wrap items-center gap-y-3 gap-x-5 pb-1">
                   {/* Theme */}
                   <div className="flex items-center gap-2">
                     <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--app-text-ash, #a39e98)' }}>Tema</span>
                     {[
                       { id: 'light', label: 'Terang', Icon: Sun },
-                      { id: 'dark', label: 'Gelap', Icon: Moon },
                       { id: 'sepia', label: 'Sepia', Icon: BookOpen },
+                      { id: 'dark', label: 'Gelap', Icon: Moon },
                     ].map(({ id, label, Icon }) => {
-                      const isActive = readingTheme === id;
+                      const isActive = activeTheme === id;
                       return (
                         <button
                           key={id}
@@ -209,6 +218,72 @@ export default function Reader({ material, onClose, onOpenChat }) {
                         </button>
                       );
                     })}
+                  </div>
+
+                  {/* Font Sans / Serif */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--app-text-ash, #a39e98)' }}>Font</span>
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => onFontFamilyChange && onFontFamilyChange('sans')}
+                        className="cursor-pointer px-2.5 py-1 rounded-md text-xs font-semibold transition-colors"
+                        style={{
+                          border: fontFamily === 'sans' ? '1.5px solid var(--color-primary, #0075de)' : '1px solid var(--app-hairline, #e6e6e6)',
+                          background: fontFamily === 'sans' ? 'rgba(0,117,222,0.1)' : 'var(--app-canvas, #ffffff)',
+                          color: fontFamily === 'sans' ? 'var(--color-primary, #0075de)' : 'var(--app-text-secondary, #31302e)',
+                        }}
+                      >
+                        Sans
+                      </button>
+                      <button
+                        onClick={() => onFontFamilyChange && onFontFamilyChange('serif')}
+                        className="cursor-pointer px-2.5 py-1 rounded-md text-xs font-semibold transition-colors font-serif"
+                        style={{
+                          border: fontFamily === 'serif' ? '1.5px solid var(--color-primary, #0075de)' : '1px solid var(--app-hairline, #e6e6e6)',
+                          background: fontFamily === 'serif' ? 'rgba(0,117,222,0.1)' : 'var(--app-canvas, #ffffff)',
+                          color: fontFamily === 'serif' ? 'var(--color-primary, #0075de)' : 'var(--app-text-secondary, #31302e)',
+                        }}
+                      >
+                        Serif
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Spacing Baris */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--app-text-ash, #a39e98)' }}>Spacing</span>
+                    <div className="flex items-center gap-1">
+                      {['1.4', '1.7', '2.0'].map((sp) => (
+                        <button
+                          key={sp}
+                          onClick={() => onLineHeightChange && onLineHeightChange(sp)}
+                          className="cursor-pointer px-2.5 py-1 rounded-md text-xs font-semibold transition-colors"
+                          style={{
+                            border: lineHeight === sp ? '1.5px solid var(--color-primary, #0075de)' : '1px solid var(--app-hairline, #e6e6e6)',
+                            background: lineHeight === sp ? 'rgba(0,117,222,0.1)' : 'var(--app-canvas, #ffffff)',
+                            color: lineHeight === sp ? 'var(--color-primary, #0075de)' : 'var(--app-text-secondary, #31302e)',
+                          }}
+                        >
+                          {sp}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Mode Fokus (Zen) */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => onFocusModeChange && onFocusModeChange(!focusMode)}
+                      className="cursor-pointer flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-colors"
+                      style={{
+                        border: focusMode ? '1.5px solid var(--color-primary, #0075de)' : '1px solid var(--app-hairline, #e6e6e6)',
+                        background: focusMode ? 'rgba(0,117,222,0.1)' : 'var(--app-canvas, #ffffff)',
+                        color: focusMode ? 'var(--color-primary, #0075de)' : 'var(--app-text-secondary, #31302e)',
+                      }}
+                    >
+                      <Sparkles style={{ width: 12, height: 12 }} />
+                      Mode Fokus (Zen)
+                    </button>
                   </div>
 
                   {/* Source URL display */}
@@ -232,22 +307,56 @@ export default function Reader({ material, onClose, onOpenChat }) {
         </div>
       </header>
 
+      {/* Focus mode banner when active */}
+      {focusMode && (
+        <div
+          className="flex items-center justify-between px-4 py-1.5 border-b text-xs transition-all z-30"
+          style={{
+            background: 'var(--color-primary-tint, rgba(0,117,222,0.08))',
+            borderColor: 'var(--app-hairline, #e6e6e6)',
+            color: 'var(--color-primary, #0075de)',
+          }}
+        >
+          <div className="flex items-center gap-2 mx-auto font-medium">
+            <Sparkles size={13} />
+            <span>Mode Fokus Zen Aktif</span>
+            <span className="opacity-70 text-[11px] hidden sm:inline">(Tekan Esc atau klik tombol di kanan untuk keluar)</span>
+          </div>
+          <button
+            onClick={() => onFocusModeChange && onFocusModeChange(false)}
+            className="cursor-pointer text-[11px] font-bold px-2.5 py-0.5 rounded border border-current transition-opacity hover:opacity-80"
+          >
+            Keluar Zen
+          </button>
+        </div>
+      )}
+
       {/* Main content */}
       <div className="flex-1 min-h-0 flex flex-col">
         {isHtml ? (
           <HTMLViewer
             htmlUrl={material.html}
             sourceUrl={material.sourceUrl}
+            theme={activeTheme}
+            fontFamily={fontFamily}
+            lineHeight={lineHeight}
           />
         ) : (
-          <div className="flex flex-col items-center justify-center min-h-[300px] gap-3 p-10 bg-white rounded-lg border border-stone-200 mx-auto my-6 max-w-xl w-[1200px]">
-            <FileText style={{ width: 32, height: 32, color: '#a39e98' }} />
-            <p className="text-sm text-stone-500 text-center">
+          <div
+            className="flex flex-col items-center justify-center min-h-[300px] gap-3 p-10 rounded-lg border mx-auto my-6 max-w-xl w-[1200px]"
+            style={{
+              background: 'var(--app-canvas, #ffffff)',
+              borderColor: 'var(--app-hairline, #e6e6e6)',
+              color: 'var(--app-text, #000000)',
+            }}
+          >
+            <FileText style={{ width: 32, height: 32, color: 'var(--app-text-ash, #a39e98)' }} />
+            <p className="text-sm text-center" style={{ color: 'var(--app-text-muted, #615d59)' }}>
               File dokumen tidak ditemukan untuk materi ini.
             </p>
             <button
               onClick={onClose}
-              className="cursor-pointer px-4 py-2 rounded-md text-[13px] font-semibold text-white border-none"
+              className="cursor-pointer px-4 py-2 rounded-md text-[13px] font-semibold text-white border-none shadow-2xs"
               style={{ background: 'var(--color-cat-ips, #0075de)' }}
             >
               Kembali ke Dashboard
